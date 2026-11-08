@@ -21,14 +21,20 @@ cp app.html www/index.html
 # admin-subs.html : ecran d approbation des substitutions, ouvert par un href
 # relatif depuis le profil admin de app.html. Meme piege que admin.html : hors
 # du bundle, le clic donnait un 404 silencieux sous capacitor://.
-PAGES="app.html coach.html saut.html squat.html barre.html course.html hyrox.html chrono.html aide.html privacy.html conditions.html admin.html admin-subs.html tv.html studio.html"
+PAGES="app.html coach.html saut.html squat.html barre.html course.html hyrox.html chrono.html jeu.html aide.html privacy.html conditions.html admin.html admin-subs.html tv.html studio.html studio-voix.html"
 for f in $PAGES; do
   if [ -f "$f" ]; then cp "$f" www/; fi
 done
 
-ASSETS="logo.png logodm.png logo-dm.png favicons.png manifest.json anim.js cdm-icons.js"
+ASSETS="logo.png logodm.png logo-dm.png favicons.png manifest.json tv-manifest.json anim.js cdm-icons.js cdm-ui.js apple-touch-icon.png favicon.png favicon-16.png favicon-32x32.png"
 for f in $ASSETS; do
   if [ -f "$f" ]; then cp "$f" www/; fi
+done
+
+# icons/, badges/ et fonts/ : sans eux l'app embarquee perd ses icones or,
+# ses badges et ses polices (Barlow Condensed, Inter). Ajoute pour la 2.4.1.
+for d in icons badges fonts; do
+  if [ -d "$d" ]; then cp -R "$d" www/; fi
 done
 
 echo "== Contenu www/ =="
