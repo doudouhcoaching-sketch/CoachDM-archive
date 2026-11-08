@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#070A08;--panel:#0E1411;--panel2:#151D18;--line:rgba(234,244,238,.11);--fg:#EEF4EF;--mut:#8FA398;--brand:#00E896;--brand2:#00B978;--gold:#E9C767;--red:#FF5A5A;
+:root{--bg:#0B0B0A;--panel:#121211;--panel2:#1A1917;--line:rgba(241,237,227,.11);--fg:#F1EDE3;--mut:#8F8B80;--brand:#DCBB72;--brand2:#C9A24E;--gold:#E9C767;--red:#FF5A5A;
   --fd:'Barlow Condensed','Arial Narrow',Arial,sans-serif;--fb:'Outfit',-apple-system,'Segoe UI',Roboto,sans-serif;color-scheme:dark}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--fb);-webkit-text-size-adjust:100%}
 body{padding:calc(12px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px))}
@@ -21,7 +21,7 @@ body{padding:calc(12px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe
 .prog{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--mut)}.bar{flex:1;height:7px;border-radius:7px;background:var(--panel2);overflow:hidden}.bar i{display:block;height:100%;background:var(--brand);width:0;transition:width .3s}
 .prog b{color:var(--fg);font-variant-numeric:tabular-nums}
 details.tips{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 14px}
-details.tips summary{cursor:pointer;font-weight:800;font-size:14px}details.tips ul{margin:8px 0 2px;padding-left:18px;color:#C9D6CE;font-size:13.5px;line-height:1.5}
+details.tips summary{cursor:pointer;font-weight:800;font-size:14px}details.tips ul{margin:8px 0 2px;padding-left:18px;color:#D0CBBF;font-size:13.5px;line-height:1.5}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px 16px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
 .grp{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
 .say{font:800 clamp(30px,9vw,46px)/1.05 var(--fd);text-transform:none;margin:0;min-height:1.1em;overflow-wrap:anywhere}
@@ -30,14 +30,14 @@ details.tips summary{cursor:pointer;font-weight:800;font-size:14px}details.tips 
 .tp{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:-2px 0 0;min-height:1.2em}.tp span{font:700 12px var(--fb);padding:4px 10px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);color:var(--fg)}.tp span b{color:var(--gold);font-weight:800}
 .edit{background:none;border:0;color:var(--mut);font:600 12.5px var(--fb);text-decoration:underline;cursor:pointer;padding:0}
 .meter{width:100%;height:10px;border-radius:10px;background:var(--panel2);overflow:hidden}.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--gold),var(--red));transition:width .05s}
-canvas.wave{width:100%;height:64px;border-radius:12px;background:#0A100D}
+canvas.wave{width:100%;height:64px;border-radius:12px;background:#0F0F0E}
 .rec{width:96px;height:96px;border-radius:50%;border:4px solid rgba(255,90,90,.35);background:radial-gradient(circle at 40% 35%,#ff8080,#E03A3A);box-shadow:0 10px 40px rgba(224,58,58,.35);cursor:pointer;display:grid;place-items:center;color:#fff;font:800 13px var(--fb);letter-spacing:.06em}
 .rec.on{animation:pul 1s infinite;border-color:#fff}
 .rec:disabled{opacity:.4}
 @keyframes pul{50%{box-shadow:0 0 0 14px rgba(224,58,58,.18)}}
 .row{display:flex;gap:8px;width:100%}.row button{flex:1}
 .b{padding:13px 10px;border-radius:14px;border:1px solid var(--line);background:var(--panel2);color:var(--fg);font:800 14.5px var(--fb);cursor:pointer}
-.b.ok{background:linear-gradient(180deg,var(--brand),var(--brand2));color:#03140C;border:0}
+.b.ok{background:linear-gradient(180deg,var(--brand),var(--brand2));color:#1B1405;border:0}
 .b:disabled{opacity:.4}
 .warn{font-size:13px;color:var(--gold);min-height:1.2em;margin:0}
 .nav{display:flex;gap:8px;width:100%}.nav button{flex:1;padding:9px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--mut);font:700 13px var(--fb);cursor:pointer}
@@ -45,11 +45,26 @@ canvas.wave{width:100%;height:64px;border-radius:12px;background:#0A100D}
 .filt select{flex:1;padding:9px 10px;border-radius:12px;border:1px solid var(--line);background:var(--panel2);color:var(--fg);font:600 14px var(--fb)}
 .list{display:flex;flex-direction:column;gap:4px}
 .it{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:12px;background:var(--panel);border:1px solid transparent;cursor:pointer;text-align:left;color:var(--fg);font:600 14px var(--fb)}
-.it.cur{border-color:var(--brand)}.it .d{width:10px;height:10px;border-radius:50%;background:#33403A;flex:none}.it.done .d{background:var(--brand)}
+.it.cur{border-color:var(--brand)}.it .d{width:10px;height:10px;border-radius:50%;background:#33312C;flex:none}.it.done .d{background:var(--brand)}
 .it span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.it small{color:var(--mut);font-size:11.5px}
 .gate{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;text-align:center;line-height:1.5}
 .gate a{color:var(--brand)}
 [hidden]{display:none!important}
+</style>
+<style id="cdm-premium">
+/* 2.4.1 — meme habillage que l'app : noir et or, Barlow Condensed pour les titres, Inter pour le texte */
+@font-face{font-family:'Barlow Condensed';font-weight:500;font-display:swap;src:url(fonts/barlow-condensed-latin-500-normal.woff2) format('woff2'),url(fonts/barlow-condensed-latin-ext-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-weight:600;font-display:swap;src:url(fonts/barlow-condensed-latin-600-normal.woff2) format('woff2'),url(fonts/barlow-condensed-latin-ext-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-weight:700 900;font-display:swap;src:url(fonts/barlow-condensed-latin-700-normal.woff2) format('woff2'),url(fonts/barlow-condensed-latin-ext-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:400;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format('woff2'),url(fonts/inter-latin-ext-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:500;font-display:swap;src:url(fonts/inter-latin-500-normal.woff2) format('woff2'),url(fonts/inter-latin-ext-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:600;font-display:swap;src:url(fonts/inter-latin-600-normal.woff2) format('woff2'),url(fonts/inter-latin-ext-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:700 900;font-display:swap;src:url(fonts/inter-latin-700-normal.woff2) format('woff2'),url(fonts/inter-latin-ext-700-normal.woff2) format('woff2')}
+:root{--font-d:'Barlow Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--font-display:'Barlow Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+body,button,input,select,textarea{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+h1,h2,h3{font-family:'Barlow Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;letter-spacing:.01em}
+::selection{background:rgba(220,187,114,.35)}
+.top-ic{width:34px;height:34px;border-radius:10px;flex:none;object-fit:cover;display:block}
 </style>
 </head>
 <body>
@@ -339,8 +354,8 @@ $('#play').onclick=async()=>{
 function drawWave(t){
   const c=$('#wave'), x=c.getContext('2d'); x.clearRect(0,0,c.width,c.height); if(!t) return;
   const d=t.audio.getChannelData(0), n=c.width, step=Math.floor(d.length/n)||1, H=c.height/2;
-  x.fillStyle='rgba(0,232,150,.12)'; x.fillRect(t.start/t.audio.duration*n,0,(t.end-t.start)/t.audio.duration*n,c.height);
-  x.strokeStyle='#00E896'; x.beginPath();
+  x.fillStyle='rgba(220,187,114,.12)'; x.fillRect(t.start/t.audio.duration*n,0,(t.end-t.start)/t.audio.duration*n,c.height);
+  x.strokeStyle='#DCBB72'; x.beginPath();
   for(let i=0;i<n;i++){ let m=0; for(let j=i*step;j<(i+1)*step&&j<d.length;j++) m=Math.max(m,Math.abs(d[j])); const mm=Math.min(1,m*t.gain); x.moveTo(i,H-mm*H); x.lineTo(i,H+mm*H); }
   x.stroke();
 }
@@ -361,5 +376,6 @@ $('#keep').onclick=async()=>{
 /* clavier (ordinateur) : espace = REC/STOP, Entree = garder */
 document.addEventListener('keydown',e=>{ if(e.target.tagName==='SELECT') return; if(e.code==='Space'){ e.preventDefault(); $('#rec').click(); } else if(e.key==='Enter'&&!$('#keep').disabled){ e.preventDefault(); $('#keep').click(); } });
 </script>
+<script src="cdm-ui.js"></script>
 </body>
 </html>

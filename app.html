@@ -23,7 +23,7 @@
 <style>
   :root{
     --bg:#0B0B0A; --bg-2:#151513;
-    --surface:#121814; --surface-2:#1A221D; --line:rgba(255,255,255,.10);
+    --surface:#151513; --surface-2:#1D1C19; --line:rgba(255,255,255,.10);
     --text:#F2F0E9; --muted:#8F8B80;
     --brand:#DCBB72; --brand-2:#C9A24E; --brand-soft:rgba(220,187,114,.14);
     --brand-ink:#DCBB72;   /* en sombre le neon atteint deja 15:1 : rien a corriger */
@@ -265,7 +265,7 @@
     background:linear-gradient(158deg,var(--surface) 0%,color-mix(in srgb,var(--surface) 82%,var(--brand) 18%) 190%);
     box-shadow:0 6px 20px rgba(0,0,0,.16);transition:transform .14s ease,border-color .14s ease}
   .an-card:active{transform:scale(.985);border-color:rgba(220,187,114,.4)}
-  :root[data-theme="light"] .an-card{box-shadow:0 5px 16px rgba(18,44,32,.07)}
+  :root[data-theme="light"] .an-card{box-shadow:0 5px 16px rgba(44,36,18,.07)}
   .an-top{display:flex;align-items:flex-start;gap:12px}
   .an-hd{flex:1;min-width:0}
   .an-sec{flex:none;font-family:'Outfit',sans-serif;font-size:11px;font-weight:800;letter-spacing:.02em;
@@ -330,7 +330,7 @@
     padding:9px 11px;font:inherit;font-size:13.5px;font-weight:600;color:var(--text);text-align:left;cursor:pointer}
   .lp-c i{flex:0 0 20px;height:20px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;color:transparent}
   .lp-c i svg{width:12px;height:12px}
-  .lp-c.ok i{background:var(--brand);border-color:var(--brand);color:#04140d}
+  .lp-c.ok i{background:var(--brand);border-color:var(--brand);color:#1B1405}
   .lp-c small{margin-left:auto;font-size:11.5px;font-weight:600;color:var(--muted)}
   .lp-sub{margin:12px 2px 0;font-size:12.5px;color:var(--muted);line-height:1.45}
   .lp-ft{margin-top:12px;display:flex;flex-direction:column;gap:6px}
@@ -359,7 +359,7 @@
   .founder-card{border:1px solid rgba(184,150,63,.45);background:linear-gradient(160deg,rgba(217,182,92,.12),rgba(139,105,20,.04));box-shadow:0 0 24px rgba(184,150,63,.12)}
   .founder-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,var(--gold-hi),var(--gold-mid) 60%,var(--gold-deep));color:var(--on-gold);font-family:'Outfit',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.01em;text-transform:uppercase;border-radius:999px;padding:6px 14px;box-shadow:0 2px 10px rgba(184,150,63,.35),inset 0 1px 0 rgba(255,255,255,.5)}
   .founder-badge svg{flex:none}
-  .founder-since{margin-top:9px;font-size:12.5px;color:var(--muted,#9fb3aa)}
+  .founder-since{margin-top:9px;font-size:12.5px;color:var(--muted,#A9A498)}
   /* Badge Coach : même traitement que le badge fondateur, teinte brand au
      lieu de l'or, pour distinguer un rôle (coach) d'un statut (fondateur). */
   .coach-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#1B1405;font-family:'Outfit',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.01em;text-transform:uppercase;border-radius:999px;padding:6px 14px;box-shadow:0 2px 10px rgba(220,187,114,.35)}
@@ -411,7 +411,7 @@
   .co-sub{font-size:12.5px;color:var(--muted);margin-top:3px}
   .co-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:9px}
   .co-pill{font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;white-space:nowrap}
-  .co-pill.ok{background:rgba(16,185,129,.15);color:var(--fiber)}
+  .co-pill.ok{background:rgba(220,187,114,.15);color:var(--fiber)}
   .co-pill.warn{background:rgba(245,158,11,.16);color:#D9B65C}
   .co-pill.full{background:rgba(239,68,68,.14);color:var(--warn)}
   .co-pill.mine{background:var(--brand-soft);color:var(--brand)}
@@ -783,8 +783,8 @@
   /* ============ THEME CLAIR ============ */
   :root[data-theme="light"]{
     --bg:#F4F1E9; --bg-2:#FFFFFF;
-    --surface:#FFFFFF; --surface-2:#EEF3F0; --line:rgba(12,32,24,.10);
-    --text:#0A1512; --muted:#5A7A6B;
+    --surface:#FFFFFF; --surface-2:#EFEBE1; --line:rgba(32,26,12,.10);
+    --text:#15120B; --muted:#6B6455;
     --brand:#C9A24E; --brand-2:#B8913F; --brand-soft:rgba(201,162,78,.12);
     /* E#31 — --brand (#C9A24E) ne donne que 2,74:1 sur --surface-2 : tout
        petit texte vert etait sous le seuil WCAG AA en theme clair, donc
@@ -795,8 +795,8 @@
     --brand-ink:#9C7A30;
     --go:#C9A24E;
     --gold-ink:#8B6914; --gold-soft:rgba(184,150,63,.18);
-    --shadow:0 14px 34px rgba(18,44,32,.10);
-    --shadow-soft:0 8px 22px rgba(18,44,32,.07);
+    --shadow:0 14px 34px rgba(44,36,18,.10);
+    --shadow-soft:0 8px 22px rgba(44,36,18,.07);
     --glow:0 8px 22px rgba(201,162,78,.18);
   }
   :root[data-theme="light"] body{
@@ -853,7 +853,7 @@
   .mrow-bar i{display:block;height:100%;border-radius:5px}
   .home-eyebrow{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--gold-ink);margin:20px 2px 11px}
   .wod2{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-soft);padding:11px;margin-bottom:14px}
-  .wod2-thumb{width:66px;height:66px;border-radius:14px;flex:0 0 auto;background:linear-gradient(150deg,#0d3a2a,#C9A24E 55%,#0a5c42);background-size:cover;background-position:center;position:relative;overflow:hidden}
+  .wod2-thumb{width:66px;height:66px;border-radius:14px;flex:0 0 auto;background:linear-gradient(150deg,#3A2E12,#C9A24E 55%,#6E5418);background-size:cover;background-position:center;position:relative;overflow:hidden}
   .wod2-thumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 72% 18%,rgba(255,255,255,.22),transparent 55%)}
   .wod2-body{flex:1;min-width:0}
   .wod2-k{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:3px}
@@ -1010,8 +1010,8 @@
   .hero-lock svg{width:12px;height:12px}
   .hero-wd{font-size:11.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--brand);margin-bottom:3px}
   .hero-wd.gold{color:#D9B65C}
-  .hero-name{font-size:21px;font-weight:800;line-height:1.12;letter-spacing:-0.03em;color:#F2F7F4;margin-bottom:3px}
-  .hero-meta{font-size:12.5px;color:rgba(242,247,244,.75);font-weight:600;margin-bottom:11px}
+  .hero-name{font-size:21px;font-weight:800;line-height:1.12;letter-spacing:-0.03em;color:#F5F2EA;margin-bottom:3px}
+  .hero-meta{font-size:12.5px;color:rgba(245,242,234,.75);font-weight:600;margin-bottom:11px}
   .hero-cta{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:800;color:#1B1405;
     background:linear-gradient(135deg,var(--brand),var(--brand-2));border:none;border-radius:999px;padding:10px 17px;cursor:pointer}
   .hero-cta.gold{background:linear-gradient(135deg,#D9B65C,#C9A24B)}
@@ -1508,7 +1508,7 @@ h1, h2,
   --gold-hi:#EBD49A; --gold:#DCBB72; --gold-mid:#C49E4C; --gold-deep:#8B6914; --bronze:#6E4E12;
   --gold-soft:rgba(220,187,114,.13); --on-gold:#1B1405; --gold-ink:#DCBB72;
   --gold-grad:linear-gradient(180deg,#E6C783,#C9A24E);
-  --prot:#E0574F; --carb:#5B9AD6; --fat:#DCBB72; --fiber:#8FB573;
+  --prot:#E0574F; --carb:#5B9AD6; --fat:#DCBB72; --fiber:#C9A24E;
   --ok:#DCBB72; --warn:#E0574F;
   --shadow:none; --shadow-soft:none; --glow:none;
   --radius:22px; --radius-sm:14px;
@@ -2471,7 +2471,7 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
     var b=document.getElementById('boot'); if(!b) return;
     ['auth','gate','app'].forEach(function(id){ var e=document.getElementById(id); if(e){ e.classList.add('hidden'); if(id==='app') e.style.display='none'; } });
     b.classList.remove('hidden');
-    b.innerHTML='<div style="max-width:330px;margin:auto;padding:30px;text-align:center;font:400 15px/1.55 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#b9c6c0">'
+    b.innerHTML='<div style="max-width:330px;margin:auto;padding:30px;text-align:center;font:400 15px/1.55 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#C2BDB1">'
       +'<div style="font-size:34px;margin-bottom:12px">\u26A0\uFE0F</div>'
       +'<div style="font-weight:800;font-size:18px;color:#fff;margin-bottom:9px">'+M[0]+'</div>'
       +'<div style="margin-bottom:22px">'+M[1]+'</div>'
@@ -2703,7 +2703,7 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
          rôle sans aucune transaction. Reste donc visible même en natif,
          contrairement à #home-coach (payant) juste au-dessus. -->
     <button class="ia-home" id="home-coach-free" type="button" style="display:none">
-      <span class="ia-home-ic im"><img src="icons/coach_become.webp" alt="" decoding="async"></span>
+      <span class="ia-home-ic im"><img src="icons/coach_plus.webp" alt="" decoding="async"></span>
       <span class="ia-home-tx"><b data-i18n="coach_free_home_t">Devenir coach</b><span data-i18n="coach_free_home_sub">1 client offert pour découvrir la console</span></span>
       <svg class="ia-home-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
     </button>
@@ -3674,9 +3674,9 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
   .pf-for b{color:var(--brand-ink);font-weight:700}
   /* ---- D#24 : carte hero analyse ---- */
   .act-hero{margin-top:12px;border-radius:18px;padding:17px 17px 15px;cursor:pointer;
-    background:linear-gradient(145deg,#141a17,#0c1210);border:1px solid rgba(220,187,114,.4);
+    background:linear-gradient(145deg,#171614,#0F0F0E);border:1px solid rgba(220,187,114,.4);
     box-shadow:0 10px 34px rgba(0,0,0,.32)}
-  :root[data-theme="light"] .act-hero{background:linear-gradient(145deg,#F2FBF7,#E8F6F0);border-color:rgba(201,162,78,.35);box-shadow:0 8px 26px rgba(0,0,0,.07)}
+  :root[data-theme="light"] .act-hero{background:linear-gradient(145deg,#F5F2EA,#F3EEE2);border-color:rgba(201,162,78,.35);box-shadow:0 8px 26px rgba(0,0,0,.07)}
   .ah-badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
     color:#1B1405;background:var(--brand);border-radius:999px;padding:4px 10px;margin-bottom:10px}
   .ah-t{font-family:'Outfit',sans-serif;font-size:19px;font-weight:800;line-height:1.2;margin-bottom:7px}
@@ -3808,6 +3808,8 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
     color:var(--muted);font-family:'Outfit',sans-serif;font-size:11px;font-weight:800;line-height:1;
     cursor:pointer;vertical-align:middle;flex:none}
   .lexq:active{transform:scale(.9)}
+  body.nx .lexq{background:rgba(220,187,114,.16)!important;color:#DCBB72!important;border:0!important}
+  .csl .ic.im{overflow:hidden;padding:0!important;background:none!important}
   /* La cible tactile reelle fait 34px alors que la pastille en fait 17 :
      E#31 demande 44px, on s'en approche sans alourdir visuellement la ligne. */
   .lexq::before{content:'';position:absolute;width:34px;height:34px;margin:-8px}
@@ -3869,7 +3871,7 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
     box-shadow:inset 0 0 0 1px rgba(220,187,114,.22),0 0 18px rgba(220,187,114,.10)}
   .nav button.on::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);
     width:4px;height:4px;border-radius:50%;background:var(--brand);box-shadow:0 0 8px rgba(220,187,114,.8)}
-  :root[data-theme="light"] .nav{box-shadow:0 -10px 30px rgba(18,44,32,.10)}
+  :root[data-theme="light"] .nav{box-shadow:0 -10px 30px rgba(44,36,18,.10)}
   :root[data-theme="light"] .nav::before{background:linear-gradient(90deg,transparent,rgba(201,162,78,.25),transparent)}
   :root[data-theme="light"] .nav button.on{background:rgba(201,162,78,.10);box-shadow:inset 0 0 0 1px rgba(201,162,78,.22)}
 
@@ -5051,7 +5053,8 @@ const T = {
  pf_sessions:{fr:'séances',en:'sessions',nl:'sessies'},
  pf_back:{fr:'Programmes',en:'Programs',nl:"Programma's"},
  an_title:{fr:'Analyse vid\u00e9o IA',en:'AI Video Analysis',nl:'AI-video-analyse'},
- an_sub:{fr:'Cam\u00e9ra en direct \u2014 100% sur ton t\u00e9l\u00e9phone, aucune vid\u00e9o envoy\u00e9e.',en:'Live camera \u2014 100% on your phone, no video uploaded.',nl:'Live camera \u2014 100% op je telefoon, geen video verstuurd.'},
+ an_sub:{fr:'En direct avec la cam\u00e9ra ou depuis une vid\u00e9o de ta galerie. L\u2019analyse se fait sur ton t\u00e9l\u00e9phone.',en:'Live with the camera or from a video in your gallery. The analysis runs on your phone.',nl:'Live met de camera of vanuit een video uit je galerij. De analyse gebeurt op je telefoon.'},
+ an_live:{fr:'DIRECT + VID\u00c9O',en:'LIVE + VIDEO',nl:'LIVE + VIDEO'},
  an_squat:{fr:'Analyse Squat',en:'Squat Analysis',nl:'Squatanalyse'},
  an_squat_sub:{fr:'Gratuit : reps + parall\u00e8le \u00b7 Pro : dos, valgus, vitesse (VBT)',en:'Free: reps + parallel \u00b7 Pro: torso, valgus, speed (VBT)',nl:'Gratis: reps + parallel \u00b7 Pro: romp, valgus, snelheid (VBT)'},
  an_jump:{fr:'Test de Saut',en:'Jump Test',nl:'Sprongtest'},
@@ -5066,7 +5069,7 @@ const T = {
  an_hyrox_sub:{fr:'Gratuit : reps + no-reps + cadence \u00b7 Pro : fade, blocage, p\u00e9nalit\u00e9',en:'Free: reps + no-reps + cadence \u00b7 Pro: fade, rest, penalty',nl:'Gratis: reps + no-reps + cadans \u00b7 Pro: fade, rust, straf'},
  an_you_get:{fr:'Tu obtiens :',en:'You get:',nl:'Je krijgt:'},
  an_start:{fr:'Lancer l’analyse',en:'Start the analysis',nl:'Analyse starten'},
- an_pro:{fr:'Analyses Pro (VBT, Profil F-V) \u2014 offres Coach & Coach+',en:'Pro analyses (VBT, F-V profile) \u2014 Coach & Coach+ plans',nl:'Pro-analyses (VBT, K-S profiel) \u2014 Coach & Coach+ abonnementen'},
+ an_pro:{fr:'Analyses Pro (VBT, profil force-vitesse) \u2014 incluses dans Premium',en:'Pro analyses (VBT, force-velocity profile) \u2014 included in Premium',nl:'Pro-analyses (VBT, kracht-snelheidsprofiel) \u2014 inbegrepen in Premium'},
  /* Sous-titres natifs : ils decrivent ce que fait l'analyse, sans jamais citer
     de palier \u00ab Pro \u00bb. Les versions web opposent Gratuit et Pro, ce qui est
     honnete la-bas puisque l'offre Coach y est achetable. Sur iOS elle ne l'est
@@ -7373,7 +7376,7 @@ function renderCoachSignal(){
   if(!total){
     box.innerHTML='';
     if(line) line.innerHTML = '<a class="csl" href="coach.html">'
-      + '<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20v-1.5a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3V20"/><circle cx="9.5" cy="7.5" r="3"/><path d="M18 8.5h4M20 6.5v4"/></svg></span>'
+      + '<span class="ic im"><img src="icons/coach_console.webp" alt="" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block"></span>'
       + '<span class="tx"><b>'+esc(t('csl_t'))+'</b><span>'+esc(t('csl_sub'))+'</span></span>'
       + '<svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>';
     return;
@@ -8956,8 +8959,8 @@ function rcMajBandeau(){
   const l=document.getElementById('rc-sub-line');
   if(l) l.textContent=t('rc_now_line').replace('{h}',rcHeureTexte());
 }
-const RC_HUES={breakfast:38,lunch:150,dinner:262,snack:12,pre_workout:190,post_workout:330};
-function rcHue(r){ return (r.meal_type in RC_HUES) ? RC_HUES[r.meal_type] : 150; }
+const RC_HUES={breakfast:40,lunch:32,dinner:26,snack:44,pre_workout:36,post_workout:30};
+function rcHue(r){ return (r.meal_type in RC_HUES) ? RC_HUES[r.meal_type] : 34; }
 /* rcBgVal ne rend que la VALEUR de background-image : elle part soit dans un
    style inline (le degrade seul, sans poids), soit dans data-bg pour differer
    la photo. rcBg garde sa signature pour les appels qui n'ont pas besoin du
@@ -10869,7 +10872,7 @@ function renderAnalyseSection(){
   const runIc='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="4.5" r="2"/><path d="M13 7l-2.5 4.5L7 13M10.5 11.5l2 3-1.5 5M12.5 14.5l3.5 1.5 2 4M13 7l4 1.5 2.5 3"/></svg>';
   const chronoIc='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V10M10 3h4M12 3v3.5M18.5 7l1.5-1.5"/></svg>';
   const hyroxIc='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l2.5-6 4 12 2.5-6H21"/></svg>';
-  host.innerHTML=`<div class="an-h"><h3>${t('an_title')}</h3><span class="an-live">LIVE</span></div>
+  host.innerHTML=`<div class="an-h"><h3>${t('an_title')}</h3><span class="an-live">${t('an_live')}</span></div>
   <div class="an-sub">${t('an_sub')}</div>
   ${[
     ['squat.html', squatIc, 'an_squat'],
@@ -12990,7 +12993,7 @@ function msTypeVal(what){
   document.querySelectorAll('#ms-tys').forEach(e=>e.remove());
   const sh=document.createElement('div'); sh.id='ms-tys'; sh.className='ms-vs'; document.getElementById('ms-ov').appendChild(sh);
   sh.innerHTML=`<div class="ms-vsi"><h3>${esc(mtt(kind))}</h3>
-    <input id="ty-v" type="number" inputmode="${kind==='kg'?'decimal':'numeric'}" step="${kind==='kg'?'0.5':'1'}" value="${cur!=null?cur:''}" style="width:100%;font-size:40px;font-weight:800;text-align:center;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:#0B100D;color:#fff">
+    <input id="ty-v" type="number" inputmode="${kind==='kg'?'decimal':'numeric'}" step="${kind==='kg'?'0.5':'1'}" value="${cur!=null?cur:''}" style="width:100%;font-size:40px;font-weight:800;text-align:center;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:#0F0F0E;color:#fff">
     ${kind==='kg'?`<label class="ms-vck"><input type="checkbox" id="ty-all" checked> ${esc(mtt('all'))}</label>`:''}
     <button type="button" class="ms-btn" id="ty-ok">${esc(mtt('ok'))}</button></div>`;
   sh.onclick=e=>{ if(e.target===sh) sh.remove(); };
@@ -13425,7 +13428,7 @@ async function msStoryDraw(style,d){
   try{ await Promise.all([document.fonts.load("800 200px 'Barlow Condensed'"),document.fonts.load("700 40px Outfit"),document.fonts.load("800 40px Outfit")]); }catch(_){}
   const F="'Barlow Condensed','Arial Narrow',Arial,sans-serif", B="Outfit,-apple-system,'Segoe UI',Arial,sans-serif";
   const TH={
-    neon:{bg1:'#06120D',bg2:'#020403',ink:'#FFFFFF',mut:'#8F8B80',acc:'#DCBB72',acc2:'#E9C767',fig:'#DCBB72',ghost:'rgba(220,187,114,.13)',card:'rgba(255,255,255,.05)',line:'rgba(244,241,233,.14)'},
+    neon:{bg1:'#1B1405',bg2:'#020403',ink:'#FFFFFF',mut:'#8F8B80',acc:'#DCBB72',acc2:'#E9C767',fig:'#DCBB72',ghost:'rgba(220,187,114,.13)',card:'rgba(255,255,255,.05)',line:'rgba(244,241,233,.14)'},
     gold:{bg1:'#17120A',bg2:'#050403',ink:'#FFF6DF',mut:'#B9A77E',acc:'#E9C767',acc2:'#DCBB72',fig:'#F2D27A',ghost:'rgba(233,199,103,.12)',card:'rgba(233,199,103,.07)',line:'rgba(233,199,103,.28)'},
     blanc:{bg1:'#FFFFFF',bg2:'#F3F1EB',ink:'#0B0B0A',mut:'#6F6A60',acc:'#A8822F',acc2:'#A8822F',fig:'#0B0B0A',ghost:'rgba(11,11,10,.06)',card:'rgba(11,11,10,.04)',line:'rgba(11,11,10,.12)'},
     beton:{bg1:'#EEEDE7',bg2:'#DAD8CF',ink:'#0B0B0A',mut:'#5D655F',acc:'#8A6A22',acc2:'#B8860B',fig:'#0B0B0A',ghost:'rgba(11,15,12,.07)',card:'rgba(11,15,12,.05)',line:'rgba(11,15,12,.16)'}
@@ -14044,7 +14047,7 @@ async function liveResume(){
 function liveBar(){
   const o=liveGet(); if(!o||document.getElementById('live-bar')) return;
   const b=document.createElement('button'); b.id='live-bar'; b.type='button';
-  b.style.cssText='position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:900;padding:13px 16px;border-radius:16px;border:1px solid rgba(220,187,114,.45);background:#0E1A14;color:#F4F1E9;font:700 14.5px inherit;font-family:inherit;box-shadow:0 10px 30px rgba(0,0,0,.5);cursor:pointer;text-align:left';
+  b.style.cssText='position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:900;padding:13px 16px;border-radius:16px;border:1px solid rgba(220,187,114,.45);background:#141412;color:#F4F1E9;font:700 14.5px inherit;font-family:inherit;box-shadow:0 10px 30px rgba(0,0,0,.5);cursor:pointer;text-align:left';
   b.textContent=({fr:'\u25B6  Séance en cours : reprendre',en:'\u25B6  Workout in progress: resume',nl:'\u25B6  Training bezig: hervatten'})[LANG]||'\u25B6  Séance en cours : reprendre';
   b.onclick=()=>{ b.remove(); openWorkout(o.w); };
   document.body.appendChild(b);
@@ -15087,6 +15090,22 @@ function lexOpen(key){
   ov.classList.add('show');
 }
 function lexClose(){ const ov=document.getElementById('lex-ov'); if(ov) ov.classList.remove('show'); }
+/* Une feuille ouverte depuis une autre feuille (ex. « Comment marche le moteur de skill ? »
+   dans Mes objectifs) passait DERRIERE celle-ci : toutes les .overlay ont le meme
+   z-index et l'ordre du HTML decidait. Desormais, toute feuille qui s'ouvre passe
+   au-dessus de celles deja ouvertes, puis reprend sa place en se fermant. */
+(function(){
+  const zOf=el=>parseInt(getComputedStyle(el).zIndex,10)||0;
+  const mo=new MutationObserver(ms=>{ ms.forEach(m=>{ const el=m.target;
+    if(!el.classList||!el.classList.contains('overlay')) return;
+    if(el.classList.contains('show')){
+      if(el.dataset.zup) return;
+      let top=0; document.querySelectorAll('.overlay.show').forEach(o=>{ if(o!==el) top=Math.max(top,zOf(o)); });
+      if(top>=zOf(el)){ el.style.zIndex=String(top+1); el.dataset.zup='1'; }
+    } else if(el.dataset.zup){ el.style.zIndex=''; delete el.dataset.zup; }
+  }); });
+  mo.observe(document.body,{subtree:true,attributes:true,attributeFilter:['class']});
+})();
 
 /* ------------------------------------------------------------------
    BIBLIOTHEQUE DES MOUVEMENTS
@@ -18226,7 +18245,7 @@ window.__jeuDemarrer = function (APP) {
     var r = Math.max(0, Math.min(1, ok / total));
     return Math.round(300 * Math.pow(r, 1.5) * coefNiveau(i) * coefDuree(d || 'normal'));
   }
-  var COUL = { or: '#E9C767', argent: '#C8D3CE', bronze: '#C08457' };
+  var COUL = { or: '#E9C767', argent: '#D0CBBF', bronze: '#C08457' };
   var SVG_CADENAS = '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#E9C767" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
     '<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
   function svgMedaille(m, t) {
@@ -19249,7 +19268,7 @@ window.__jeuDemarrer = function (APP) {
 };
 </script>
 <script id="jeu-css" type="text/css">
-  :host{--brand:#DCBB72;--gold:#E9C767;--red:#EF4444;--bg:#0B0B0A;--ink:#D2CDC1;--dim:#7d8f86;--card:#0E1512}
+  :host{--brand:#DCBB72;--gold:#E9C767;--red:#EF4444;--bg:#0B0B0A;--ink:#D2CDC1;--dim:#8F8B80;--card:#141412}
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   :host{margin:0;height:100%;background:var(--bg);color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
@@ -19475,5 +19494,6 @@ window.__jeuDemarrer = function (APP) {
     <button class="cta ghost" id="btnStages">Tous les niveaux</button>
   </div>
 </div></div></template>
+<script src="cdm-ui.js"></script>
 </body>
 </html>

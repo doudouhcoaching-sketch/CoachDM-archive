@@ -70,7 +70,7 @@
   .controls{display:flex;gap:10px;margin-top:12px}
   .btn{
     flex:1;font-size:15px;font-weight:700;padding:14px 12px;border-radius:16px;
-    background:var(--neon);color:#062A1D;letter-spacing:-0.02em;transition:transform .08s ease,opacity .15s;
+    background:var(--neon);color:#1B1405;letter-spacing:-0.02em;transition:transform .08s ease,opacity .15s;
   }
   .btn:active{transform:scale(.97)}
   .btn.ghost{background:var(--surface);color:var(--txt);border:1px solid var(--line)}
@@ -139,7 +139,7 @@
   .fvfield input:focus{outline:none;border-color:rgba(233,199,103,.6)}
   .fv-hpo{grid-column:1/-1;text-align:center;font-size:13px;font-weight:600;color:var(--muted)}
   .fv-hpo b{color:var(--gold);font-size:15px}
-  .fvbtn{margin-top:12px;width:100%;font-size:15px;font-weight:700;padding:14px;border-radius:16px;background:var(--neon);color:#062A1D}
+  .fvbtn{margin-top:12px;width:100%;font-size:15px;font-weight:700;padding:14px;border-radius:16px;background:var(--neon);color:#1B1405}
   .fvbtn.gold{background:linear-gradient(135deg,#F6E27A 0%,#E9C767 55%,#A47F1E 100%);color:#0A0907}
   .fvbtn.ghost{background:var(--surface2);color:var(--txt);border:1px solid var(--line)}
   .fvbtn[disabled]{opacity:.45;pointer-events:none}
@@ -521,7 +521,7 @@ const I18N = {
   rec_cap_msg:{fr:'Limite de 10 minutes atteinte — appuie sur ⬇ pour enregistrer ta vidéo.',en:'10-minute limit reached — tap ⬇ to save your video.',nl:'Limiet van 10 minuten bereikt — tik op ⬇ om je video te bewaren.'},
   fv_redo:{fr:'Refaire le protocole',en:'Redo protocol',nl:'Protocol opnieuw doen'},
   fv_need_fields:{fr:'Remplis les 4 champs (au moins 2 charges).',en:'Fill in all 4 fields (at least 2 loads).',nl:'Vul alle 4 velden in (minstens 2 belastingen).'},
-  help_note:{fr:'Méthode du temps de vol : h = g·t²/8 (Balsalobre-Fernández et al., 2015). 100% sur ton téléphone — aucune vidéo n\'est envoyée ni enregistrée. Précision ±2–3 cm ; plier les jambes à l\'atterrissage fausse la mesure.',en:'Flight-time method: h = g·t²/8 (Balsalobre-Fernández et al., 2015). Runs 100% on your phone — no video is uploaded or stored. Accuracy ±2–3 cm; bending your legs on landing skews the result.',nl:'Vluchttijdmethode: h = g·t²/8 (Balsalobre-Fernández et al., 2015). Draait 100% op je telefoon — er wordt geen video verstuurd of opgeslagen. Nauwkeurigheid ±2–3 cm; benen buigen bij de landing vertekent het resultaat.'}
+  help_note:{fr:'Méthode du temps de vol : h = g·t²/8 (Balsalobre-Fernández et al., 2015). L\'analyse se fait sur ton téléphone, en direct ou depuis une vidéo importée de ta galerie. Précision ±2–3 cm ; plier les jambes à l\'atterrissage fausse la mesure.',en:'Flight-time method: h = g·t²/8 (Balsalobre-Fernández et al., 2015). The analysis runs on your phone, live or from a video imported from your gallery. Accuracy ±2–3 cm; bending your legs on landing skews the result.',nl:'Vluchttijdmethode: h = g·t²/8 (Balsalobre-Fernández et al., 2015). De analyse gebeurt op je telefoon, live of vanuit een video uit je galerij. Nauwkeurigheid ±2–3 cm; benen buigen bij de landing vertekent het resultaat.'}
 };
 const LANGS=['fr','en','nl'];
 let LANG=localStorage.getItem('cdm_lang')||'fr'; if(!LANGS.includes(LANG)) LANG='fr';
@@ -1854,9 +1854,9 @@ try{document.fonts.load('800 300px Manrope');document.fonts.load('700 44px Manro
 <style>
   #cdm-aff{position:fixed;right:10px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;display:flex;gap:6px;
     background:rgba(0,0,0,.62);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:5px;backdrop-filter:blur(8px)}
-  #cdm-aff button{appearance:none;border:0;background:transparent;color:#cfd8d4;font:800 11px/1 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+  #cdm-aff button{appearance:none;border:0;background:transparent;color:#D6D1C6;font:800 11px/1 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
     letter-spacing:.7px;padding:8px 11px;border-radius:999px;cursor:pointer}
-  #cdm-aff button.on{background:#E9C767;color:#04120c}
+  #cdm-aff button.on{background:#E9C767;color:#1B1405}
   @media print{#cdm-aff{display:none}}
 </style>
 <div id="cdm-aff" role="group" aria-label="Ce qu'on voit sur soi">
@@ -1886,5 +1886,6 @@ try{document.fonts.load('800 300px Manrope');document.fonts.load('700 44px Manro
   peindre();
 })();
 </script>
+<script src="cdm-ui.js"></script>
 </body>
 </html>

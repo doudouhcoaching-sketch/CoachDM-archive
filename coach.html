@@ -4,8 +4,8 @@
 <script>(function(){try{var m=localStorage.getItem("cdm_console_theme")||"dark";var d=m==="dark"||(m==="auto"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light");}catch(e){}})();</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, interactive-widget=resizes-content" />
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#070A08" />
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#070A08" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#0B0B0A" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0B0B0A" />
 <title>Coach DM · Console Coach</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
@@ -15,15 +15,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#070A08; --bg-2:#0C110E;
-    --surface:#121814; --surface-2:#1A221D; --line:rgba(255,255,255,.10);
-    --text:#F2F0E9; --muted:#8FA398;
-    --brand:#00E896; --brand-2:#00B978; --brand-soft:rgba(0,232,150,.14);
-    --ok:#34D399; --warn:#FF5C5C; --amber:#D9B65C;
+    --bg:#0B0B0A; --bg-2:#121211;
+    --surface:#151513; --surface-2:#1D1C19; --line:rgba(255,255,255,.10);
+    --text:#F2F0E9; --muted:#8F8B80;
+    --brand:#DCBB72; --brand-2:#C9A24E; --brand-soft:rgba(220,187,114,.14);
+    --ok:#DCBB72; --warn:#FF5C5C; --amber:#D9B65C;
     --gold-hi:#F3E3AE; --gold:#D9B65C; --gold-mid:#B8963F; --gold-deep:#8B6914;
     --gold-soft:rgba(184,150,63,.14); --on-gold:#3a2b08;
     --shadow:0 16px 44px rgba(0,0,0,.5); --shadow-soft:0 8px 22px rgba(0,0,0,.4);
-    --glow:0 0 22px rgba(0,232,150,.45);
+    --glow:0 0 22px rgba(220,187,114,.45);
     --radius:16px; --radius-sm:10px;
     --font-d:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   }
@@ -31,7 +31,7 @@
   html,body{margin:0;min-height:100%}
   body{font-family:'Outfit',-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
     background:
-      radial-gradient(120% 70% at 50% -10%, rgba(0,232,150,.16) 0%, transparent 60%),
+      radial-gradient(120% 70% at 50% -10%, rgba(220,187,114,.16) 0%, transparent 60%),
       linear-gradient(180deg,var(--bg-2),var(--bg) 30%);
     color:var(--text);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
   h1,h2,h3,.mark,.cd-name,.topbar h2{font-family:var(--font-d);letter-spacing:-.01em}
@@ -41,8 +41,8 @@
   .hidden{display:none!important}
   .screen{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:32px 22px;max-width:440px;margin:0 auto}
   .mark{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;margin:0 auto 14px;
-    background:linear-gradient(145deg,var(--brand),var(--brand-2));box-shadow:0 12px 30px rgba(0,232,150,.4);
-    font-weight:800;font-size:26px;color:#04120a}
+    background:linear-gradient(145deg,var(--brand),var(--brand-2));box-shadow:0 12px 30px rgba(220,187,114,.4);
+    font-weight:800;font-size:26px;color:#1B1405}
   .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
   /* Traductions repliees : presentes quand on en a besoin, invisibles sinon. */
   .mp-tr{border:1px dashed var(--line);border-radius:10px;padding:9px 11px;background:rgba(255,255,255,.02)}
@@ -60,7 +60,7 @@
   .field select:focus,.field textarea:focus{border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-soft)}
   .field textarea{min-height:72px;resize:vertical;font-size:15px;line-height:1.5}
   .btn{width:100%;padding:14px;border-radius:var(--radius-sm);font-weight:800;font-size:15px;
-    background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#04120a;box-shadow:0 8px 22px rgba(0,232,150,.4)}
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#1B1405;box-shadow:0 8px 22px rgba(220,187,114,.4)}
   .btn:active{transform:scale(.99)}
   .btn.subtle{background:var(--surface-2);color:var(--text);box-shadow:none;border:1px solid var(--line)}
   .btn.danger{background:transparent;color:var(--warn);box-shadow:none;border:1.5px solid var(--warn)}
@@ -75,7 +75,7 @@
   .topbar h2{margin:0;font-size:20px;font-weight:800}
   .tabs{display:flex;gap:8px;padding-bottom:12px}
   .tabs button{flex:1;padding:11px 8px;border-radius:999px;font-weight:700;font-size:14px;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);font-family:var(--font-d)}
-  .tabs button.on{color:#04120a;background:linear-gradient(135deg,var(--brand),var(--brand-2));border-color:transparent;box-shadow:0 6px 18px rgba(0,232,150,.3)}
+  .tabs button.on{color:#1B1405;background:linear-gradient(135deg,var(--brand),var(--brand-2));border-color:transparent;box-shadow:0 6px 18px rgba(220,187,114,.3)}
   .tb-id{display:flex;align-items:center;gap:11px}
   .tb-id img{width:38px;height:38px;border-radius:11px;display:block}
   .tb-kick{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:1px;font-family:var(--font-d)}
@@ -91,7 +91,7 @@
   .item .meta{font-size:12.5px;color:var(--muted);margin-top:3px}
   .item .acts{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
   .pill{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:8px;text-transform:uppercase;letter-spacing:.4px}
-  .pill.ok{background:rgba(16,185,129,.15);color:var(--ok)}
+  .pill.ok{background:rgba(220,187,114,.15);color:var(--ok)}
   .pill.no{background:rgba(239,68,68,.13);color:var(--warn)}
   .pill.role{background:var(--brand-soft);color:var(--brand)}
   .pill.warnp{background:rgba(245,158,11,.16);color:#D9B65C}
@@ -187,17 +187,17 @@
   /* ---------- mode clair (6 oct. 2026) : au choix, sombre par defaut ---------- */
   .themebtn{width:38px;height:38px;flex:none;border-radius:11px;border:1px solid var(--line);background:var(--surface-2);font-size:16px;display:grid;place-items:center;margin-right:6px;padding:0}
   :root[data-theme="light"]{
-    --bg:#F4F7F5; --bg-2:#FFFFFF;
-    --surface:#FFFFFF; --surface-2:#EEF3F0; --line:rgba(12,32,24,.11);
-    --text:#0A1512; --muted:#4F6B5D;
-    --brand:#00A870; --brand-2:#008F5E; --brand-soft:rgba(0,168,112,.12);
-    --ok:#0E9F6E; --warn:#D93636; --amber:#9A7414;
+    --bg:#F4F1E9; --bg-2:#FFFFFF;
+    --surface:#FFFFFF; --surface-2:#EFEBE1; --line:rgba(32,26,12,.11);
+    --text:#15120B; --muted:#6B6455;
+    --brand:#9C7A30; --brand-2:#8B6914; --brand-soft:rgba(156,122,48,.12);
+    --ok:#9C7A30; --warn:#D93636; --amber:#9A7414;
     --gold:#9A7414; --gold-soft:rgba(184,150,63,.16);
-    --shadow:0 14px 34px rgba(18,44,32,.10); --shadow-soft:0 8px 22px rgba(18,44,32,.07);
-    --glow:0 8px 22px rgba(0,168,112,.18);
+    --shadow:0 14px 34px rgba(44,36,18,.10); --shadow-soft:0 8px 22px rgba(44,36,18,.07);
+    --glow:0 8px 22px rgba(156,122,48,.18);
   }
-  :root[data-theme="light"] body{background:radial-gradient(120% 70% at 50% -10%, rgba(0,168,112,.10) 0%, transparent 60%),linear-gradient(180deg,#FFFFFF,var(--bg) 30%)}
-  :root[data-theme="light"] .overlay{background:rgba(10,21,18,.35)}
+  :root[data-theme="light"] body{background:radial-gradient(120% 70% at 50% -10%, rgba(156,122,48,.10) 0%, transparent 60%),linear-gradient(180deg,#FFFFFF,var(--bg) 30%)}
+  :root[data-theme="light"] .overlay{background:rgba(21,18,11,.35)}
   :root[data-theme="light"] .mp-tr{background:rgba(0,0,0,.02)}
   :root[data-theme="light"] #c_qr_wrap{background:var(--surface-2)!important}
 </style>
@@ -207,7 +207,7 @@
 .cl-row{display:flex;align-items:center;gap:11px;width:100%;padding:12px 13px;background:none;border:0;border-bottom:1px solid var(--line);color:var(--text);font-family:inherit;text-align:left;cursor:pointer}
 .cl-row:last-child{border-bottom:0}
 .cl-chk{width:22px;height:22px;border-radius:7px;border:1.5px solid var(--line);flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800}
-.cl-row.on .cl-chk{background:var(--brand);border-color:var(--brand);color:#04120a}
+.cl-row.on .cl-chk{background:var(--brand);border-color:var(--brand);color:#1B1405}
 .cl-row.on .cl-chk::before{content:'\2713'}
 .cl-info{min-width:0}
 .cl-info b{display:block;font-size:14.5px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -223,6 +223,21 @@ h1, h2,
   font-family: var(--font-display);
   letter-spacing: .012em;
 }
+</style>
+<style id="cdm-premium">
+/* 2.4.1 — meme habillage que l'app : noir et or, Barlow Condensed pour les titres, Inter pour le texte */
+@font-face{font-family:'Barlow Condensed';font-weight:500;font-display:swap;src:url(fonts/barlow-condensed-latin-500-normal.woff2) format('woff2'),url(fonts/barlow-condensed-latin-ext-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-weight:600;font-display:swap;src:url(fonts/barlow-condensed-latin-600-normal.woff2) format('woff2'),url(fonts/barlow-condensed-latin-ext-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-weight:700 900;font-display:swap;src:url(fonts/barlow-condensed-latin-700-normal.woff2) format('woff2'),url(fonts/barlow-condensed-latin-ext-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:400;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format('woff2'),url(fonts/inter-latin-ext-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:500;font-display:swap;src:url(fonts/inter-latin-500-normal.woff2) format('woff2'),url(fonts/inter-latin-ext-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:600;font-display:swap;src:url(fonts/inter-latin-600-normal.woff2) format('woff2'),url(fonts/inter-latin-ext-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:700 900;font-display:swap;src:url(fonts/inter-latin-700-normal.woff2) format('woff2'),url(fonts/inter-latin-ext-700-normal.woff2) format('woff2')}
+:root{--font-d:'Barlow Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--font-display:'Barlow Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+body,button,input,select,textarea{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+h1,h2,h3{font-family:'Barlow Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;letter-spacing:.01em}
+::selection{background:rgba(220,187,114,.35)}
+.tb-id img{object-fit:cover}
 </style>
 </head>
 <body>
@@ -247,11 +262,11 @@ h1, h2,
   }[L];
   window.__cdmWatch = setTimeout(function(){
     var b=document.getElementById('boot'); if(!b) return;
-    b.innerHTML='<div style="max-width:330px;margin:auto;padding:30px;text-align:center;font:400 15px/1.55 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#b9c6c0">'
+    b.innerHTML='<div style="max-width:330px;margin:auto;padding:30px;text-align:center;font:400 15px/1.55 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#C2BDB1">'
       +'<div style="font-size:34px;margin-bottom:12px">\u26A0\uFE0F</div>'
       +'<div style="font-weight:800;font-size:18px;color:#fff;margin-bottom:9px">'+M[0]+'</div>'
       +'<div style="margin-bottom:22px">'+M[1]+'</div>'
-      +'<button type="button" onclick="location.reload()" style="background:#00E896;color:#04120c;border:0;border-radius:999px;padding:13px 28px;font-weight:800;font-size:15px;cursor:pointer">'+M[2]+'</button>'
+      +'<button type="button" onclick="location.reload()" style="background:#DCBB72;color:#1B1405;border:0;border-radius:999px;padding:13px 28px;font-weight:800;font-size:15px;cursor:pointer">'+M[2]+'</button>'
       +'</div>';
   }, 15000);
   window.__cdmOK = function(){ if(window.__cdmWatch){ clearTimeout(window.__cdmWatch); window.__cdmWatch=null; } };
@@ -283,7 +298,7 @@ h1, h2,
 <div id="app" class="hidden">
   <div class="topbar">
     <div class="row">
-      <div class="tb-id"><img src="/logo-dm.png" alt="Coach DM"><div><div class="tb-kick">Power · Transform · Excel</div><h2 data-i18n="c_title">Console Coach</h2></div></div>
+      <div class="tb-id"><img src="icons/coach_console.webp" alt="Coach DM"><div><div class="tb-kick">Power · Transform · Excel</div><h2 data-i18n="c_title">Console Coach</h2></div></div>
       <button type="button" id="c-theme" class="themebtn" aria-label="Mode clair / sombre" title="Mode clair / sombre"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.16em" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg></button><div id="c-lang" class="langsw" style="display:flex;gap:4px;margin-right:8px"><button type="button" data-lang="fr">FR</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="nl">NL</button></div><button class="btn subtle sm" id="logout" data-i18n="c_logout">Déconnexion</button>
     </div>
     <div class="tabs">
@@ -323,8 +338,8 @@ h1, h2,
         <button data-sub="my" data-i18n="c_sub_my">Mes apports</button>
       </div>
 
-      <a href="studio.html?tab=prog" id="studio-cta" style="display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;padding:16px;margin:0 0 14px;border-radius:18px;background:linear-gradient(135deg,rgba(0,232,150,.18),rgba(0,232,150,.05));border:1.5px solid rgba(0,232,150,.45)">
-        <span style="width:48px;height:48px;border-radius:15px;background:var(--brand);color:#03140C;display:grid;place-items:center;font-size:26px;font-weight:800;flex:none">＋</span>
+      <a href="studio.html?tab=prog" id="studio-cta" style="display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;padding:16px;margin:0 0 14px;border-radius:18px;background:linear-gradient(135deg,rgba(220,187,114,.18),rgba(220,187,114,.05));border:1.5px solid rgba(220,187,114,.45)">
+        <span style="width:48px;height:48px;border-radius:15px;background:var(--brand);color:#1B1405;display:grid;place-items:center;font-size:26px;font-weight:800;flex:none">＋</span>
         <span style="flex:1"><b style="display:block;font-size:17px" data-i18n="c_studio_t">Atelier programmes</b>
         <span style="display:block;color:var(--muted);font-size:13.5px;margin-top:2px" data-i18n="c_studio_s">Construis un programme semaine par semaine et envoie-le à ton client.</span></span></a>
       <div class="subpane active" id="sub-wk">
@@ -623,7 +638,7 @@ h1, h2,
   .chat-head{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--line)}
   .chat-body{flex:1;overflow-y:auto;padding:12px 2px;display:flex;flex-direction:column;gap:8px;-webkit-overflow-scrolling:touch}
   .bub{max-width:80%;padding:9px 13px;border-radius:16px;font-size:14.5px;line-height:1.45;white-space:pre-wrap;word-break:break-word}
-  .bub.me{align-self:flex-end;background:var(--brand);color:#04120a;border-bottom-right-radius:5px}
+  .bub.me{align-self:flex-end;background:var(--brand);color:#1B1405;border-bottom-right-radius:5px}
   .bub.them{align-self:flex-start;background:var(--surface-2);border:1px solid var(--line);border-bottom-left-radius:5px}
   .bub time{display:block;font-size:10.5px;opacity:.62;margin-top:3px;text-align:right}
   .chat-in{display:flex;gap:8px;padding-top:10px;border-top:1px solid var(--line)}
@@ -640,7 +655,7 @@ h1, h2,
   .bub.media time{padding-right:8px}
   .bub img,.bub video{max-width:100%;max-height:320px;border-radius:12px;display:block}
   .bub .cap{padding:5px 8px 0}
-  .pill.msg{background:var(--brand);color:#04120a;border:none}
+  .pill.msg{background:var(--brand);color:#1B1405;border:none}
 
   /* Tableau de bord : ce qui demande une action, en un coup d'oeil */
   .dash{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
@@ -704,7 +719,7 @@ h1, h2,
   /* Cinq onglets sur telephone : la rangee defile au doigt au lieu de deborder. */
   @media (max-width:759.98px){ .tabs{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch} .tabs::-webkit-scrollbar{display:none} .tabs button{flex:none} .topbar .row{flex-wrap:wrap;row-gap:8px} }
   .freebar{display:flex;align-items:center;gap:10px;background:var(--brand-soft);
-    border:1px solid rgba(0,232,150,.25);border-radius:13px;padding:11px 13px;margin-bottom:12px}
+    border:1px solid rgba(220,187,114,.25);border-radius:13px;padding:11px 13px;margin-bottom:12px}
   .freebar .fb-t{flex:1;font-size:13px;color:var(--brand);font-weight:600}
   /* Pastille de conformite : vert a jour, orange decroche, rouge decroche depuis
      longtemps, gris invitation en attente. */
@@ -730,7 +745,7 @@ h1, h2,
   .langsw{display:flex;gap:6px;margin:0 0 12px}
   .langsw button{flex:1;padding:8px;border-radius:10px;border:1px solid var(--line);
     background:var(--surface-2);color:var(--muted);font-weight:700;font-size:13px;font-family:var(--font-d)}
-  .langsw button.on{background:var(--brand);color:#04120a;border-color:transparent}
+  .langsw button.on{background:var(--brand);color:#1B1405;border-color:transparent}
   .lgp{display:none} .lgp.on{display:block}
   .req{font-weight:700;color:var(--warn);text-transform:none;letter-spacing:0}
 
@@ -764,7 +779,7 @@ h1, h2,
   #pane-cours .title{font-weight:800;font-size:15px}
   #pane-cours .sub{font-weight:400;color:var(--muted);font-size:13px;margin-top:2px;text-align:left}
   #pane-cours .center{text-align:center;color:var(--muted);padding:30px 0}
-  #pane-cours .btn, #cours-ov .btn{width:auto;display:inline-block;border-radius:12px;padding:10px 14px;font-weight:700;font-size:14px;color:#04120a;background:var(--brand);box-shadow:none}
+  #pane-cours .btn, #cours-ov .btn{width:auto;display:inline-block;border-radius:12px;padding:10px 14px;font-weight:700;font-size:14px;color:#1B1405;background:var(--brand);box-shadow:none}
   #pane-cours .btn.full, #cours-ov .btn.full{width:100%}
   #pane-cours .btn.sec, #cours-ov .btn.sec{background:var(--surface-2);color:var(--text);border:1px solid var(--line)}
   #pane-cours .btn.gho, #cours-ov .btn.gho{background:transparent;color:var(--muted);border:1px solid var(--line)}
@@ -772,7 +787,7 @@ h1, h2,
   #pane-cours .btn.grn, #cours-ov .btn.grn{background:var(--ok)}
   #pane-cours .btn.red, #cours-ov .btn.red{background:var(--warn)}
   #pane-cours .pill, #cours-ov .pill{display:inline-block;font-size:12px;font-weight:800;padding:4px 9px;border-radius:999px;white-space:nowrap;text-transform:none;letter-spacing:0}
-  #pane-cours .pill.ok, #cours-ov .pill.ok{background:rgba(16,185,129,.15);color:var(--ok)}
+  #pane-cours .pill.ok, #cours-ov .pill.ok{background:rgba(220,187,114,.15);color:var(--ok)}
   #pane-cours .pill.warn, #cours-ov .pill.warn{background:rgba(245,158,11,.16);color:#D9B65C}
   #pane-cours .pill.full, #cours-ov .pill.full{background:rgba(239,68,68,.14);color:var(--warn)}
   #pane-cours .pill.cancel, #cours-ov .pill.cancel{background:var(--surface-2);color:var(--muted)}
@@ -789,11 +804,11 @@ h1, h2,
   #cours-ov .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   #cours-ov .chips{display:flex;gap:6px;flex-wrap:wrap}
   #cours-ov .chips button{flex:1;min-width:42px;padding:9px 0;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--muted);font-weight:700;font-size:13px}
-  #cours-ov .chips button.on{background:var(--brand);color:#04120a;border-color:var(--brand)}
+  #cours-ov .chips button.on{background:var(--brand);color:#1B1405;border-color:var(--brand)}
   #ov-cl .seg{display:flex;gap:6px;margin:12px 0 6px}
   #ov-cl .seg button{flex:1;padding:9px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--muted);font-weight:700;font-size:13px}
-  #ov-cl .seg button.on{background:var(--brand);color:#04120a;border-color:var(--brand)}
-  #ov-cl .btn{width:auto;display:inline-block;border-radius:12px;padding:10px 14px;font-weight:700;font-size:14px;color:#04120a;background:var(--brand);box-shadow:none}
+  #ov-cl .seg button.on{background:var(--brand);color:#1B1405;border-color:var(--brand)}
+  #ov-cl .btn{width:auto;display:inline-block;border-radius:12px;padding:10px 14px;font-weight:700;font-size:14px;color:#1B1405;background:var(--brand);box-shadow:none}
   #ov-cl .btn.sec{background:var(--surface-2);color:var(--text);border:1px solid var(--line)}
   #cours-ov .member{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
   #cours-ov .member:last-child{border-bottom:0}
@@ -843,7 +858,7 @@ h1, h2,
     border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);padding:13px 14px;margin-bottom:9px;cursor:pointer}
 /* Le non-lu se voit au bord et au fond, pas seulement a la pastille : on doit
    pouvoir compter les conversations en attente sans lire une seule ligne. */
-  .thr.unread{border-color:rgba(0,232,150,.45);background:linear-gradient(180deg,rgba(0,232,150,.07),rgba(0,232,150,.02))}
+  .thr.unread{border-color:rgba(220,187,114,.45);background:linear-gradient(180deg,rgba(220,187,114,.07),rgba(220,187,114,.02))}
   .thr .av{width:38px;height:38px;border-radius:11px;background:var(--surface-2);display:grid;place-items:center;
     font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--gold);flex:0 0 auto}
   .thr .thb{flex:1;min-width:0}
@@ -1172,7 +1187,7 @@ const CDMLock = (function(){
    +   'background:rgba(217,182,92,.16);color:#D9B65C}'
    + '.cdmk-ic svg{width:26px;height:26px}'
    + '.cdmk-ttl{font-size:20px;font-weight:800;margin:0 0 6px}'
-   + '.cdmk-sub{font-size:13px;line-height:1.5;color:#8FA398;margin:0 0 20px}'
+   + '.cdmk-sub{font-size:13px;line-height:1.5;color:#8F8B80;margin:0 0 20px}'
    + '.cdmk-in{width:100%;box-sizing:border-box;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);'
    +   'border-radius:14px;color:#F2F0E9;font-family:inherit;font-size:22px;font-weight:700;letter-spacing:.42em;'
    +   'text-align:center;padding:14px 10px 14px 18px;outline:none;-webkit-text-security:disc}'
@@ -1183,15 +1198,15 @@ const CDMLock = (function(){
    +   'font-size:14.5px;border-radius:999px;padding:13px;margin-top:12px;display:flex;align-items:center;'
    +   'justify-content:center;gap:8px}'
    + '.cdmk-b.gold{background:#D9B65C;color:#3a2b08}'
-   + '.cdmk-b.ghost{background:transparent;color:#8FA398;border:1px solid rgba(255,255,255,.14)}'
-   + '.cdmk-b.link{background:transparent;color:#8FA398;font-weight:600;font-size:12.5px;padding:10px;'
+   + '.cdmk-b.ghost{background:transparent;color:#8F8B80;border:1px solid rgba(255,255,255,.14)}'
+   + '.cdmk-b.link{background:transparent;color:#8F8B80;font-weight:600;font-size:12.5px;padding:10px;'
    +   'text-decoration:underline;margin-top:4px}'
    + '.cdmk-b svg{width:17px;height:17px}'
    + '.cdmk-note{font-size:11.5px;line-height:1.5;color:#6E7C76;margin:16px 0 0}'
    /* Le voile masque l'app AVANT qu'iOS ne photographie l'ecran pour le
       multitache : sans lui, la derniere conversation reste visible d'un
       double-clic, verrou actif ou non. */
-   + '.cdmk-veil{position:fixed;inset:0;z-index:99999;display:none;background:#070A08;'
+   + '.cdmk-veil{position:fixed;inset:0;z-index:99999;display:none;background:#0B0B0A;'
    +   'align-items:center;justify-content:center;color:#D9B65C}'
    + '.cdmk-veil.show{display:flex}'
    + '.cdmk-veil svg{width:44px;height:44px;opacity:.55}';
@@ -2555,7 +2570,7 @@ async function openClientDetail(cid){
 
   /* Poids */
   if(wts.length>1){
-    h+=`<div class="cd-sec" style="--a:#5DCAA5"><div class="mini">Évolution du poids (${wts.length} mesures)</div>${sparkLine(wts.map(x=>+x.weight_kg))}
+    h+=`<div class="cd-sec" style="--a:#D9B65C"><div class="mini">Évolution du poids (${wts.length} mesures)</div>${sparkLine(wts.map(x=>+x.weight_kg))}
       <div class="cd-row"><span class="l">${dFR(firstW.logged_date)} → ${dFR(lastW.logged_date)}</span><span class="r"><b>${r1(firstW.weight_kg)} → ${r1(lastW.weight_kg)} kg</b></span></div></div>`;
   }
 
@@ -3451,7 +3466,7 @@ function openClientForm(){
        <label><span data-i18n="g_client_lang">Langue du client</span></label>
        <select id="c_lang"><option value="fr" selected>Français</option><option value="en">English</option><option value="nl">Nederlands</option></select>
        <p class="muted"><span data-i18n="g_invite_qr">Le client reçoit une invitation par email + un QR à scanner pour créer son compte lui-même.</span></p>
-       <div id="c_qr_wrap" style="display:none;text-align:center;margin-top:16px;padding:16px;background:#121814;border:1px solid var(--line);border-radius:14px">
+       <div id="c_qr_wrap" style="display:none;text-align:center;margin-top:16px;padding:16px;background:#151513;border:1px solid var(--line);border-radius:14px">
          <div id="c_qr" style="display:inline-block;background:#fff;padding:12px;border-radius:12px"></div>
          <p class="muted" style="margin-top:10px"><span data-i18n="g_qr">Fais scanner ce QR au client en présentiel.</span></p>
        </div>`;
@@ -3639,7 +3654,7 @@ $('#fdn-save').onclick = async ()=>{
 
 /* Palette d'accents dérivée du nom (type/catégorie) : pas de table à
    entretenir manuellement, une couleur stable par valeur. */
-const ACCENTS=['#00E896','#D9B65C','#7F77DD','#0ea5e9','#FF8A66','#5DCAA5','#D46FB0','#F2B84B'];
+const ACCENTS=['#DCBB72','#D9B65C','#7F77DD','#0ea5e9','#FF8A66','#D9B65C','#D46FB0','#F2B84B'];
 function accentFor(key){ let h=0; const s=String(key||''); for(let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0; return ACCENTS[h%ACCENTS.length]; }
 
 /* ---- EXERCICES : bibliothèque commune (le coach peut y contribuer) ---- */
@@ -4288,7 +4303,7 @@ $('#comp-save').onclick = async ()=>{
       const full=it.spots_left<=0, cancelled=it.status==='cancelled';
       const pc=cancelled?'cancel':full?'full':'ok';
       const ptxt=cancelled?tr('b_cancelled2'):`${it.booked_count}/${it.capacity}`;
-      const col=it.color||'#00E896';
+      const col=it.color||'#DCBB72';
       h+=`<div class="card inst row" data-id="${it.id}" style="gap:12px">
         <div class="accent" style="background:${esc(col)}"></div>
         <div style="flex:1">
@@ -4392,7 +4407,7 @@ $('#comp-save').onclick = async ()=>{
     if(!TEMPLATES.length)h+='<div class="center"><span data-i18n="b_no_tpl_class">Aucun cours modèle.</span></div>';
     TEMPLATES.forEach(t=>{
       h+=`<div class="card row" style="gap:12px">
-        <div class="accent" style="background:${esc(t.color||'#00E896')}"></div>
+        <div class="accent" style="background:${esc(t.color||'#DCBB72')}"></div>
         <div style="flex:1">
           <div class="title">${esc(t.name_fr)} ${t.kind==='personal_training'?'<span class="pill vio">PT</span>':''} ${t.is_active?'':'<span class="pill cancel">inactif</span>'}</div>
           <div class="sub">Cap. ${t.default_capacity} · ${t.default_duration_min} min${t.location?' · '+esc(t.location):''}</div>
@@ -4422,7 +4437,7 @@ $('#comp-save').onclick = async ()=>{
      <div class="grid2"><div><label><span data-i18n="g_capacity_def">Capacité défaut</span></label><input id="t_cap" type="number" min="1" value="${e.default_capacity||12}"></div>
      <div><label><span data-i18n="g_duration_min">Durée (min)</span></label><input id="t_dur" type="number" min="5" value="${e.default_duration_min||60}"></div></div>
      <div class="grid2"><div><label>Lieu</label><input id="t_loc" value="${esc(e.location)}"></div>
-     <div><label>Couleur</label><input id="t_col" type="text" value="${esc(e.color||'#00E896')}"></div></div>
+     <div><label>Couleur</label><input id="t_col" type="text" value="${esc(e.color||'#DCBB72')}"></div></div>
      <label>Actif</label><select id="t_act"><option value="true" ${e.is_active!==false?'selected':''}>Oui</option><option value="false" ${e.is_active===false?'selected':''}>Non</option></select>
      <div class="row" style="margin-top:18px;gap:8px">
        ${t.id?'<button class="btn red sec sm" id="t_del"><span data-i18n="b_delete">Supprimer</span></button>':''}
@@ -4444,7 +4459,7 @@ $('#comp-save').onclick = async ()=>{
         description_fr:$('#d_fr').value.trim()||null,description_en:$('#d_en').value.trim()||null,description_nl:$('#d_nl').value.trim()||null,
         cover_image_url:$('#t_img').value.trim()||null,default_capacity:+$('#t_cap').value||12,
         default_duration_min:+$('#t_dur').value||60,location:$('#t_loc').value.trim()||null,
-        color:$('#t_col').value.trim()||'#00E896',is_active:$('#t_act').value==='true'};
+        color:$('#t_col').value.trim()||'#DCBB72',is_active:$('#t_act').value==='true'};
       const q=t.id?sb.from('class_templates').update(p).eq('id',t.id):sb.from('class_templates').insert(p);
       const {error}=await q;
       if(error){toast('Échec enregistrement');return;}
@@ -4474,7 +4489,7 @@ $('#comp-save').onclick = async ()=>{
      <div class="grid2"><div><label><span data-i18n="g_duration_min">Durée (min)</span></label><input id="s_dur" type="number" min="5" value="${e.default_duration_min||60}"></div>
      <div><label><span data-i18n="g_capacity">Capacité</span></label><input id="s_cap" type="number" min="1" value="${e.default_capacity||12}"></div></div>
      <div class="grid2"><div><label>Lieu</label><input id="s_loc" value="${esc(e.location)}"></div>
-     <div><label>Couleur</label><input id="s_col" value="${esc(e.color||'#00E896')}"></div></div>
+     <div><label>Couleur</label><input id="s_col" value="${esc(e.color||'#DCBB72')}"></div></div>
      <label><span data-i18n="g_repeat">Répéter chaque (laisse vide = séance unique)</span></label>
      <div class="chips" id="s_days">${days.map(d=>`<button data-d="${d[0]}">${d[1]}</button>`).join('')}</div>
      <label>Pendant combien de semaines</label><input id="s_weeks" type="number" min="1" max="26" value="4">
@@ -4519,7 +4534,7 @@ $('#comp-save').onclick = async ()=>{
       const base={template_id:t.id||null,coach_id:ME,kind:$('#s_kind').value,name_fr:fr,
         name_en:$('#s_en').value.trim()||null,name_nl:$('#s_nl').value.trim()||null,
         description_fr:e.description_fr||null,description_en:e.description_en||null,description_nl:e.description_nl||null,
-        cover_image_url:e.cover_image_url||null,color:$('#s_col').value.trim()||'#00E896',
+        cover_image_url:e.cover_image_url||null,color:$('#s_col').value.trim()||'#DCBB72',
         location:$('#s_loc').value.trim()||null,capacity:+$('#s_cap').value||12,
         visibility:$('#s_vis').value||'private',
         cancel_cutoff_min_before:+$('#s_cut').value||0,checkin_opens_min_before:+$('#s_chk').value||0};
@@ -4560,6 +4575,7 @@ document.querySelectorAll('#c-lang button').forEach(b=>{
 
 boot();
 </script>
-<a id="cdm-backapp" href="app.html" style="position:fixed;left:14px;bottom:14px;z-index:9999;background:#0c1210;color:#00E896;border:1px solid #1e2a25;border-radius:999px;padding:10px 16px;font:600 14px/1 -apple-system,sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.4)">&#8249; App</a>
+<a id="cdm-backapp" href="app.html" style="position:fixed;left:14px;bottom:14px;z-index:9999;background:#0F0F0E;color:#DCBB72;border:1px solid #232220;border-radius:999px;padding:10px 16px;font:600 14px/1 -apple-system,sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.4)">&#8249; App</a>
+<script src="cdm-ui.js"></script>
 </body>
 </html>

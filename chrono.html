@@ -80,6 +80,9 @@ header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center;z-index:5;
   background:radial-gradient(500px 300px at 50% 40%,rgba(212,175,55,.08),transparent 70%),#0b0b0b}
 .empty .ico{width:62px;height:62px;border-radius:20px;background:var(--goldsoft);display:grid;place-items:center}
+.empty .ico{width:108px;height:108px;border-radius:26px;overflow:hidden;background:none;box-shadow:0 0 0 1px rgba(220,187,114,.22),0 18px 40px -12px rgba(0,0,0,.8)}
+.empty .ico img{width:100%;height:100%;object-fit:cover;display:block}
+.mark{overflow:hidden;padding:0}.mark img{width:100%;height:100%;object-fit:cover;display:block}
 .empty h3{margin:0;font:700 20px/1.1 "Barlow Condensed";text-transform:uppercase;letter-spacing:.4px}
 .empty p{margin:0;color:var(--mut);font-size:13px;max-width:340px}
 .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
@@ -171,7 +174,7 @@ details.tips[open] summary::after{content:"–"}
 <div class="wrap">
   <header>
     <a class="back" href="app.html" aria-label="Coach DM">‹</a>
-    <div class="mark">DM</div>
+    <div class="mark"><img src="/logo-dm.png" alt="Coach DM" onerror="this.parentNode.textContent='DM'"></div>
     <div class="brand">
       <small class="gold-tx">Coach DM</small>
       <h1 data-i18n="title">Chrono navette</h1>
@@ -198,7 +201,7 @@ details.tips[open] summary::after{content:"–"}
         <div class="flash" id="flash"></div>
 
         <div class="empty" id="emptyVideo">
-          <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E9CB74" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4.5a1.5 1.5 0 1 0 0-.01"/><path d="M7 21l3-6 3 2v5"/><path d="M10 15l1-5 3 2 3 1"/><path d="M11 10l-3 1-2 3"/></svg></div>
+          <div class="ico"><img src="icons/an_chrono.webp" alt=""></div>
           <h3 data-i18n="emptyTitle">Analyse un sprint navette</h3>
           <p data-i18n="emptyText">Filme l'athlète sur trépied : il sort de la zone, change de direction et revient. Le chrono se calcule tout seul.</p>
           <div class="row">
@@ -208,7 +211,7 @@ details.tips[open] summary::after{content:"–"}
         </div>
 
         <div class="empty hide" id="emptyLive">
-          <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E9CB74" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3.5"/><path d="M3 9V6a2 2 0 0 1 2-2h3M21 9V6a2 2 0 0 0-2-2h-3M3 15v3a2 2 0 0 0 2 2h3M21 15v3a2 2 0 0 1-2 2h-3"/></svg></div>
+          <div class="ico"><img src="icons/ui_camera.webp" alt=""></div>
           <h3 data-i18n="liveTitle">Chrono en direct</h3>
           <p id="liveText" data-i18n="liveText">Le chrono démarre quand l'athlète sort de la zone et s'arrête quand il y revient.</p>
           <button class="btn pri" id="camStart"><span data-i18n="camStart">Activer la caméra</span></button>
@@ -307,7 +310,7 @@ details.tips[open] summary::after{content:"–"}
     </div>
   </div>
 
-  <div class="foot"><b>Coach DM</b> · <span data-i18n="privacy">Analyse 100 % sur l'appareil, aucune vidéo envoyée.</span></div>
+  <div class="foot"><b>Coach DM</b> · <span data-i18n="privacy">Analyse faite sur ton téléphone, en direct ou depuis une vidéo importée.</span></div>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -489,7 +492,7 @@ results:"Résultats",athletePh:"Athlète",testPh:"Test (ex. navette 5 m)",best:"
 settings:"Réglages",editZone:"Modifier la zone",doneZone:"Valider la zone",refPoint:"Point de référence",hips:"Hanches",torso:"Torse",feet:"Pieds",
 confirm:"Validation du franchissement",confirmSub:"Images consécutives requises. 2 = équilibre fiabilité / réactivité.",
 slow:"Vidéo au ralenti",slowSub:"Si la vidéo est lue au ralenti, indique le facteur pour obtenir le temps réel.",model:"Modèle IA",fast:"Rapide",precise:"Précis",
-privacy:"Analyse 100 % sur l'appareil, aucune vidéo envoyée.",
+privacy:"Analyse faite sur ton téléphone, en direct ou depuis une vidéo importée.",
 stNone:"Aucune vidéo",stLoad:"Prête — place la zone puis analyse",stSearch:"Placer l'athlète dans la zone",stIn:"Dans la zone",stOut:"En course",stDone:"Arrivée",stLost:"Athlète non détecté",
 stWait:"Attention…",stGo:"GO !",
 noReps:"Aucun essai pour l'instant",out:"Aller",back:"Retour",react:"Réaction",bestTag:"Meilleur",
@@ -511,7 +514,7 @@ results:"Results",athletePh:"Athlete",testPh:"Test (e.g. 5 m shuttle)",best:"Bes
 settings:"Settings",editZone:"Edit zone",doneZone:"Confirm zone",refPoint:"Reference point",hips:"Hips",torso:"Torso",feet:"Feet",
 confirm:"Crossing confirmation",confirmSub:"Consecutive frames required. 2 = best balance of reliability and response.",
 slow:"Slow-motion video",slowSub:"If the video plays in slow motion, set the factor to get real time.",model:"AI model",fast:"Fast",precise:"Accurate",
-privacy:"100% on-device analysis, no video uploaded.",
+privacy:"Analysed on your phone, live or from an imported video.",
 stNone:"No video",stLoad:"Ready — place the zone, then analyse",stSearch:"Place the athlete in the zone",stIn:"In the zone",stOut:"Running",stDone:"Finished",stLost:"Athlete not detected",
 stWait:"Get ready…",stGo:"GO!",
 noReps:"No reps yet",out:"Out",back:"Back",react:"Reaction",bestTag:"Best",
@@ -533,7 +536,7 @@ results:"Resultaten",athletePh:"Atleet",testPh:"Test (bv. pendel 5 m)",best:"Bes
 settings:"Instellingen",editZone:"Zone aanpassen",doneZone:"Zone bevestigen",refPoint:"Referentiepunt",hips:"Heupen",torso:"Romp",feet:"Voeten",
 confirm:"Bevestiging van de doorgang",confirmSub:"Aantal opeenvolgende beelden. 2 = beste balans tussen betrouwbaarheid en reactie.",
 slow:"Slow-motion video",slowSub:"Speelt de video vertraagd af, geef dan de factor op voor de echte tijd.",model:"AI-model",fast:"Snel",precise:"Nauwkeurig",
-privacy:"100% analyse op het toestel, geen video verzonden.",
+privacy:"Analyse op je telefoon, live of vanuit een geïmporteerde video.",
 stNone:"Geen video",stLoad:"Klaar — plaats de zone en analyseer",stSearch:"Plaats de atleet in de zone",stIn:"In de zone",stOut:"Bezig",stDone:"Aankomst",stLost:"Atleet niet gedetecteerd",
 stWait:"Opgelet…",stGo:"GO!",
 noReps:"Nog geen pogingen",out:"Heen",back:"Terug",react:"Reactie",bestTag:"Beste",
@@ -1114,5 +1117,6 @@ $('#lang').addEventListener('click', e => { const b = e.target.closest('button')
 
 applyI18n(); syncUI(); layout(); requestAnimationFrame(frame);
 </script>
+<script src="cdm-ui.js"></script>
 </body>
 </html>

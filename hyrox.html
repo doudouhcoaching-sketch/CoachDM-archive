@@ -96,7 +96,7 @@
   .controls{display:flex;gap:10px;margin-top:12px}
   .btn{
     flex:1;font-size:15px;font-weight:700;padding:14px 12px;border-radius:16px;
-    background:var(--neon);color:#062A1D;letter-spacing:-0.02em;transition:transform .08s ease,opacity .15s;
+    background:var(--neon);color:#1B1405;letter-spacing:-0.02em;transition:transform .08s ease,opacity .15s;
   }
   .btn:active{transform:scale(.97)}
   .btn.ghost{background:var(--surface);color:var(--txt);border:1px solid var(--line)}
@@ -649,7 +649,7 @@ const I18N = {
   help_3:{fr:'Chaque rep est jugée sur deux signaux indépendants (profondeur ET extension) : un repositionnement de la balle ou un faux mouvement n\'est jamais compté.',en:'Every rep is judged on two independent signals (depth AND extension): re-gripping the ball or a false move is never counted.',nl:'Elke rep wordt beoordeeld op twee onafhankelijke signalen (diepte ÉN extensie): opnieuw grijpen of een schijnbeweging telt nooit mee.'},
   help_4:{fr:'Bip aigu = rep valide. Bip grave + cadre rouge = no-rep, avec la raison affichée dans la liste. Le compteur géant reste lisible à 3 mètres.',en:'High beep = valid rep. Low beep + red frame = no-rep, with the reason shown in the list. The giant counter stays readable from 3 metres.',nl:'Hoge piep = geldige rep. Lage piep + rood kader = no-rep, met de reden in de lijst. De grote teller blijft leesbaar op 3 meter.'},
   help_5:{fr:'La balle elle-même n\'est pas suivie : le lancer est validé par l\'extension complète des bras au-dessus de la tête, comme le fait la concurrence. La hauteur de cible reste ta responsabilité.',en:'The ball itself is not tracked: the throw is validated by full overhead arm extension, as competitors do. Target height remains your responsibility.',nl:'De bal zelf wordt niet gevolgd: de worp wordt gevalideerd door volledige armextensie boven het hoofd, zoals bij concurrenten. De doelhoogte blijft jouw verantwoordelijkheid.'},
-  help_note:{fr:'Détection par MediaPipe Pose, amplitude calibrée sur ta morphologie (pas de seuils fixes) et filtre médian sans latence pour tenir les cadences de compétition. Standard de profondeur : crête de la hanche sous le sommet du genou (rulebook HYROX Singles 25/26 ; identique au standard CrossFit, Schoenfeld 2010). Pénalités et charges : rulebook HYROX Singles 25/26. 100% sur ton téléphone — aucune vidéo n\'est envoyée — l\'enregistrement REC est optionnel et reste uniquement sur ton appareil. Outil d\'aide au coaching et à l\'entraînement : seul un juge officiel valide une rep en compétition.',en:'Detection by MediaPipe Pose, range calibrated to your body (no fixed thresholds) and a zero-latency median filter to hold competition cadences. Depth standard: hip crease below the top of the knee (HYROX Singles Rulebook 25/26; identical to the CrossFit standard, Schoenfeld 2010). Penalties and loads: HYROX Singles Rulebook 25/26. Runs 100% on your phone — no video is ever uploaded — the optional REC recording stays only on your device. A coaching and training aid: only an official judge validates a rep in competition.',nl:'Detectie via MediaPipe Pose, bereik gekalibreerd op jouw lichaam (geen vaste drempels) en een mediaanfilter zonder latentie om wedstrijdcadans aan te kunnen. Dieptestandaard: heupplooi onder de bovenkant van de knie (HYROX Singles Rulebook 25/26; identiek aan de CrossFit-standaard, Schoenfeld 2010). Straffen en gewichten: HYROX Singles Rulebook 25/26. Draait 100% op je telefoon — er wordt nooit video verstuurd — de optionele REC-opname blijft alleen op je toestel. Een hulpmiddel voor coaching en training: alleen een officiële jury keurt een rep in wedstrijd goed.'}
+  help_note:{fr:'Détection par MediaPipe Pose, amplitude calibrée sur ta morphologie (pas de seuils fixes) et filtre médian sans latence pour tenir les cadences de compétition. Standard de profondeur : crête de la hanche sous le sommet du genou (rulebook HYROX Singles 25/26 ; identique au standard CrossFit, Schoenfeld 2010). Pénalités et charges : rulebook HYROX Singles 25/26. L\'analyse se fait sur ton téléphone, en direct ou depuis une vidéo importée de ta galerie. L\'enregistrement REC est optionnel et reste sur ton appareil. Outil d\'aide au coaching et à l\'entraînement : seul un juge officiel valide une rep en compétition.',en:'Detection by MediaPipe Pose, range calibrated to your body (no fixed thresholds) and a zero-latency median filter to hold competition cadences. Depth standard: hip crease below the top of the knee (HYROX Singles Rulebook 25/26; identical to the CrossFit standard, Schoenfeld 2010). Penalties and loads: HYROX Singles Rulebook 25/26. The analysis runs on your phone, live or from a video imported from your gallery. The optional REC recording stays on your device. A coaching and training aid: only an official judge validates a rep in competition.',nl:'Detectie via MediaPipe Pose, bereik gekalibreerd op jouw lichaam (geen vaste drempels) en een mediaanfilter zonder latentie om wedstrijdcadans aan te kunnen. Dieptestandaard: heupplooi onder de bovenkant van de knie (HYROX Singles Rulebook 25/26; identiek aan de CrossFit-standaard, Schoenfeld 2010). Straffen en gewichten: HYROX Singles Rulebook 25/26. De analyse gebeurt op je telefoon, live of vanuit een video uit je galerij. De optionele REC-opname blijft op je toestel. Een hulpmiddel voor coaching en training: alleen een officiële jury keurt een rep in wedstrijd goed.'}
 };
 
 /* ── diagnostic: surface every error on screen ── */
@@ -2240,9 +2240,9 @@ try{document.fonts.load('800 260px Manrope');document.fonts.load('700 44px Manro
 <style>
   #cdm-aff{position:fixed;right:10px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;display:flex;gap:6px;
     background:rgba(0,0,0,.62);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:5px;backdrop-filter:blur(8px)}
-  #cdm-aff button{appearance:none;border:0;background:transparent;color:#cfd8d4;font:800 11px/1 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+  #cdm-aff button{appearance:none;border:0;background:transparent;color:#D6D1C6;font:800 11px/1 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
     letter-spacing:.7px;padding:8px 11px;border-radius:999px;cursor:pointer}
-  #cdm-aff button.on{background:#E9C767;color:#04120c}
+  #cdm-aff button.on{background:#E9C767;color:#1B1405}
   @media print{#cdm-aff{display:none}}
 </style>
 <div id="cdm-aff" role="group" aria-label="Ce qu'on voit sur soi">
@@ -2272,5 +2272,6 @@ try{document.fonts.load('800 260px Manrope');document.fonts.load('700 44px Manro
   peindre();
 })();
 </script>
+<script src="cdm-ui.js"></script>
 </body>
 </html>

@@ -81,7 +81,7 @@
   .controls{display:flex;gap:10px;margin-top:12px}
   .btn{
     flex:1;font-size:15px;font-weight:700;padding:14px 12px;border-radius:16px;
-    background:var(--neon);color:#062A1D;letter-spacing:-0.02em;transition:transform .08s ease,opacity .15s;
+    background:var(--neon);color:#1B1405;letter-spacing:-0.02em;transition:transform .08s ease,opacity .15s;
   }
   .btn:active{transform:scale(.97)}
   .btn.ghost{background:var(--surface);color:var(--txt);border:1px solid var(--line)}
@@ -469,7 +469,7 @@ const I18N = {
   place_3:{fr:'En extérieur : cadre fixe, l\'analyse tourne pendant tes passages devant la caméra.',en:'Outdoors: fixed frame, the analysis runs while you pass in front of the camera.',nl:'Buiten: vast kader, de analyse loopt terwijl je voor de camera passeert.'},
   place_4:{fr:'Piste dégagée : personne d\'autre dans le cadre.',en:'Clear lane: nobody else in frame.',nl:'Vrije baan: niemand anders in beeld.'},
   place_5:{fr:'Lumière de face — jamais de fenêtre derrière toi — et tenue contrastée avec le fond.',en:'Light facing you — never a window behind you — and clothing that contrasts with the background.',nl:'Licht van voren — nooit een raam achter je — en kleding die contrasteert met de achtergrond.'},
-  help_note:{fr:'Appuis détectés par le suivi des chevilles (MediaPipe Pose). Cadence 170–180 spm et foulée raccourcie : réduction de la charge d\'impact articulaire (Heiderscheit 2011). Économie de course : oscillation verticale et temps de contact (Moore 2016). Contact au sol approximatif à 30 images/s. 100% sur ton téléphone — aucune vidéo n\'est envoyée ni enregistrée. Outil d\'aide au coaching, ne remplace pas l\'œil du coach.',en:'Foot strikes detected by ankle tracking (MediaPipe Pose). Cadence 170–180 spm and a shorter stride: lower joint impact load (Heiderscheit 2011). Running economy: vertical oscillation and contact time (Moore 2016). Ground contact approximate at 30 fps. Runs 100% on your phone — no video is uploaded or stored. A coaching aid, not a replacement for the coach\'s eye.',nl:'Voetlandingen gedetecteerd via enkeltracking (MediaPipe Pose). Cadans 170–180 spm en een kortere pas: minder gewrichtsbelasting (Heiderscheit 2011). Loopeconomie: verticale oscillatie en contacttijd (Moore 2016). Grondcontact benaderend bij 30 fps. Draait 100% op je telefoon — er wordt geen video verstuurd of opgeslagen. Een coachingshulpmiddel, geen vervanging voor het oog van de coach.'}
+  help_note:{fr:'Appuis détectés par le suivi des chevilles (MediaPipe Pose). Cadence 170–180 spm et foulée raccourcie : réduction de la charge d\'impact articulaire (Heiderscheit 2011). Économie de course : oscillation verticale et temps de contact (Moore 2016). Contact au sol approximatif à 30 images/s. L\'analyse se fait sur ton téléphone, en direct ou depuis une vidéo importée de ta galerie. Outil d\'aide au coaching, ne remplace pas l\'œil du coach.',en:'Foot strikes detected by ankle tracking (MediaPipe Pose). Cadence 170–180 spm and a shorter stride: lower joint impact load (Heiderscheit 2011). Running economy: vertical oscillation and contact time (Moore 2016). Ground contact approximate at 30 fps. The analysis runs on your phone, live or from a video imported from your gallery. A coaching aid, not a replacement for the coach\'s eye.',nl:'Voetlandingen gedetecteerd via enkeltracking (MediaPipe Pose). Cadans 170–180 spm en een kortere pas: minder gewrichtsbelasting (Heiderscheit 2011). Loopeconomie: verticale oscillatie en contacttijd (Moore 2016). Grondcontact benaderend bij 30 fps. De analyse gebeurt op je telefoon, live of vanuit een video uit je galerij. Een coachingshulpmiddel, geen vervanging voor het oog van de coach.'}
 };
 /* ── diagnostic: surface every error on screen ── */
 function showErr(msg){
@@ -1719,9 +1719,9 @@ try{document.fonts.load('800 300px Manrope');document.fonts.load('700 44px Manro
 <style>
   #cdm-aff{position:fixed;right:10px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;display:flex;gap:6px;
     background:rgba(0,0,0,.62);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:5px;backdrop-filter:blur(8px)}
-  #cdm-aff button{appearance:none;border:0;background:transparent;color:#cfd8d4;font:800 11px/1 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+  #cdm-aff button{appearance:none;border:0;background:transparent;color:#D6D1C6;font:800 11px/1 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
     letter-spacing:.7px;padding:8px 11px;border-radius:999px;cursor:pointer}
-  #cdm-aff button.on{background:#E9C767;color:#04120c}
+  #cdm-aff button.on{background:#E9C767;color:#1B1405}
   @media print{#cdm-aff{display:none}}
 </style>
 <div id="cdm-aff" role="group" aria-label="Ce qu'on voit sur soi">
@@ -1751,5 +1751,6 @@ try{document.fonts.load('800 300px Manrope');document.fonts.load('700 44px Manro
   peindre();
 })();
 </script>
+<script src="cdm-ui.js"></script>
 </body>
 </html>
