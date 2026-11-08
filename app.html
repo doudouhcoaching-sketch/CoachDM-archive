@@ -2649,6 +2649,7 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
         </div>
       </div>
       <div class="macros" id="macros"></div>
+      <p class="empty" id="r-daykind" style="text-align:left;padding:8px 0 0;font-size:12.5px" hidden></p>
     </div>
     <!-- B#10 : « Ton objectif en clair ».
          Le membre voyait « 2100 kcal · 150 g · 210 g · 70 g » sans savoir ce
@@ -2987,6 +2988,29 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
         <div class="field"><label data-i18n="wg_date">Date cible</label><input id="p-target-date" type="date" /></div>
       </div>
       <p class="empty" style="text-align:left;padding:0 0 12px;font-size:12.5px" data-i18n="wg_hint">Optionnel — fixe un poids et une date : tes calories sont calculées pour l'atteindre, dans des limites saines.</p>
+      <div class="field" id="p-tdays-wrap"><label data-i18n="td_label">Mes jours d'entraînement</label>
+        <div id="p-tdays" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+        <p class="empty" style="text-align:left;padding:6px 0 0;font-size:12.5px" data-i18n="td_hint">Optionnel — plus de glucides les jours où tu t'entraînes, un peu moins les jours de repos. Le total de la semaine ne change pas.</p>
+      </div>
+      <div class="field"><label data-i18n="mm_label">Répartition des macros</label>
+        <select id="p-method">
+          <option value="auto" selected data-i18n="mm_auto">Calcul Coach DM (recommandé)</option>
+          <option value="manual" data-i18n="mm_manual">Mes macros — ex. de mon nutritionniste</option>
+        </select></div>
+      <div id="p-manual" class="hidden">
+        <div class="field"><label data-i18n="mm_unit">Je saisis en</label>
+          <select id="p-m-unit">
+            <option value="g" selected data-i18n="mm_unit_g">Grammes par jour</option>
+            <option value="pct" data-i18n="mm_unit_pct">% des calories (ex. 40/30/30)</option>
+          </select></div>
+        <div class="field hidden" id="p-m-kcal-wrap"><label data-i18n="mm_kcal">Calories par jour</label><input id="p-m-kcal" type="number" inputmode="numeric" placeholder="2200" /></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <div class="field"><label data-i18n="macro_carb">Glucides</label><input id="p-m-c" type="number" inputmode="decimal" /></div>
+          <div class="field"><label data-i18n="macro_protein">Protéines</label><input id="p-m-p" type="number" inputmode="decimal" /></div>
+          <div class="field"><label data-i18n="macro_fat">Lipides</label><input id="p-m-f" type="number" inputmode="decimal" /></div>
+        </div>
+        <p class="empty" style="text-align:left;padding:0 0 12px;font-size:12.5px" data-i18n="mm_hint">Tes macros sont enregistrées telles quelles. L'app te signale seulement ce qui sort des repères scientifiques. Le cycle glucides ne s'applique pas à un plan manuel.</p>
+      </div>
       <button class="btn" id="p-calc" data-i18n="btn_calc">Calculer & enregistrer</button>
       <div class="msg" id="p-msg"></div>
       <div class="msg" id="p-warn" style="text-align:left"></div>
@@ -4783,11 +4807,30 @@ const T = {
  sex_male:{fr:'Homme',en:'Male',nl:'Man'},
  sex_female:{fr:'Femme',en:'Female',nl:'Vrouw'},
  lbl_act:{fr:"Niveau d'activité",en:'Activity level',nl:'Activiteitsniveau'},
- act_sedentary:{fr:'Sédentaire',en:'Sedentary',nl:'Zittend'},
- act_light:{fr:'Légère',en:'Light',nl:'Licht'},
- act_moderate:{fr:'Modérée',en:'Moderate',nl:'Matig'},
- act_active:{fr:'Active',en:'Active',nl:'Actief'},
- act_very_active:{fr:'Très active',en:'Very active',nl:'Zeer actief'},
+ mm_label:{fr:'Répartition des macros',en:'Macro split',nl:'Macroverdeling'},
+ mm_auto:{fr:'Calcul Coach DM (recommandé)',en:'Coach DM calculation (recommended)',nl:'Coach DM-berekening (aanbevolen)'},
+ mm_manual:{fr:'Mes macros — ex. de mon nutritionniste',en:'My own macros — e.g. from my dietitian',nl:'Mijn eigen macro’s — bv. van mijn diëtist'},
+ mm_unit:{fr:'Je saisis en',en:'I enter',nl:'Ik vul in'},
+ mm_unit_g:{fr:'Grammes par jour',en:'Grams per day',nl:'Gram per dag'},
+ mm_unit_pct:{fr:'% des calories (ex. 40/30/30)',en:'% of calories (e.g. 40/30/30)',nl:'% van de calorieën (bv. 40/30/30)'},
+ mm_kcal:{fr:'Calories par jour',en:'Calories per day',nl:'Calorieën per dag'},
+ mm_hint:{fr:'Tes macros sont enregistrées telles quelles. L’app te signale seulement ce qui sort des repères scientifiques. Le cycle glucides ne s’applique pas à un plan manuel.',en:'Your macros are saved as entered. The app only flags what falls outside scientific guidelines. Carb cycling does not apply to a manual plan.',nl:'Je macro’s worden opgeslagen zoals ingevuld. De app meldt alleen wat buiten de wetenschappelijke richtlijnen valt. Koolhydraatcycli gelden niet voor een handmatig plan.'},
+ mm_need:{fr:'Remplis les trois macros.',en:'Fill in all three macros.',nl:'Vul de drie macro’s in.'},
+ mm_need_kcal:{fr:'Indique tes calories par jour.',en:'Enter your daily calories.',nl:'Vul je calorieën per dag in.'},
+ mm_sum100:{fr:'Les trois pourcentages doivent faire 100 %.',en:'The three percentages must add up to 100%.',nl:'De drie percentages moeten samen 100% zijn.'},
+ mm_range:{fr:'Total hors limites (800 à 8 000 kcal).',en:'Total out of range (800–8,000 kcal).',nl:'Totaal buiten bereik (800–8.000 kcal).'},
+ mm_w_bmr:{fr:'Attention : ce total est sous ton métabolisme de repos. À ne tenir que sous suivi d’un professionnel.',en:'Note: this total is below your resting metabolic rate. Only follow it with professional supervision.',nl:'Let op: dit totaal ligt onder je rustmetabolisme. Volg dit alleen onder professionele begeleiding.'},
+ mm_w_fat:{fr:'Attention : moins de 20 % de lipides, sous les repères pour sportifs.',en:'Note: under 20% fat, below sports guidelines.',nl:'Let op: minder dan 20% vet, onder de richtlijnen voor sporters.'},
+ mm_w_carb:{fr:'À savoir : moins de 3 g/kg de glucides, ce qui peut limiter la performance sur les séances intenses.',en:'Good to know: under 3 g/kg of carbs, which may limit performance in hard sessions.',nl:'Goed om te weten: minder dan 3 g/kg koolhydraten, wat prestaties bij zware trainingen kan beperken.'},
+ td_label:{fr:'Mes jours d’entraînement',en:'My training days',nl:'Mijn trainingsdagen'},
+ td_hint:{fr:'Optionnel — plus de glucides les jours où tu t’entraînes, un peu moins les jours de repos. Le total de la semaine ne change pas.',en:'Optional — more carbs on training days, a little less on rest days. Your weekly total stays the same.',nl:'Optioneel — meer koolhydraten op trainingsdagen, iets minder op rustdagen. Je weektotaal blijft gelijk.'},
+ td_train:{fr:'Jour d’entraînement : +{g} g de glucides. Prends-en une partie 1 à 4 h avant ta séance.',en:'Training day: +{g} g carbs. Eat some of them 1–4 h before your session.',nl:'Trainingsdag: +{g} g koolhydraten. Eet een deel 1–4 u voor je training.'},
+ td_rest:{fr:'Jour de repos : −{g} g de glucides. Protéines inchangées.',en:'Rest day: −{g} g carbs. Protein unchanged.',nl:'Rustdag: −{g} g koolhydraten. Eiwit ongewijzigd.'},
+ act_sedentary:{fr:'Sédentaire — pas de sport, travail assis',en:'Sedentary — no training, desk job',nl:'Zittend — geen sport, zittend werk'},
+ act_light:{fr:'Légère — 1 à 2 séances/sem',en:'Light — 1–2 sessions/week',nl:'Licht — 1–2 trainingen/week'},
+ act_moderate:{fr:'Modérée — 3 à 4 séances/sem',en:'Moderate — 3–4 sessions/week',nl:'Matig — 3–4 trainingen/week'},
+ act_active:{fr:'Active — 5 à 6 séances/sem',en:'Active — 5–6 sessions/week',nl:'Actief — 5–6 trainingen/week'},
+ act_very_active:{fr:'Très active — 2×/jour ou métier physique + sport',en:'Very active — twice a day or physical job + training',nl:'Zeer actief — 2×/dag of fysiek werk + sport'},
  lbl_goal:{fr:'Objectif',en:'Goal',nl:'Doel'},
  goal_lose_fat:{fr:'Perte de gras',en:'Fat loss',nl:'Vetverlies'},
  goal_maintain:{fr:'Maintien',en:'Maintain',nl:'Onderhoud'},
@@ -8387,7 +8430,15 @@ async function loadTargets(){
     if(TARGETS.activity_level) $('#p-act').value = TARGETS.activity_level;
     if(TARGETS.target_weight_kg) $('#p-target-w').value = TARGETS.target_weight_kg;
     if(TARGETS.target_date) $('#p-target-date').value = TARGETS.target_date;
+    if(TARGETS.calculation_method==='manual'){
+      $('#p-method').value='manual'; $('#p-m-unit').value='g';
+      $('#p-m-c').value=Math.round(+TARGETS.carbs_g||0);
+      $('#p-m-p').value=Math.round(+TARGETS.protein_g||0);
+      $('#p-m-f').value=Math.round(+TARGETS.fat_g||0);
+    }else{ $('#p-method').value='auto'; }
+    syncMethodUI();
   }
+  renderTDays();
 }
 
 async function loadToday(){
@@ -8416,8 +8467,12 @@ async function loadToday(){
   $('#today-card').classList.remove('hidden');
   $('#today-empty').classList.add('hidden');
 
-  const tgt = TARGETS.daily_calories_kcal||0;
+  const DT = dayTargets(JO_DATE);           /* cibles du jour (cycle glucides si activé) */
+  const tgt = DT.kcal||0;
   const left = r0(tgt - sum.kcal);
+  { const dk=document.getElementById('r-daykind');
+    if(dk){ if(DT.kind){ dk.textContent=t(DT.kind==='train'?'td_train':'td_rest').replace('{g}',DT.delta); dk.hidden=false; }
+            else { dk.textContent=''; dk.hidden=true; } } }
 
   /* Au centre : ce qu'il RESTE, pas ce qui est consomme. Un arc a moitie plein
      ne dit pas s'il faut manger encore 300 ou 1500 kcal ; le chiffre le dit.
@@ -8457,9 +8512,9 @@ async function loadToday(){
   { const rl=$('#r-left'); if(rl) rl.textContent = left>=0 ? left+' '+t('left_under') : Math.abs(left)+' '+t('left_over'); }
 
   const macros=[
-    {n:t('macro_protein'),c:'--prot',v:sum.p,t:TARGETS.protein_g},
-    {n:t('macro_carb'),c:'--carb',v:sum.c,t:TARGETS.carbs_g},
-    {n:t('macro_fat'),c:'--fat',v:sum.f,t:TARGETS.fat_g},
+    {n:t('macro_protein'),c:'--prot',v:sum.p,t:DT.p},
+    {n:t('macro_carb'),c:'--carb',v:sum.c,t:DT.c},
+    {n:t('macro_fat'),c:'--fat',v:sum.f,t:DT.f},
     {n:t('macro_fiber'),c:'--fiber',v:sum.fb,t:TARGETS.fiber_g},
   ];
   $('#macros').innerHTML = macros.map(m=>{
@@ -9202,16 +9257,80 @@ $('#ph-add').onclick = async ()=>{
   await loadLogs(); await loadToday();
 };
 
+/* ---------------- CYCLE GLUCIDES : jours d'entraînement ----------------
+   Ce qui est prouvé, et donc appliqué :
+   - Glucides ajustés à la charge du jour (ACSM/AND/DC 2016 ; Impey 2018).
+   - Glucides avant une séance > 45 min : plus de volume réalisé (méta-analyse
+     King 2022). En CrossFit, les apports riches en glucides améliorent la
+     performance (revue JISSN 2025).
+   - Le résultat sur le poids dépend du total de la semaine : à total égal,
+     répartir autrement ne change pas la perte de gras (essais Siedler 2023,
+     Steger 2021). Donc total hebdomadaire STRICTEMENT identique.
+   Ce qui n'est PAS appliqué, faute de preuve ou par risque :
+   - Pas de « train low » volontaire : aucun gain de performance (méta-analyse
+     Gejl & Nybo 2021). Jours de repos ≥ 3 g/kg (bas de fourchette ACSM).
+   - Faible disponibilité en glucides = facteur aggravant du RED-S (CIO 2023) :
+     jamais sous le métabolisme de repos, supplément ≤ 1,5 g/kg.
+   - Protéines et lipides identiques tous les jours.
+   Jours choisis par l'utilisateur, stockés sur l'appareil (aucune colonne
+   Supabase ajoutée). */
+const TD_KEY = ()=> 'cdm_train_days_'+(USER&&USER.id);
+const RW_KEY = ()=> 'cdm_refw_'+(USER&&USER.id);
+function trainDays(){
+  try{ const a=JSON.parse(localStorage.getItem(TD_KEY())||'[]');
+       return Array.isArray(a) ? a.filter(x=>Number.isInteger(x)&&x>=0&&x<=6) : []; }
+  catch(e){ return []; }
+}
+function cycleSplit(T){
+  const n = trainDays().length;
+  if(!T || !n || n>=7) return null;
+  if(T.calculation_method==='manual') return null;   /* plan du nutritionniste : on n'y touche pas */
+  const C=+T.carbs_g||0, K=+T.daily_calories_kcal||0, B=+T.bmr_kcal||0;
+  let rw=0; try{ rw=+localStorage.getItem(RW_KEY())||0; }catch(e){}
+  if(!rw) rw=+T.current_weight_kg||0;
+  if(!C || !rw) return null;
+  /* g de glucides retirés par jour de repos : jamais sous 3 g/kg, au plus 1 g/kg,
+     et jamais sous le métabolisme de repos */
+  let R = Math.min(C - 3*rw, 1.0*rw, B ? (K - B)/4 : Infinity);
+  if(!(R > 5)) return null;
+  let A = R*(7-n)/n;                       /* g ajoutés par jour d'entraînement */
+  if(A > 1.5*rw){ A = 1.5*rw; R = A*n/(7-n); }
+  return {A, R};
+}
+function dayTargets(dateStr){
+  const T=TARGETS; if(!T) return null;
+  const base={kcal:+T.daily_calories_kcal||0, p:+T.protein_g||0, c:+T.carbs_g||0, f:+T.fat_g||0, kind:null, delta:0};
+  const s=cycleSplit(T); if(!s) return base;
+  const train = trainDays().includes(new Date(dateStr+'T12:00:00').getDay());
+  const dc = train ? s.A : -s.R;
+  return {kcal:base.kcal+dc*4, p:base.p, c:base.c+dc, f:base.f, kind:train?'train':'rest', delta:Math.round(Math.abs(dc))};
+}
+function renderTDays(){
+  const host=document.getElementById('p-tdays'); if(!host) return;
+  const sel=trainDays();
+  const order=[1,2,3,4,5,6,0];             /* lundi → dimanche */
+  host.innerHTML = order.map(d=>{
+    const name=new Date(2024,0,7+d).toLocaleDateString(LANG,{weekday:'short'});
+    return `<button type="button" class="chip${sel.includes(d)?' k':''}" data-td="${d}" style="padding:8px 12px;font-size:13px">${esc(name)}</button>`;
+  }).join('');
+  host.querySelectorAll('[data-td]').forEach(b=>b.onclick=()=>{
+    const d=+b.dataset.td; let s=trainDays();
+    s = s.includes(d) ? s.filter(x=>x!==d) : s.concat(d);
+    try{ localStorage.setItem(TD_KEY(), JSON.stringify(s)); }catch(e){}
+    renderTDays(); if(typeof loadToday==='function') loadToday();
+  });
+}
+
 /* ---------------- PROFIL (Mifflin-St Jeor) ---------------- */
 /* La discipline ne concerne que l'objectif performance : on n'encombre pas
    le formulaire de quelqu'un qui veut simplement perdre du gras. */
 const SPORT_HINT = {
-  endurance:{fr:'8 g/kg de glucides : le glycogène est ton facteur limitant.',en:'8 g/kg carbs: glycogen is your limiter.',nl:'8 g/kg koolhydraten: glycogeen is je limiet.'},
-  team:{fr:'6 g/kg de glucides pour les sprints répétés et la récupération entre matchs.',en:'6 g/kg carbs for repeated sprints and between-match recovery.',nl:'6 g/kg koolhydraten voor herhaalde sprints.'},
-  strength:{fr:'2,4 g/kg de protéines : la récupération tissulaire prime sur le volume.',en:'2.4 g/kg protein: tissue recovery over volume.',nl:'2,4 g/kg eiwit: herstel boven volume.'},
-  hybrid:{fr:'Double contrainte : assez de glucides pour le métabolique, assez de protéines pour la force.',en:'Dual demand: carbs for metabolic work, protein for strength.',nl:'Dubbele eis: koolhydraten én eiwit.'},
-  combat:{fr:'2,6 g/kg de protéines pour préserver la masse pendant la descente de poids.',en:'2.6 g/kg protein to preserve mass during the cut.',nl:'2,6 g/kg eiwit om massa te behouden.'},
-  physique:{fr:'2,8 g/kg de protéines : déficit prolongé, protection maximale du muscle.',en:'2.8 g/kg protein: long deficit, maximum muscle protection.',nl:'2,8 g/kg eiwit: lang tekort, maximale bescherming.'}
+  endurance:{fr:'Plus de glucides : le glycogène est ton facteur limitant.',en:'More carbs: glycogen is your limiter.',nl:'Meer koolhydraten: glycogeen is je limiet.'},
+  team:{fr:'Glucides élevés pour les sprints répétés et la récupération entre matchs.',en:'Higher carbs for repeated sprints and recovery.',nl:'Meer koolhydraten voor herhaalde sprints.'},
+  strength:{fr:'Protéines hautes, glucides modérés : la récupération tissulaire prime.',en:'High protein, moderate carbs: tissue recovery first.',nl:'Veel eiwit, matig koolhydraten.'},
+  hybrid:{fr:'Double contrainte : glucides pour le métabolique, protéines pour la force.',en:'Dual demand: carbs for metabolic work, protein for strength.',nl:'Dubbele eis: koolhydraten én eiwit.'},
+  combat:{fr:'Protéines hautes pour préserver la masse pendant la descente de poids.',en:'High protein to preserve mass during the cut.',nl:'Veel eiwit om massa te behouden.'},
+  physique:{fr:'Protéines hautes : déficit prolongé, protection maximale du muscle.',en:'High protein: long deficit, maximum muscle protection.',nl:'Veel eiwit: maximale bescherming.'}
 };
 function syncSportUI(){
   const perf = $('#p-goal').value==='performance';
@@ -9221,6 +9340,15 @@ function syncSportUI(){
     $('#p-sport-hint').textContent = h ? (h[LANG]||h.fr) : '';
   }
 }
+function syncMethodUI(){
+  const man = $('#p-method').value==='manual';
+  $('#p-manual').classList.toggle('hidden', !man);
+  $('#p-m-kcal-wrap').classList.toggle('hidden', $('#p-m-unit').value!=='pct');
+  const g = $('#p-m-unit').value==='g';
+  ['#p-m-c','#p-m-p','#p-m-f'].forEach(s=>{ $(s).placeholder = g ? 'g' : '%'; });
+}
+$('#p-method').addEventListener('change', syncMethodUI);
+$('#p-m-unit').addEventListener('change', syncMethodUI);
 $('#p-goal').addEventListener('change', syncSportUI);
 $('#p-sport').addEventListener('change', syncSportUI);
 
@@ -9231,10 +9359,18 @@ $('#p-calc').onclick = async ()=>{
   const bmr = 10*w + 6.25*h - 5*a + (sex==='male'?5:-161);
   const actMul = {sedentary:1.2,light:1.375,moderate:1.55,active:1.725,very_active:1.9}[act];
   const tdee = bmr*actMul;
-  /* 'performance' n'est pas un objectif de poids mais de carburant : on couvre
-     la dépense avec une marge, et on redistribuera vers les glucides plus bas. */
-  const goalMul = {lose_fat:0.8,maintain:1,build_muscle:1.1,recomp:0.95,performance:1.15}[goal];
-  let kcal = tdee*goalMul;
+  /* Calories = dépense réelle de la personne (sexe, taille, âge, poids, activité).
+     'performance' = maintien : on alimente l'entraînement, sans surplus. Si un poids
+     cible plus bas est saisi, perte lente (≤0,5 %/sem, Garthe 2011 / Helms 2014). */
+  const tw0 = parseFloat($('#p-target-w').value)||null;
+  const perfCut = goal==='performance' && tw0 && tw0 < w-1;
+  let kcal;
+  if(goal==='lose_fat')          kcal = tdee - (0.0075*w*7700)/7;
+  else if(goal==='build_muscle') kcal = tdee*1.10;
+  else if(goal==='recomp')       kcal = tdee*0.95;
+  else if(goal==='performance')  kcal = perfCut ? tdee - (0.005*w*7700)/7 : tdee;
+  else                           kcal = tdee;
+  if(kcal < bmr) kcal = bmr;
 
   /* -- Objectif de poids daté (optionnel) -- */
   const tw = parseFloat($('#p-target-w').value)||null;
@@ -9267,37 +9403,56 @@ $('#p-calc').onclick = async ()=>{
   }
 
   /* ── Répartition des macros ──────────────────────────────────────────────
-     Pour les 4 objectifs de composition corporelle : on part des calories et
-     les glucides sont le reste. Logique quand le poids est la cible.
-
-     Pour 'performance', on inverse la méthode : on part des GRAMMES PAR KILO
-     de glucides et de protéines, et les calories en découlent. C'est ainsi
-     qu'un préparateur physique raisonne — le glycogène et la réparation
-     tissulaire sont les contraintes, pas un chiffre de calories.
-     Coefficients par filière énergétique (ACSM 2016, ISSN Jäger 2017,
-     Burke 2011 pour les glucides, Morton 2018 pour les protéines). */
+     L'énergie est fixée AVANT (dépense réelle). Les macros se répartissent dans
+     ce budget, pour tous les objectifs, performance compris.
+     (Ancienne version : en performance, kcal = somme de g/kg × poids → même
+     résultat pour deux personnes de même poids, quel que soit le sexe, la
+     taille ou l'activité. Bug corrigé le 07/11/2026.)
+     - Protéines : ISSN 2017 (1,4–2,0 g/kg), Morton 2018, Helms 2014 en déficit.
+     - Poids de référence ajusté si IMC > 25 (IMC 25 + 40 % de l'excédent) :
+       on ne calcule pas les g/kg sur la masse grasse.
+     - Lipides : 25 % des kcal, jamais < 20 % (ACSM/AND/DC 2016), min 0,7 g/kg.
+     - Glucides : le reste. */
   const perf = goal==='performance';
   const SPORT = {
-    endurance:{c:8.0, p:1.8, f:0.20},   /* le glycogène est LE facteur limitant */
-    team:     {c:6.0, p:2.0, f:0.22},   /* efforts intermittents, sprints répétés */
-    strength: {c:5.0, p:2.4, f:0.25},   /* volume modéré, récupération tissulaire */
-    hybrid:   {c:6.5, p:2.2, f:0.22},   /* double contrainte métabolique et musculaire */
-    combat:   {c:5.0, p:2.6, f:0.22},   /* protéines hautes : masse préservée en séchage */
-    physique: {c:4.5, p:2.8, f:0.22}    /* déficit prolongé, protection maximale */
+    endurance:{p:1.6}, team:{p:1.8}, hybrid:{p:2.0},
+    strength:{p:2.0},  combat:{p:2.2}, physique:{p:2.2}
   };
-  let protein, fat, carbs;
-  if(perf){
-    const s = SPORT[$('#p-sport').value] || SPORT.hybrid;
-    protein = s.p*w;
-    carbs   = s.c*w;
-    /* Les lipides complètent : part fixe du total, donc résolue algébriquement
-       sur les calories issues des glucides et protéines. */
-    fat     = ((protein*4 + carbs*4) * s.f / (1 - s.f)) / 9;
-    kcal    = protein*4 + carbs*4 + fat*9;
-  }else{
-    protein = 2*w;
-    fat     = (kcal*0.25)/9;
-    carbs   = (kcal - (protein*4 + fat*9))/4;
+  const hm = h/100, w25 = 25*hm*hm;
+  const refW = (w/(hm*hm)) > 25 ? w25 + 0.4*(w - w25) : w;
+  try{ localStorage.setItem(RW_KEY(), String(Math.round(refW*10)/10)); }catch(e){}
+  const pkg = perf ? (SPORT[$('#p-sport').value]||SPORT.hybrid).p
+                   : ((goal==='lose_fat'||goal==='recomp') ? 2.2 : 1.8);
+  let protein = pkg*refW;
+  let fat = Math.max(0.25*kcal/9, 0.7*refW);
+  let carbs = (kcal - (protein*4 + fat*9))/4;
+  if(carbs < 0){ fat = 0.20*kcal/9; carbs = Math.max(0,(kcal - (protein*4 + fat*9))/4); }
+
+  /* ── Macros saisies à la main (nutritionniste, 40/30/30…) ──────────────
+     Enregistrées telles quelles : c'est le choix de l'utilisateur ou de son
+     professionnel. On bloque seulement l'impossible, et on signale ce qui sort
+     des repères (métabolisme de repos ; lipides < 20 %, ACSM/AND/DC 2016 ;
+     glucides < 3 g/kg en performance). Le 40/30/30 n'a pas de preuve
+     scientifique de supériorité (Cheuvront 1999, 2003) : il n'est donc pas
+     proposé comme préréglage, seulement saisissable. */
+  const method = $('#p-method') ? $('#p-method').value : 'auto';
+  if(method==='manual'){
+    const unit = $('#p-m-unit').value;
+    const mC=parseFloat($('#p-m-c').value), mP=parseFloat($('#p-m-p').value), mF=parseFloat($('#p-m-f').value);
+    if(!(mC>=0 && mP>=0 && mF>=0) || (mC+mP+mF)<=0) return setMsg('p-msg',t('mm_need'),'err');
+    if(unit==='pct'){
+      const mk=parseFloat($('#p-m-kcal').value);
+      if(!mk) return setMsg('p-msg',t('mm_need_kcal'),'err');
+      if(Math.abs(mC+mP+mF-100) > 1) return setMsg('p-msg',t('mm_sum100'),'err');
+      kcal=mk; carbs=mk*mC/100/4; protein=mk*mP/100/4; fat=mk*mF/100/9;
+    }else{
+      carbs=mC; protein=mP; fat=mF; kcal=mC*4+mP*4+mF*9;
+    }
+    if(kcal<800 || kcal>8000) return setMsg('p-msg',t('mm_range'),'err');
+    weeklyRate = null;                       /* le rythme calculé ne s'applique plus */
+    if(kcal < bmr) warns.push(t('mm_w_bmr'));
+    if(fat*9 < 0.20*kcal) warns.push(t('mm_w_fat'));
+    if(perf && carbs < 3*refW) warns.push(t('mm_w_carb'));
   }
   const fiber = 14*(kcal/1000);
   const water = (perf?45:35)*w;
@@ -9305,7 +9460,7 @@ $('#p-calc').onclick = async ()=>{
   setBtn('#p-calc',true,'…');
   await sb.from('nutrition_targets').update({is_active:false}).eq('user_id',USER.id).eq('is_active',true);
   const { error } = await sb.from('nutrition_targets').insert({
-    user_id:USER.id, is_active:true, calculation_method:'mifflin_st_jeor',
+    user_id:USER.id, is_active:true, calculation_method: method==='manual' ? 'manual' : 'mifflin_st_jeor',
     bmr_kcal:r0(bmr), tdee_kcal:r0(tdee), daily_calories_kcal:r0(kcal),
     protein_g:r0(protein), carbs_g:r0(carbs), fat_g:r0(fat), fiber_g:r0(fiber), water_ml:r0(water),
     goal, activity_level:act, current_weight_kg:w,
@@ -9317,7 +9472,7 @@ $('#p-calc').onclick = async ()=>{
   const rateTxt = weeklyRate!=null ? ` · ${weeklyRate>0?'+':''}${weeklyRate} kg/${t('wg_week')}` : '';
   setMsg('p-msg',`✓ ${r0(kcal)} kcal · P${r0(protein)} G${r0(carbs)} L${r0(fat)} g${rateTxt}`,'ok');
   const wEl=$('#p-warn');
-  if(weeklyRate!=null){
+  if(weeklyRate!=null || warns.length){
     wEl.innerHTML = (warns.length?`<span style="color:var(--prot);font-weight:600">${esc(warns.join(' '))}</span><br>`:'')
       + `<span style="opacity:.65;font-size:12px">${esc(t('wg_health'))}</span>`;
   }else{ wEl.innerHTML=''; }
@@ -9668,7 +9823,8 @@ function renderTrends(){
   const tgtK=TARGETS?(+TARGETS.daily_calories_kcal||0):0;
   const avgK=Math.round(logged.reduce((a,x)=>a+x.k,0)/logged.length);
   const avgP=Math.round(logged.reduce((a,x)=>a+x.p,0)/logged.length);
-  const adh=tgtK?Math.round(100*logged.filter(x=>Math.abs(x.k-tgtK)<=tgtK*.1).length/logged.length):null;
+  /* cible propre à chaque jour (cycle glucides) : un jour d'entraînement bien suivi compte comme réussi */
+  const adh=tgtK?Math.round(100*logged.filter(x=>{ const dt=(dayTargets(x.key)||{}).kcal||tgtK; return Math.abs(x.k-dt)<=dt*.1; }).length/logged.length):null;
 
   const W=340,H=158,PT=10,PB=24,PL=4,PR=4;
   const iw=W-PL-PR, ih=H-PT-PB;
@@ -15806,8 +15962,10 @@ async function nxEat(){
   const d=typeof JO_DATE!=='undefined'&&JO_DATE?JO_DATE:todayStr();
   const r=await sb.from('food_logs').select('kcal,protein_g,carbs_g,fat_g').eq('user_id',USER.id).eq('logged_date',d);
   const ls=r.data||[]; const sum=k=>ls.reduce((a,x)=>a+(+x[k]||0),0);
-  const K=sum('kcal'), P=sum('protein_g'), C=sum('carbs_g'), F=sum('fat_g'); const T=TARGETS||{};
-  const tk=+T.daily_calories_kcal||2200, tp=+T.protein_g||150, tc=+T.carbs_g||250, tf=+T.fat_g||70;
+  const K=sum('kcal'), P=sum('protein_g'), C=sum('carbs_g'), F=sum('fat_g');
+  /* cible du jour (cycle glucides : jour d'entraînement / repos) */
+  const DT=(typeof dayTargets==='function'&&dayTargets(d))||{};
+  const tk=DT.kcal||2200, tp=DT.p||150, tc=DT.c||250, tf=DT.f||70;
   const left=tk-K, c=2*Math.PI*58, v=Math.min(1,K/tk);
   const mb=(lab,a,b,col)=>`<div><span>${lab}</span><span><b>${Math.round(a)}</b> <em>/ ${Math.round(b)} g</em></span></div><p><i style="width:${Math.min(100,a/b*100)}%;background:${col}"></i></p>`;
   box.innerHTML=`<div class="nx-hd2"><div class="nx-h1">${nxt('journal')}</div><button class="nx-hist" id="nx-e-hi">${NXI_HIST}${esc(nxt('hist30'))}</button></div>
@@ -16012,8 +16170,10 @@ async function nxHomeNut(){
   const d=todayStr();
   const r=await sb.from('food_logs').select('kcal,protein_g,carbs_g,fat_g').eq('user_id',USER.id).eq('logged_date',d);
   const ls=r.data||[]; const sum=k=>ls.reduce((a,x)=>a+(+x[k]||0),0);
-  const K=sum('kcal'), P=sum('protein_g'), C=sum('carbs_g'), F=sum('fat_g'); const T=TARGETS||{};
-  const tk=+T.daily_calories_kcal||2200, tp=+T.protein_g||150, tc=+T.carbs_g||250, tf=+T.fat_g||70;
+  const K=sum('kcal'), P=sum('protein_g'), C=sum('carbs_g'), F=sum('fat_g');
+  /* cible du jour (cycle glucides : jour d'entraînement / repos) */
+  const DT=(typeof dayTargets==='function'&&dayTargets(d))||{};
+  const tk=DT.kcal||2200, tp=DT.p||150, tc=DT.c||250, tf=DT.f||70;
   const left=tk-K, c=2*Math.PI*58, v=Math.min(1,K/tk);
   const mb=(lab,a,b,col)=>`<div><span>${lab}</span><span><b>${Math.round(a)}</b> <em>/ ${Math.round(b)} g</em></span></div><p><i style="width:${Math.min(100,a/b*100)}%;background:${col}"></i></p>`;
   host.innerHTML=`<div class="nx-h2">${nxt('journal')}</div><button class="nx-kc nx-kch" id="nx-t-kc"><div class="nx-big"><svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="58" fill="none" stroke="#2A2824" stroke-width="9"/><circle cx="66" cy="66" r="58" fill="none" stroke="var(--gold)" stroke-width="9" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-v)}"/></svg><div class="nx-c"><b>${nxNf(Math.abs(left))}</b><span>${nxt(left>=0?'left':'over')}</span></div></div>
