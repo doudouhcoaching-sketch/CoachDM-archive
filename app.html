@@ -3003,6 +3003,13 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
             <option value="g" selected data-i18n="mm_unit_g">Grammes par jour</option>
             <option value="pct" data-i18n="mm_unit_pct">% des calories (ex. 40/30/30)</option>
           </select></div>
+        <div class="field" id="p-m-presets"><label data-i18n="mm_presets">Répartition rapide (glucides / protéines / lipides)</label>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <button type="button" class="chip" data-mp="40,30,30" style="padding:8px 12px;font-size:13px">40/30/30</button>
+            <button type="button" class="chip" data-mp="50,30,20" style="padding:8px 12px;font-size:13px">50/30/20</button>
+            <button type="button" class="chip" data-mp="40,40,20" style="padding:8px 12px;font-size:13px">40/40/20</button>
+            <button type="button" class="chip" data-mp="30,40,30" style="padding:8px 12px;font-size:13px">30/40/30</button>
+          </div></div>
         <div class="field hidden" id="p-m-kcal-wrap"><label data-i18n="mm_kcal">Calories par jour</label><input id="p-m-kcal" type="number" inputmode="numeric" placeholder="2200" /></div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
           <div class="field"><label data-i18n="macro_carb">Glucides</label><input id="p-m-c" type="number" inputmode="decimal" /></div>
@@ -4814,6 +4821,7 @@ const T = {
  mm_unit_g:{fr:'Grammes par jour',en:'Grams per day',nl:'Gram per dag'},
  mm_unit_pct:{fr:'% des calories (ex. 40/30/30)',en:'% of calories (e.g. 40/30/30)',nl:'% van de calorieën (bv. 40/30/30)'},
  mm_kcal:{fr:'Calories par jour',en:'Calories per day',nl:'Calorieën per dag'},
+ mm_presets:{fr:'Répartition rapide (glucides / protéines / lipides)',en:'Quick split (carbs / protein / fat)',nl:'Snelle verdeling (koolhydraten / eiwit / vet)'},
  mm_hint:{fr:'Tes macros sont enregistrées telles quelles. L’app te signale seulement ce qui sort des repères scientifiques. Le cycle glucides ne s’applique pas à un plan manuel.',en:'Your macros are saved as entered. The app only flags what falls outside scientific guidelines. Carb cycling does not apply to a manual plan.',nl:'Je macro’s worden opgeslagen zoals ingevuld. De app meldt alleen wat buiten de wetenschappelijke richtlijnen valt. Koolhydraatcycli gelden niet voor een handmatig plan.'},
  mm_need:{fr:'Remplis les trois macros.',en:'Fill in all three macros.',nl:'Vul de drie macro’s in.'},
  mm_need_kcal:{fr:'Indique tes calories par jour.',en:'Enter your daily calories.',nl:'Vul je calorieën per dag in.'},
@@ -9349,6 +9357,17 @@ function syncMethodUI(){
 }
 $('#p-method').addEventListener('change', syncMethodUI);
 $('#p-m-unit').addEventListener('change', syncMethodUI);
+/* Répartition rapide (40/30/30…) : remplit les % ; les calories restent celles
+   du plan actuel si le champ est vide. Ordre : glucides / protéines / lipides. */
+document.querySelectorAll('[data-mp]').forEach(b=>b.addEventListener('click',()=>{
+  const v=b.dataset.mp.split(',');
+  $('#p-m-unit').value='pct';
+  $('#p-m-c').value=v[0]; $('#p-m-p').value=v[1]; $('#p-m-f').value=v[2];
+  const k=$('#p-m-kcal');
+  if(k && !k.value && typeof TARGETS!=='undefined' && TARGETS && +TARGETS.daily_calories_kcal) k.value=Math.round(+TARGETS.daily_calories_kcal);
+  syncMethodUI();
+  document.querySelectorAll('[data-mp]').forEach(x=>x.classList.toggle('k',x===b));
+}));
 $('#p-goal').addEventListener('change', syncSportUI);
 $('#p-sport').addEventListener('change', syncSportUI);
 
@@ -9432,9 +9451,9 @@ $('#p-calc').onclick = async ()=>{
      Enregistrées telles quelles : c'est le choix de l'utilisateur ou de son
      professionnel. On bloque seulement l'impossible, et on signale ce qui sort
      des repères (métabolisme de repos ; lipides < 20 %, ACSM/AND/DC 2016 ;
-     glucides < 3 g/kg en performance). Le 40/30/30 n'a pas de preuve
-     scientifique de supériorité (Cheuvront 1999, 2003) : il n'est donc pas
-     proposé comme préréglage, seulement saisissable. */
+     glucides < 3 g/kg en performance). Le 40/30/30 et les autres répartitions
+     sont proposés en choix rapide (demande de Coach DM, 08/11/2026), sans être
+     présentés comme supérieurs (Cheuvront 1999, 2003). */
   const method = $('#p-method') ? $('#p-method').value : 'auto';
   if(method==='manual'){
     const unit = $('#p-m-unit').value;
