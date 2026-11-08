@@ -81,7 +81,7 @@
   .controls{display:flex;gap:10px;margin-top:12px}
   .btn{
     flex:1;font-size:15px;font-weight:700;padding:14px 12px;border-radius:16px;
-    background:var(--neon);color:#062A1D;letter-spacing:-0.02em;transition:transform .08s ease,opacity .15s;
+    background:var(--neon);color:#1B1405;letter-spacing:-0.02em;transition:transform .08s ease,opacity .15s;
   }
   .btn:active{transform:scale(.97)}
   .btn.ghost{background:var(--surface);color:var(--txt);border:1px solid var(--line)}
@@ -609,7 +609,7 @@ const I18N = {
   place_3:{fr:'Évite le 45° : les angles sont déformés, ni la profondeur ni le valgus ne sont fiables — la page te prévient en direct.',en:'Avoid 45°: angles get distorted, neither depth nor valgus is reliable — the page warns you live.',nl:'Vermijd 45°: de hoeken vervormen, diepte noch valgus is betrouwbaar — de pagina waarschuwt je live.'},
   place_4:{fr:'Téléphone posé ou sur trépied à hauteur de hanche, 2–4 m, corps entier + pieds dans le cadre.',en:'Phone resting or on a tripod at hip height, 2–4 m, full body + feet in frame.',nl:'Telefoon neergezet of op statief op heuphoogte, 2–4 m, hele lichaam + voeten in beeld.'},
   place_5:{fr:'Lumière de face — jamais de fenêtre derrière toi — et tenue contrastée avec le fond.',en:'Light facing you — never a window behind you — and clothing that contrasts with the background.',nl:'Licht van voren — nooit een raam achter je — en kleding die contrasteert met de achtergrond.'},
-  help_note:{fr:'Angles calculés en 3D (MediaPipe Pose). Parallèle cassée = crête de la hanche sous le sommet du genou, standard CrossFit (Schoenfeld, 2010). VBT : perte de vitesse comme index de fatigue (Sánchez-Medina & González-Badillo, 2011 ; Pareja-Blanco, 2017). Estimation du 1RM : équation full back squat de Sánchez-Medina et al. (2017), calibrée sur la vitesse propulsive moyenne ; la mesure caméra donne une vitesse concentrique moyenne, donc l\'estimation n\'est proposée qu\'en dessous de 0,65 m/s, là où les deux convergent. 100% sur ton téléphone — aucune vidéo n\'est envoyée ni enregistrée. Outil d\'aide au coaching, ne remplace pas l\'œil du coach.',en:'Angles computed in 3D (MediaPipe Pose). Below parallel = hip crease below top of knee, CrossFit standard (Schoenfeld, 2010). VBT: velocity loss as fatigue index (Sánchez-Medina & González-Badillo, 2011; Pareja-Blanco, 2017). 1RM estimation: full back squat equation from Sánchez-Medina et al. (2017), calibrated on mean propulsive velocity; the camera measures mean concentric velocity, so the estimate is only offered below 0.65 m/s, where the two converge. Runs 100% on your phone — no video is uploaded or stored. A coaching aid, not a replacement for the coach\'s eye.',nl:'Hoeken berekend in 3D (MediaPipe Pose). Onder parallel = heupplooi onder de bovenkant van de knie, CrossFit-standaard (Schoenfeld, 2010). VBT: snelheidsverlies als vermoeidheidsindex (Sánchez-Medina & González-Badillo, 2011; Pareja-Blanco, 2017). Draait 100% op je telefoon — er wordt geen video verstuurd of opgeslagen. Een coachingshulpmiddel, geen vervanging voor het oog van de coach.'}
+  help_note:{fr:'Angles calculés en 3D (MediaPipe Pose). Parallèle cassée = crête de la hanche sous le sommet du genou, standard CrossFit (Schoenfeld, 2010). VBT : perte de vitesse comme index de fatigue (Sánchez-Medina & González-Badillo, 2011 ; Pareja-Blanco, 2017). Estimation du 1RM : équation full back squat de Sánchez-Medina et al. (2017), calibrée sur la vitesse propulsive moyenne ; la mesure caméra donne une vitesse concentrique moyenne, donc l\'estimation n\'est proposée qu\'en dessous de 0,65 m/s, là où les deux convergent. L\'analyse se fait sur ton téléphone, en direct ou depuis une vidéo importée de ta galerie. Outil d\'aide au coaching, ne remplace pas l\'œil du coach.',en:'Angles computed in 3D (MediaPipe Pose). Below parallel = hip crease below top of knee, CrossFit standard (Schoenfeld, 2010). VBT: velocity loss as fatigue index (Sánchez-Medina & González-Badillo, 2011; Pareja-Blanco, 2017). 1RM estimation: full back squat equation from Sánchez-Medina et al. (2017), calibrated on mean propulsive velocity; the camera measures mean concentric velocity, so the estimate is only offered below 0.65 m/s, where the two converge. The analysis runs on your phone, live or from a video imported from your gallery. A coaching aid, not a replacement for the coach\'s eye.',nl:'Hoeken berekend in 3D (MediaPipe Pose). Onder parallel = heupplooi onder de bovenkant van de knie, CrossFit-standaard (Schoenfeld, 2010). VBT: snelheidsverlies als vermoeidheidsindex (Sánchez-Medina & González-Badillo, 2011; Pareja-Blanco, 2017). De analyse gebeurt op je telefoon, live of vanuit een video uit je galerij. Een coachingshulpmiddel, geen vervanging voor het oog van de coach.'}
 };
 /* ── diagnostic: surface every error on screen ── */
 function showErr(msg){
@@ -2188,9 +2188,9 @@ try{document.fonts.load('800 300px Manrope');document.fonts.load('700 44px Manro
 <style>
   #cdm-aff{position:fixed;right:10px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;display:flex;gap:6px;
     background:rgba(0,0,0,.62);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:5px;backdrop-filter:blur(8px)}
-  #cdm-aff button{appearance:none;border:0;background:transparent;color:#cfd8d4;font:800 11px/1 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+  #cdm-aff button{appearance:none;border:0;background:transparent;color:#D6D1C6;font:800 11px/1 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
     letter-spacing:.7px;padding:8px 11px;border-radius:999px;cursor:pointer}
-  #cdm-aff button.on{background:#E9C767;color:#04120c}
+  #cdm-aff button.on{background:#E9C767;color:#1B1405}
   @media print{#cdm-aff{display:none}}
 </style>
 <div id="cdm-aff" role="group" aria-label="Ce qu'on voit sur soi">
@@ -2220,5 +2220,6 @@ try{document.fonts.load('800 300px Manrope');document.fonts.load('700 44px Manro
   peindre();
 })();
 </script>
+<script src="cdm-ui.js"></script>
 </body>
 </html>

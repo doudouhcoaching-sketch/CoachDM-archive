@@ -81,7 +81,7 @@
   .controls{display:flex;gap:10px;margin-top:12px}
   .btn{
     flex:1;font-size:15px;font-weight:700;padding:14px 12px;border-radius:16px;
-    background:var(--neon);color:#062A1D;letter-spacing:-0.02em;transition:transform .08s ease,opacity .15s;
+    background:var(--neon);color:#1B1405;letter-spacing:-0.02em;transition:transform .08s ease,opacity .15s;
   }
   .btn:active{transform:scale(.97)}
   .btn.ghost{background:var(--surface);color:var(--txt);border:1px solid var(--line)}
@@ -1215,7 +1215,7 @@ const I18N = {
   place_3:{fr:'Évite la face et le 45° : la trajectoire est écrasée, ni la déviation ni la vitesse ne sont fiables — la page te prévient en direct.',en:'Avoid front-on and 45°: the trajectory gets flattened, neither deviation nor velocity is reliable — the page warns you live.',nl:'Vermijd frontaal en 45°: het traject wordt platgedrukt, afwijking noch snelheid is betrouwbaar — de pagina waarschuwt je live.'},
   place_4:{fr:'Plateforme dégagée : personne d\'autre dans le cadre, la barre chargée bien visible.',en:'Clear platform: nobody else in frame, the loaded bar clearly visible.',nl:'Vrij platform: niemand anders in beeld, de geladen bar goed zichtbaar.'},
   place_5:{fr:'Lumière de face — jamais de fenêtre derrière toi — et tenue contrastée avec le fond.',en:'Light facing you — never a window behind you — and clothing that contrasts with the background.',nl:'Licht van voren — nooit een raam achter je — en kleding die contrasteert met de achtergrond.'},
-  help_note:{fr:'Barre suivie par le point milieu des poignets (MediaPipe Pose), méthode validée pour l\'analyse de trajectoire en haltérophilie (Garhammer 1985 ; Kipp 2019). VBT : perte de vitesse comme index de fatigue (Weakley 2021). 100% sur ton téléphone — aucune vidéo n\'est envoyée ni enregistrée. Outil d\'aide au coaching, ne remplace pas l\'œil du coach.',en:'Bar tracked at the wrist midpoint (MediaPipe Pose), a validated approach for barbell trajectory analysis in weightlifting (Garhammer 1985; Kipp 2019). VBT: velocity loss as fatigue index (Weakley 2021). Runs 100% on your phone — no video is uploaded or stored. A coaching aid, not a replacement for the coach\'s eye.',nl:'Bar gevolgd via het middenpunt van de polsen (MediaPipe Pose), een gevalideerde aanpak voor trajectanalyse in gewichtheffen (Garhammer 1985; Kipp 2019). VBT: snelheidsverlies als vermoeidheidsindex (Weakley 2021). Draait 100% op je telefoon — er wordt geen video verstuurd of opgeslagen. Een coachingshulpmiddel, geen vervanging voor het oog van de coach.'}
+  help_note:{fr:'Barre suivie par le point milieu des poignets (MediaPipe Pose), méthode validée pour l\'analyse de trajectoire en haltérophilie (Garhammer 1985 ; Kipp 2019). VBT : perte de vitesse comme index de fatigue (Weakley 2021). L\'analyse se fait sur ton téléphone, en direct ou depuis une vidéo importée de ta galerie. Outil d\'aide au coaching, ne remplace pas l\'œil du coach.',en:'Bar tracked at the wrist midpoint (MediaPipe Pose), a validated approach for barbell trajectory analysis in weightlifting (Garhammer 1985; Kipp 2019). VBT: velocity loss as fatigue index (Weakley 2021). The analysis runs on your phone, live or from a video imported from your gallery. A coaching aid, not a replacement for the coach\'s eye.',nl:'Bar gevolgd via het middenpunt van de polsen (MediaPipe Pose), een gevalideerde aanpak voor trajectanalyse in gewichtheffen (Garhammer 1985; Kipp 2019). VBT: snelheidsverlies als vermoeidheidsindex (Weakley 2021). De analyse gebeurt op je telefoon, live of vanuit een video uit je galerij. Een coachingshulpmiddel, geen vervanging voor het oog van de coach.'}
 };
 /* ── diagnostic: surface every error on screen ── */
 function showErr(msg){
@@ -2424,9 +2424,9 @@ try{document.fonts.load('800 300px Manrope');document.fonts.load('700 44px Manro
 <style>
   #cdm-aff{position:fixed;right:10px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;display:flex;gap:6px;
     background:rgba(0,0,0,.62);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:5px;backdrop-filter:blur(8px)}
-  #cdm-aff button{appearance:none;border:0;background:transparent;color:#cfd8d4;font:800 11px/1 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+  #cdm-aff button{appearance:none;border:0;background:transparent;color:#D6D1C6;font:800 11px/1 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
     letter-spacing:.7px;padding:8px 11px;border-radius:999px;cursor:pointer}
-  #cdm-aff button.on{background:#E9C767;color:#04120c}
+  #cdm-aff button.on{background:#E9C767;color:#1B1405}
   @media print{#cdm-aff{display:none}}
 </style>
 <div id="cdm-aff" role="group" aria-label="Ce qu'on voit sur soi">
@@ -2456,5 +2456,6 @@ try{document.fonts.load('800 300px Manrope');document.fonts.load('700 44px Manro
   peindre();
 })();
 </script>
+<script src="cdm-ui.js"></script>
 </body>
 </html>

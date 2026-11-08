@@ -11,8 +11,8 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   :root{
-    --bg:#070A08; --surface:#131313; --surface-2:#1B1B1B; --line:rgba(255,255,255,.10);
-    --txt:#F4F4F5; --muted:#9A9AA2; --gold:#D9B65C; --neon:#00E896; --danger:#EF4444;
+    --bg:#0B0B0A; --surface:#131313; --surface-2:#1B1B1B; --line:rgba(255,255,255,.10);
+    --txt:#F4F4F5; --muted:#9A9AA2; --gold:#D9B65C; --neon:#DCBB72; --danger:#EF4444;
   }
   html,body{background:var(--bg);color:var(--txt);font-family:'Outfit',system-ui,sans-serif}
   body{padding:18px 14px 60px;max-width:760px;margin:0 auto;-webkit-font-smoothing:antialiased}
@@ -28,12 +28,12 @@
   .counts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
   .cnt{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px;
     font-size:12.5px;font-weight:800;font-variant-numeric:tabular-nums}
-  .cnt.on{border-color:rgba(0,232,150,.5);color:var(--neon);background:rgba(0,232,150,.08)}
+  .cnt.on{border-color:rgba(220,187,114,.5);color:var(--neon);background:rgba(220,187,114,.08)}
   .cnt.off{border-color:rgba(217,182,92,.5);color:var(--gold);background:rgba(217,182,92,.08)}
   .acts{display:flex;gap:8px;flex-wrap:wrap}
   .btn{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:9px 13px;
     font-size:13px;font-weight:800}
-  .btn.primary{background:var(--neon);color:#062A1D;border-color:transparent}
+  .btn.primary{background:var(--neon);color:#1B1405;border-color:transparent}
   .btn:disabled{opacity:.45;pointer-events:none}
   .grp{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:12px}
   .grp h2{font-size:15.5px;font-weight:800;line-height:1.3}
@@ -42,19 +42,19 @@
     color:#F87171;border-radius:7px;padding:2px 7px;font-size:11px;font-weight:800;margin-left:6px}
   .row{display:flex;align-items:center;gap:11px;margin-top:9px;padding:10px 11px;border-radius:13px;
     background:var(--surface-2);border:1px solid var(--line)}
-  .row.ok{border-color:rgba(0,232,150,.45);background:rgba(0,232,150,.07)}
+  .row.ok{border-color:rgba(220,187,114,.45);background:rgba(220,187,114,.07)}
   .rk{flex:0 0 22px;height:22px;border-radius:7px;display:grid;place-items:center;
     background:rgba(217,182,92,.16);color:var(--gold);font-size:11px;font-weight:800}
   .nm{flex:1;min-width:0;font-size:14px;font-weight:700;line-height:1.3}
   .nm small{display:block;color:var(--muted);font-size:11.5px;font-weight:700;margin-top:1px}
   .tg{flex:0 0 auto;border-radius:10px;padding:7px 11px;font-size:12px;font-weight:800;
     border:1px solid var(--line);background:transparent;color:var(--muted)}
-  .tg.on{border-color:rgba(0,232,150,.55);background:rgba(0,232,150,.12);color:var(--neon)}
+  .tg.on{border-color:rgba(220,187,114,.55);background:rgba(220,187,114,.12);color:var(--neon)}
   .warn{background:rgba(217,182,92,.10);border:1px solid rgba(217,182,92,.4);color:var(--gold);
     border-radius:12px;padding:11px 13px;font-size:12.5px;font-weight:700;line-height:1.5;margin-top:12px}
   .err{background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.45);color:#F87171;
     border-radius:12px;padding:12px 14px;font-size:13.5px;font-weight:700;line-height:1.5;margin-top:14px}
-  .skel{height:74px;border-radius:18px;background:linear-gradient(90deg,#121814,#1D1D1D,#121814);
+  .skel{height:74px;border-radius:18px;background:linear-gradient(90deg,#151513,#1D1D1D,#151513);
     background-size:200% 100%;animation:sh 1.2s linear infinite;margin-top:12px}
   @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
   .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);
@@ -72,6 +72,21 @@ h1, h2,
   font-family: var(--font-display);
   letter-spacing: .012em;
 }
+</style>
+<style id="cdm-premium">
+/* 2.4.1 — meme habillage que l'app : noir et or, Barlow Condensed pour les titres, Inter pour le texte */
+@font-face{font-family:'Barlow Condensed';font-weight:500;font-display:swap;src:url(fonts/barlow-condensed-latin-500-normal.woff2) format('woff2'),url(fonts/barlow-condensed-latin-ext-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-weight:600;font-display:swap;src:url(fonts/barlow-condensed-latin-600-normal.woff2) format('woff2'),url(fonts/barlow-condensed-latin-ext-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-weight:700 900;font-display:swap;src:url(fonts/barlow-condensed-latin-700-normal.woff2) format('woff2'),url(fonts/barlow-condensed-latin-ext-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:400;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format('woff2'),url(fonts/inter-latin-ext-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:500;font-display:swap;src:url(fonts/inter-latin-500-normal.woff2) format('woff2'),url(fonts/inter-latin-ext-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:600;font-display:swap;src:url(fonts/inter-latin-600-normal.woff2) format('woff2'),url(fonts/inter-latin-ext-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:700 900;font-display:swap;src:url(fonts/inter-latin-700-normal.woff2) format('woff2'),url(fonts/inter-latin-ext-700-normal.woff2) format('woff2')}
+:root{--font-d:'Barlow Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--font-display:'Barlow Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+body,button,input,select,textarea{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+h1,h2,h3{font-family:'Barlow Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;letter-spacing:.01em}
+::selection{background:rgba(220,187,114,.35)}
+.top-ic{width:34px;height:34px;border-radius:10px;flex:none;object-fit:cover;display:block}
 </style>
 </head>
 <body>
@@ -244,5 +259,6 @@ $('#b-save').onclick=async()=>{
   await load();
 };
 </script>
+<script src="cdm-ui.js"></script>
 </body>
 </html>
