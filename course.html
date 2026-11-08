@@ -1226,7 +1226,8 @@ function vrEnd(){
   try{bStart.textContent=t('start');bStart.disabled=false;}catch(_){}
   try{bFlip.disabled=true;}catch(_){}
   try{bRec.disabled=true;}catch(_){}
-  vrProg(1,vrT('vr_done',{n:VR.done,fps:Math.round(VR.fps*VR.slow/VR.step)}));
+  vrProg(1,(vrPro()?'◆ Premium · ':'')+vrT('vr_done',{n:VR.done,fps:Math.round(VR.fps*VR.slow/VR.step)}));
+  try{const st=document.getElementById('vr-st');st.style.color=vrPro()?'#E9C767':'';st.style.fontWeight=vrPro()?'700':'';}catch(_){}
 }
 function vrAbort(){VR.on=false;vrDropModel();document.getElementById('vr-prog').hidden=true;document.getElementById('vr-st').textContent='';}
 async function vrStart(file){
@@ -1477,6 +1478,9 @@ function recMime(){
   return '';
 }
 function recFmtT(){const s=Math.max(0,Math.round((performance.now()-RECST.t0)/1000));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+/* Plus-value Premium a l'export : le gratuit garde un filigrane tres leger et la
+   signature Coach DM ; le Premium exporte sans filigrane, signature discrete. */
+function recPro(){ try{ return !!((typeof PRO!=='undefined'&&PRO)||(typeof ENT!=='undefined'&&ENT&&ENT.ok)); }catch(_){ return false; } }
 function recDrawFrame(){
   if(!RECST.on)return;
   const c=RECST.ctx,W=RECST.cv.width,H=RECST.cv.height;
@@ -1486,7 +1490,7 @@ function recDrawFrame(){
   try{c.drawImage(canvas,0,0,W,H);}catch(_){}
   c.restore();
   c.save();
-  c.globalAlpha=0.055;
+  c.globalAlpha=recPro()?0:0.045;
   c.translate(W/2,H/2);c.rotate(-28*Math.PI/180);c.translate(-W/2,-H/2);
   const wm='COACH DM · coachdm.be';
   c.font='800 '+Math.round(H*0.024)+'px Manrope, sans-serif';
@@ -1515,7 +1519,7 @@ function recDrawFrame(){
   c.fillRect(W-Math.round(W*0.03)-tw-tpad,Math.round(H*0.028),tw+tpad*2,Math.round(tfs*1.7));
   c.fillStyle='#F5F5F4';
   c.fillText(tstr,W-Math.round(W*0.03)-tpad,Math.round(H*0.028)+Math.round(tfs*0.35));
-  const bh=Math.round(H*0.078);
+  const bh=Math.round(H*(recPro()?0.05:0.066));
   const p1='COACH DM', p2='   ·   coachdm.be';
   const lfs=Math.round(bh*0.42);
   c.textAlign='left';c.textBaseline='middle';
@@ -1523,7 +1527,7 @@ function recDrawFrame(){
   c.font='700 '+lfs+'px Manrope, sans-serif';const w2=c.measureText(p2).width;
   const lr=Math.round(bh*0.60), gp=Math.round(bh*0.22);
   const totalW=lr+gp+w1+w2, bx=Math.round((W-totalW)/2), cyc=H-bh/2;
-  c.fillStyle='rgba(7,10,8,.62)';
+  c.fillStyle=recPro()?'rgba(7,10,8,.34)':'rgba(7,10,8,.55)';
   c.fillRect(bx-Math.round(bh*0.34),H-bh+Math.round(bh*0.12),totalW+Math.round(bh*0.68),Math.round(bh*0.76));
   let cx=bx;
   if(LOGO){

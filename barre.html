@@ -303,6 +303,9 @@ h1, h2,
   .vp-kpi b{font:800 22px/1 'Sora',sans-serif;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
   .vp-kpi b em{font-style:normal;font-size:12px;color:var(--muted);margin-left:2px;font-family:'Manrope',sans-serif}
   .vp-kpi b.lk{color:var(--muted);font-size:16px}
+  .vp-kpi b.vp-bl{filter:blur(6px);opacity:.8;user-select:none;-webkit-user-select:none}
+  .vp-plus{grid-column:1/-1;font-size:12.5px;line-height:1.5;color:var(--muted);padding:2px 2px 0}
+  .vp-plus.pro{color:#E9C767;font-weight:700;letter-spacing:.02em;padding:0 2px 2px}
   .vp-ph{display:flex;align-items:center;gap:12px;width:100%;padding:11px 12px;border-radius:14px;background:rgba(255,255,255,.04);margin-bottom:6px;text-align:left}
   .vp-ph i{width:12px;height:12px;border-radius:50%;flex:none;box-shadow:0 0 0 3px rgba(0,0,0,.6)}
   .vp-ph b{font-size:14.5px;font-weight:800;flex:1}
@@ -682,6 +685,9 @@ pro_only:{fr:'Disponible en Premium',en:'Available in Premium',nl:'Beschikbaar i
 lock_t_n:{fr:'Chiffres détaillés non inclus',en:'Detailed numbers not included',nl:'Gedetailleerde cijfers niet inbegrepen'},
 lock_p_n:{fr:'Ton compte affiche la trajectoire et les points clés.',en:'Your account shows the bar path and key points.',nl:'Je account toont de stangbaan en de kernpunten.'},
 pro_only_n:{fr:'Non inclus dans ton compte',en:'Not included in your account',nl:'Niet inbegrepen in je account'},
+plus_note:{fr:'Ta vitesse, ta hauteur, ta force et ta puissance sont calculées. Disponible en Premium.',en:'Your speed, height, force and power are calculated. Available in Premium.',nl:'Je snelheid, hoogte, kracht en vermogen zijn berekend. Beschikbaar in Premium.'},
+plus_note_n:{fr:'Ta vitesse, ta hauteur, ta force et ta puissance sont calculées. Non incluses dans ton compte.',en:'Your speed, height, force and power are calculated. Not included in your account.',nl:'Je snelheid, hoogte, kracht en vermogen zijn berekend. Niet inbegrepen in je account.'},
+pro_badge:{fr:'Analyse Premium · chiffres et courbes complets',en:'Premium analysis · full numbers and curves',nl:'Premium-analyse · volledige cijfers en curves'},
 };
 const $v = s => document.querySelector(s);
 const lg = () => { try { const l = localStorage.getItem('cdm_lang'); return ['fr', 'en', 'nl'].includes(l) ? l : 'fr'; } catch { return 'fr'; } };
@@ -925,15 +931,19 @@ function graph() {
 
 /* ---- résultats ---- */
 const lock = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
-const kpi = (l, v, u) => `<div class="vp-kpi"><span>${l}</span>${isPro() ? `<b>${v}${u ? `<em>${u}</em>` : ''}</b>` : `<b class="lk">${lock}</b>`}</div>`;
+/* Gratuit : le chiffre est calcule mais montre floute. On affiche un leurre
+   (memes formes, chiffres au hasard) : la vraie valeur n'est jamais dans la page. */
+const decoy = v => String(v).replace(/\d/g, () => String(Math.floor(Math.random() * 10)));
+const kpi = (l, v, u) => `<div class="vp-kpi"><span>${l}</span>${isPro() ? `<b>${v}${u ? `<em>${u}</em>` : ''}</b>` : `<b class="vp-bl" aria-hidden="true">${v === '–' ? '–' : decoy(v)}${u ? `<em>${u}</em>` : ''}</b>`}</div>`;
 const pName = k => tv(k === 'start' && (host().mv && host().mv() === 'jerk') ? 'p_start_j' : 'p_' + k);
 function render() {
   const res = V.res, K = $v('#vp-kpis'), PH = $v('#vp-phases');
   const labels = [tv('k_v'), tv('k_h'), tv('k_d'), tv('k_l'), tv('k_f'), tv('k_p')];
   if (!res) { K.innerHTML = labels.map(l => `<div class="vp-kpi"><span>${l}</span><b>–</b></div>`).join(''); PH.innerHTML = ''; $v('#vp-legend').innerHTML = ''; return; }
   if (!res.ok) { K.innerHTML = ''; PH.innerHTML = `<p style="color:var(--muted);font-size:13.5px;text-align:center;padding:14px 0">${tv('no_lift')}</p>`; return; }
-  K.innerHTML = kpi(labels[0], fv(res.vmax), 'm/s') + kpi(labels[1], fv(res.hmax * 100, 1), 'cm') + kpi(labels[2], res.drop != null ? fv(res.drop * 100, 1) : '–', res.drop != null ? 'cm' : '') +
+  K.innerHTML = (isPro() ? `<div class="vp-plus pro">◆ ${tv('pro_badge')}</div>` : '') + kpi(labels[0], fv(res.vmax), 'm/s') + kpi(labels[1], fv(res.hmax * 100, 1), 'cm') + kpi(labels[2], res.drop != null ? fv(res.drop * 100, 1) : '–', res.drop != null ? 'cm' : '') +
     kpi(labels[3], `${fv((res.toward || 0) * 100, 1)} / ${fv((res.away || 0) * 100, 1)}`, 'cm') + kpi(labels[4], res.Fmax != null ? fv(res.Fmax, 0) : '–', res.Fmax != null ? 'N' : '') + kpi(labels[5], res.Pmax != null ? fv(res.Pmax, 0) : '–', res.Pmax != null ? 'W' : '');
+  if (!isPro()) K.insertAdjacentHTML('beforeend', `<div class="vp-plus">${tvn('plus_note')}</div>`);
   PH.innerHTML = res.phases.map(ph => { const j = ph.i - res.offset;
     const det = isPro() ? `${fv(res.t[j] - res.t[0], 2)} s · ${fv(res.y[j] * 100, 1)} cm · ${fv(res.v[j])} m/s` : `${fv(res.t[j] - res.t[0], 2)} s`;
     return `<button class="vp-ph" data-i="${ph.i}"><i style="background:${PC[ph.k]}"></i><b>${pName(ph.k)}</b><small>${det}</small></button>`; }).join('');
@@ -2172,6 +2182,9 @@ function recMime(){
   return '';
 }
 function recFmtT(){const s=Math.max(0,Math.round((performance.now()-RECST.t0)/1000));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+/* Plus-value Premium a l'export : le gratuit garde un filigrane tres leger et la
+   signature Coach DM ; le Premium exporte sans filigrane, signature discrete. */
+function recPro(){ try{ return !!((typeof PRO!=='undefined'&&PRO)||(typeof ENT!=='undefined'&&ENT&&ENT.ok)); }catch(_){ return false; } }
 function recDrawFrame(){
   if(!RECST.on)return;
   const c=RECST.ctx,W=RECST.cv.width,H=RECST.cv.height;
@@ -2181,7 +2194,7 @@ function recDrawFrame(){
   try{c.drawImage(canvas,0,0,W,H);}catch(_){}
   c.restore();
   c.save();
-  c.globalAlpha=0.055;
+  c.globalAlpha=recPro()?0:0.045;
   c.translate(W/2,H/2);c.rotate(-28*Math.PI/180);c.translate(-W/2,-H/2);
   const wm='COACH DM · coachdm.be';
   c.font='800 '+Math.round(H*0.024)+'px Manrope, sans-serif';
@@ -2210,7 +2223,7 @@ function recDrawFrame(){
   c.fillRect(W-Math.round(W*0.03)-tw-tpad,Math.round(H*0.028),tw+tpad*2,Math.round(tfs*1.7));
   c.fillStyle='#F5F5F4';
   c.fillText(tstr,W-Math.round(W*0.03)-tpad,Math.round(H*0.028)+Math.round(tfs*0.35));
-  const bh=Math.round(H*0.078);
+  const bh=Math.round(H*(recPro()?0.05:0.066));
   const p1='COACH DM', p2='   ·   coachdm.be';
   const lfs=Math.round(bh*0.42);
   c.textAlign='left';c.textBaseline='middle';
@@ -2218,7 +2231,7 @@ function recDrawFrame(){
   c.font='700 '+lfs+'px Manrope, sans-serif';const w2=c.measureText(p2).width;
   const lr=Math.round(bh*0.60), gp=Math.round(bh*0.22);
   const totalW=lr+gp+w1+w2, bx=Math.round((W-totalW)/2), cyc=H-bh/2;
-  c.fillStyle='rgba(7,10,8,.62)';
+  c.fillStyle=recPro()?'rgba(7,10,8,.34)':'rgba(7,10,8,.55)';
   c.fillRect(bx-Math.round(bh*0.34),H-bh+Math.round(bh*0.12),totalW+Math.round(bh*0.68),Math.round(bh*0.76));
   let cx=bx;
   if(LOGO){

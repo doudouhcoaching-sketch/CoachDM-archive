@@ -30,6 +30,9 @@ input{font:inherit;color:inherit}
 /* header */
 header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .back{width:38px;height:38px;border-radius:12px;background:var(--s2);display:grid;place-items:center;color:var(--g1);text-decoration:none;font-size:22px;font-weight:700;flex:none}
+.blr{filter:blur(5px);opacity:.8;user-select:none;-webkit-user-select:none;display:inline-block}
+#kMean,#kDec{white-space:nowrap}
+#proNote.pro{color:#E9C767;font-weight:700}
 .lockline{display:flex;align-items:center;gap:6px;color:var(--mut);font-size:12px;margin-top:4px}
 .mark{width:40px;height:40px;border-radius:12px;background:var(--gold);display:grid;place-items:center;
   color:#0b0b0b;font:800 17px/1 "Barlow Condensed",sans-serif;letter-spacing:.5px;box-shadow:0 8px 24px -10px rgba(212,175,55,.6)}
@@ -494,7 +497,7 @@ loadingModel:"Chargement du modèle IA…",fpsDetect:"Détection de la cadence�
 analysedN:"{n} essai(s) détecté(s)",analysedNone:"Aucun aller-retour détecté. Vérifie la zone ou le point de référence.",
 copied:"Copié ✓",copyFail:"Copie impossible",falseStart:"Faux départ !",needIn:"Place l'athlète dans la zone d'abord",needSignal:"Lance le signal d'abord",
 modelErr:"Modèle IA indisponible — vérifie ta connexion.",cancelled:"Analyse annulée",longVideo:"Astuce : coupe la vidéo autour du test pour analyser plus vite.",
-precision:"{fps} i/s · ±{ms} ms",rep:"Essai",pro_split:"Aller / retour : Premium",pro_feat:"Disponible en Premium",pro_feat_n:"Non inclus dans ton compte",pro_note:"Premium : aller / retour séparés, départ sur signal avec temps de réaction, moyenne, indice de fatigue, export et ralenti haute précision (120–240 i/s).",pro_note_n:"Ton compte affiche le temps total et le meilleur essai."},
+precision:"{fps} i/s · ±{ms} ms",rep:"Essai",pro_split:"Aller / retour : Premium",pro_badge:"◆ Analyse Premium · aller / retour, réaction et fatigue",pro_feat:"Disponible en Premium",pro_feat_n:"Non inclus dans ton compte",pro_note:"Premium : aller / retour séparés, départ sur signal avec temps de réaction, moyenne, indice de fatigue, export et ralenti haute précision (120–240 i/s).",pro_note_n:"Ton compte affiche le temps total et le meilleur essai."},
 en:{title:"Shuttle timer",modeVideo:"Video",modeLive:"Live",hintZone:"Drag to place the zone",seconds:"seconds",
 emptyTitle:"Analyse a shuttle sprint",emptyText:"Film the athlete on a tripod: they leave the zone, change direction and come back. The time is calculated automatically.",
 record:"Record",import:"Import",liveTitle:"Live timer",liveText:"The timer starts when the athlete leaves the zone and stops when they come back.",
@@ -516,7 +519,7 @@ loadingModel:"Loading AI model…",fpsDetect:"Detecting frame rate…",analysing
 analysedN:"{n} rep(s) detected",analysedNone:"No out-and-back detected. Check the zone or the reference point.",
 copied:"Copied ✓",copyFail:"Couldn't copy",falseStart:"False start!",needIn:"Place the athlete in the zone first",needSignal:"Start the signal first",
 modelErr:"AI model unavailable — check your connection.",cancelled:"Analysis cancelled",longVideo:"Tip: trim the video around the test to analyse faster.",
-precision:"{fps} fps · ±{ms} ms",rep:"Rep",pro_split:"Out / back: Premium",pro_feat:"Available in Premium",pro_feat_n:"Not included in your account",pro_note:"Premium: separate out / back splits, start on signal with reaction time, average, fatigue index, export and high-precision slow motion (120–240 fps).",pro_note_n:"Your account shows the total time and the best rep."},
+precision:"{fps} fps · ±{ms} ms",rep:"Rep",pro_split:"Out / back: Premium",pro_badge:"◆ Premium analysis · out / back, reaction and fatigue",pro_feat:"Available in Premium",pro_feat_n:"Not included in your account",pro_note:"Premium: separate out / back splits, start on signal with reaction time, average, fatigue index, export and high-precision slow motion (120–240 fps).",pro_note_n:"Your account shows the total time and the best rep."},
 nl:{title:"Pendeltimer",modeVideo:"Video",modeLive:"Live",hintZone:"Sleep om de zone te plaatsen",seconds:"seconden",
 emptyTitle:"Analyseer een pendelsprint",emptyText:"Film de atleet op statief: hij verlaat de zone, verandert van richting en komt terug. De tijd wordt automatisch berekend.",
 record:"Filmen",import:"Importeren",liveTitle:"Live timer",liveText:"De timer start wanneer de atleet de zone verlaat en stopt wanneer hij terugkomt.",
@@ -538,7 +541,7 @@ loadingModel:"AI-model laden…",fpsDetect:"Beeldsnelheid detecteren…",analysi
 analysedN:"{n} poging(en) gedetecteerd",analysedNone:"Geen heen-en-terug gedetecteerd. Controleer de zone of het referentiepunt.",
 copied:"Gekopieerd ✓",copyFail:"Kopiëren mislukt",falseStart:"Valse start!",needIn:"Plaats de atleet eerst in de zone",needSignal:"Start eerst het signaal",
 modelErr:"AI-model niet beschikbaar — controleer je verbinding.",cancelled:"Analyse geannuleerd",longVideo:"Tip: knip de video rond de test om sneller te analyseren.",
-precision:"{fps} fps · ±{ms} ms",rep:"Poging",pro_split:"Heen / terug: Premium",pro_feat:"Beschikbaar in Premium",pro_feat_n:"Niet inbegrepen in je account",pro_note:"Premium: aparte heen / terug, start op signaal met reactietijd, gemiddelde, vermoeidheidsindex, export en hoge-precisie slow-motion (120–240 fps).",pro_note_n:"Je account toont de totale tijd en de beste poging."}
+precision:"{fps} fps · ±{ms} ms",rep:"Poging",pro_split:"Heen / terug: Premium",pro_badge:"◆ Premium-analyse · heen / terug, reactie en vermoeidheid",pro_feat:"Beschikbaar in Premium",pro_feat_n:"Niet inbegrepen in je account",pro_note:"Premium: aparte heen / terug, start op signaal met reactietijd, gemiddelde, vermoeidheidsindex, export en hoge-precisie slow-motion (120–240 fps).",pro_note_n:"Je account toont de totale tijd en de beste poging."}
 };
 
 /* ---------- utils ---------- */
@@ -1019,9 +1022,11 @@ function renderResults() {
   const reps = currentReps(), st = stats(reps.map(r => r.total));
   $('#kBest').innerHTML = st ? `${fmt(st.best)}<em>s</em>` : '–';
   const pro = isPro();
-  $('#kMean').innerHTML = !pro && st ? LOCK : st ? `${fmt(st.mean)}<em>s</em>` : '–';
-  $('#kDec').innerHTML = !pro && st && st.n > 1 ? LOCK : st && st.n > 1 ? `${fmt(st.dec, 1)}<em>%</em>` : '–';
-  const pn = $('#proNote'); if (pn) { pn.classList.toggle('hide', pro || !ENT.known); pn.textContent = tn('pro_note'); }
+  /* Gratuit : valeur floutee (leurre, la vraie valeur n'est pas dans la page) ; Premium : badge or. */
+  const blur = x => `<span class="blr" aria-hidden="true">${String(x).replace(/\d/g, () => Math.floor(Math.random() * 10))}</span>`;
+  $('#kMean').innerHTML = !pro && st ? `${blur(fmt(st.mean))}<em>s</em>` : st ? `${fmt(st.mean)}<em>s</em>` : '–';
+  $('#kDec').innerHTML = !pro && st && st.n > 1 ? `${blur(fmt(st.dec, 1))}<em>%</em>` : st && st.n > 1 ? `${fmt(st.dec, 1)}<em>%</em>` : '–';
+  const pn = $('#proNote'); if (pn) { pn.classList.toggle('hide', !ENT.known || !st); pn.classList.toggle('pro', pro); pn.textContent = pro ? t('pro_badge') : tn('pro_note'); }
   const box = $('#reps'); box.innerHTML = '';
   if (!reps.length) { box.innerHTML = `<div class="none">${t('noReps')}</div>`; }
   reps.forEach((r, i) => {
@@ -1031,7 +1036,7 @@ function renderResults() {
     if (pro) {
       if (r.reaction != null) parts.push(`${t('react')} ${fmt(r.reaction)}`);
       parts.push(`${t('out')} ${fmt(r.out)}`, `${t('back')} ${fmt(r.back)}`);
-    } else parts.push(`${LOCK} ${IS_NATIVE ? '' : t('pro_split')}`.trim());
+    } else parts.push(`${t('out')} ${blur(fmt(r.out))} · ${t('back')} ${blur(fmt(r.back))}`);
     const d = best ? t('bestTag') : (st && reps.length > 1 ? `+${fmt(r.total - st.best)}` : '');
     el.innerHTML = `<div class="n">${i + 1}</div><div class="m"><b>${fmt(r.total)}<em>s</em></b><small>${parts.join(' · ')}</small></div><div class="d">${d}</div>`;
     el.addEventListener('click', () => {
