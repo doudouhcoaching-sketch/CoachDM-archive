@@ -1839,7 +1839,7 @@ async function loadModel(){
   const base='https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.21/wasm';
   const model='https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task';
   const vision=await FilesetResolver.forVisionTasks(base);
-  const opts=d=>({baseOptions:{modelAssetPath:model,delegate:d},runningMode:'VIDEO',numPoses:1,minPoseDetectionConfidence:0.6,minPosePresenceConfidence:0.6,minTrackingConfidence:0.6});
+  const opts=d=>({baseOptions:{modelAssetPath:model,delegate:d},runningMode:'VIDEO',numPoses:3,minPoseDetectionConfidence:0.6,minPosePresenceConfidence:0.6,minTrackingConfidence:0.6});
   try{landmarker=await PoseLandmarker.createFromOptions(vision,opts('GPU'));}
   catch(_){landmarker=await PoseLandmarker.createFromOptions(vision,opts('CPU'));}
   du=new DrawingUtils(ctx);
@@ -1872,8 +1872,11 @@ function onFrame(ts){
   lastTs=ts;
   let res=null;
   try{res=landmarker.detectForVideo(video,ts);}catch(_){}
+  /* plusieurs personnes : l'athlete suivi est remis en position 0 (cdm-track.js) */
+  if(res&&window.cdmTrack)res=window.cdmTrack(res,ts);
   if(res)handle(res.landmarks&&res.landmarks[0],res.worldLandmarks&&res.worldLandmarks[0],ts);
   draw(res);
+  if(window.cdmTrackDraw)try{window.cdmTrackDraw(ctx,canvas,res,{angles:['knee','hip','elbow']});}catch(_){}
   scheduleFrame();
 }
 
@@ -2456,6 +2459,7 @@ try{document.fonts.load('800 300px Manrope');document.fonts.load('700 44px Manro
   peindre();
 })();
 </script>
+<script src="cdm-track.js"></script>
 <script src="cdm-ui.js"></script>
 </body>
 </html>

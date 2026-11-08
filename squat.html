@@ -1478,7 +1478,7 @@ async function loadModel(){
   const model=`https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_${_mm}/float16/1/pose_landmarker_${_mm}.task`;
   const _t0=performance.now();
   const vision=await FilesetResolver.forVisionTasks(base);
-  const opts=d=>({baseOptions:{modelAssetPath:model,delegate:d},runningMode:'VIDEO',numPoses:1,minPoseDetectionConfidence:0.6,minPosePresenceConfidence:0.6,minTrackingConfidence:0.6});
+  const opts=d=>({baseOptions:{modelAssetPath:model,delegate:d},runningMode:'VIDEO',numPoses:3,minPoseDetectionConfidence:0.6,minPosePresenceConfidence:0.6,minTrackingConfidence:0.6});
   try{landmarker=await PoseLandmarker.createFromOptions(vision,opts('GPU'));MPSTAT.delegate='GPU';}
   catch(_){landmarker=await PoseLandmarker.createFromOptions(vision,opts('CPU'));MPSTAT.delegate='CPU';}
   MPSTAT.loadMs=Math.round(performance.now()-_t0);
@@ -1518,9 +1518,12 @@ function onFrame(ts){
      qu'on veut comparer entre lite et full, pas celui du reste de la page. */
   const _i0=performance.now();
   try{res=landmarker.detectForVideo(video,ts);}catch(_){}
+  /* plusieurs personnes : l'athlete suivi est remis en position 0 (cdm-track.js) */
+  if(res&&window.cdmTrack)res=window.cdmTrack(res,ts);
   mpNote(performance.now()-_i0);
   if(res)handle(res.landmarks&&res.landmarks[0],res.worldLandmarks&&res.worldLandmarks[0],ts);
   draw(res);
+  if(window.cdmTrackDraw)try{window.cdmTrackDraw(ctx,canvas,res,{angles:['knee','hip']});}catch(_){}
   scheduleFrame();
 }
 
@@ -2220,6 +2223,7 @@ try{document.fonts.load('800 300px Manrope');document.fonts.load('700 44px Manro
   peindre();
 })();
 </script>
+<script src="cdm-track.js"></script>
 <script src="cdm-ui.js"></script>
 </body>
 </html>

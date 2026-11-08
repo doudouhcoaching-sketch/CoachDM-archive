@@ -26,7 +26,7 @@ for f in $PAGES; do
   if [ -f "$f" ]; then cp "$f" www/; fi
 done
 
-ASSETS="logo.png logodm.png logo-dm.png favicons.png manifest.json tv-manifest.json anim.js cdm-icons.js cdm-ui.js apple-touch-icon.png favicon.png favicon-16.png favicon-32x32.png"
+ASSETS="logo.png logodm.png logo-dm.png favicons.png manifest.json tv-manifest.json anim.js cdm-icons.js cdm-ui.js cdm-track.js apple-touch-icon.png favicon.png favicon-16.png favicon-32x32.png"
 for f in $ASSETS; do
   if [ -f "$f" ]; then cp "$f" www/; fi
 done
