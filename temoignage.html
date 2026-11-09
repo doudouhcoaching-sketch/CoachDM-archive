@@ -113,12 +113,16 @@ footer a{color:#8D8576}
       <div class="q">
         <span class="n">02</span>
         <span class="t" data-i="q2"></span>
+        <span class="h" data-i="q2h"></span>
         <div class="chips" style="margin-top:12px">
-          <label class="chip"><input type="radio" name="service" value="pt"><span data-i="s_pt"></span></label>
-          <label class="chip"><input type="radio" name="service" value="group"><span data-i="s_group"></span></label>
-          <label class="chip"><input type="radio" name="service" value="online"><span data-i="s_online"></span></label>
-          <label class="chip"><input type="radio" name="service" value="app"><span data-i="s_app"></span></label>
+          <label class="chip"><input type="checkbox" name="service" value="pt"><span data-i="s_pt"></span></label>
+          <label class="chip"><input type="checkbox" name="service" value="group"><span data-i="s_group"></span></label>
+          <label class="chip"><input type="checkbox" name="service" value="club"><span data-i="s_club"></span></label>
+          <label class="chip"><input type="checkbox" name="service" value="online"><span data-i="s_online"></span></label>
+          <label class="chip"><input type="checkbox" name="service" value="app"><span data-i="s_app"></span></label>
         </div>
+        <span class="h" data-i="q2r" style="margin-top:16px"></span>
+        <input type="text" name="role_title" maxlength="80" autocomplete="off" data-ph="ph_role">
       </div>
 
       <div class="q">
@@ -200,7 +204,7 @@ footer a{color:#8D8576}
       title: 'Ton avis compte. <em>Vraiment.</em>',
       lead: "Tu t'entraînes avec moi ? Raconte en quelques mots ce qui a changé. Ça aide ceux qui hésitent à se lancer. Rien n'est publié sans ton accord : c'est toi qui choisis, en bas.",
       q1: 'Ton prénom', q1h: "Et l'initiale de ton nom si tu veux, comme « Sarah V. ».", ph_first: 'Prénom', ph_init: 'Initiale',
-      q2: 'Avec moi, tu fais quoi ?', s_pt: 'Personal training', s_group: 'Cours collectifs', s_online: 'Coaching en ligne', s_app: "L'app Coach DM",
+      q2: 'Avec moi, tu fais quoi ?', q2h: 'Plusieurs choix possibles.', s_club: 'Préparation physique de mon club', q2r: "Ton rôle ou ton club, si tu veux qu'on l'affiche avec ton avis.", ph_role: 'Ex. : présidente du club, joueur en équipe première…', s_pt: 'Personal training', s_group: 'Cours collectifs', s_online: 'Coaching en ligne', s_app: "L'app Coach DM",
       q3: 'Depuis combien de temps ?', d1: 'Moins de 3 mois', d2: '3 à 12 mois', d3: "Plus d'un an",
       q4: 'Avant de commencer, tu en étais où ?', q4h: 'Ton objectif, ou ce qui te bloquait.', ph4: "Ex. : je reprenais après 10 ans sans sport, je n'arrivais pas à être régulier…",
       q5: "Qu'est-ce qui a changé depuis ?", q5h: "Un chiffre si tu en as un, c'est encore plus parlant.", ph5: 'Ex. : −6 kg en 4 mois, mon premier pull-up, 100 kg au deadlift, ma première Hyrox…',
@@ -220,7 +224,7 @@ footer a{color:#8D8576}
       title: 'Your words matter. <em>Really.</em>',
       lead: "Training with me? Tell me in a few words what has changed. It helps people who are hesitating to get started. Nothing is published without your consent: you choose, at the bottom.",
       q1: 'Your first name', q1h: 'And your last-name initial if you like, e.g. “Sarah V.”.', ph_first: 'First name', ph_init: 'Initial',
-      q2: 'What do you do with me?', s_pt: 'Personal training', s_group: 'Group classes', s_online: 'Online coaching', s_app: 'The Coach DM app',
+      q2: 'What do you do with me?', q2h: 'You can pick more than one.', s_club: 'Strength & conditioning for my club', q2r: "Your role or club, if you'd like it shown with your review.", ph_role: 'E.g. club president, first-team player…', s_pt: 'Personal training', s_group: 'Group classes', s_online: 'Online coaching', s_app: 'The Coach DM app',
       q3: 'For how long?', d1: 'Less than 3 months', d2: '3 to 12 months', d3: 'More than a year',
       q4: 'Before you started, where were you at?', q4h: 'Your goal, or what was holding you back.', ph4: "E.g. I was getting back into sport after 10 years off, I couldn't stay consistent…",
       q5: 'What has changed since?', q5h: 'A number if you have one says even more.', ph5: 'E.g. −6 kg in 4 months, my first pull-up, 100 kg deadlift, my first Hyrox…',
@@ -240,7 +244,7 @@ footer a{color:#8D8576}
       title: 'Jouw mening telt. <em>Echt.</em>',
       lead: 'Train je met mij? Vertel in een paar woorden wat er veranderd is. Zo help je mensen die twijfelen om te starten. Niets wordt gepubliceerd zonder jouw akkoord: jij kiest, onderaan.',
       q1: 'Je voornaam', q1h: 'En de eerste letter van je achternaam als je wil, zoals „Sarah V.”.', ph_first: 'Voornaam', ph_init: 'Initiaal',
-      q2: 'Wat doe je met mij?', s_pt: 'Personal training', s_group: 'Groepslessen', s_online: 'Online coaching', s_app: 'De Coach DM-app',
+      q2: 'Wat doe je met mij?', q2h: 'Je mag meerdere kiezen.', s_club: 'Fysieke voorbereiding van mijn club', q2r: 'Je rol of je club, als je wilt dat die bij je getuigenis staat.', ph_role: 'Bv.: voorzitster van de club, speler in het eerste team…', s_pt: 'Personal training', s_group: 'Groepslessen', s_online: 'Online coaching', s_app: 'De Coach DM-app',
       q3: 'Sinds wanneer?', d1: 'Minder dan 3 maanden', d2: '3 tot 12 maanden', d3: 'Meer dan een jaar',
       q4: 'Waar stond je voor je begon?', q4h: 'Je doel, of wat je tegenhield.', ph4: 'Bv. ik begon opnieuw na 10 jaar zonder sport, ik kon het niet volhouden…',
       q5: 'Wat is er sindsdien veranderd?', q5h: 'Een cijfer zegt nog meer, als je er een hebt.', ph5: 'Bv. −6 kg in 4 maanden, mijn eerste pull-up, 100 kg deadlift, mijn eerste Hyrox…',
@@ -355,7 +359,8 @@ footer a{color:#8D8576}
       lang: lang,
       first_name: first,
       last_initial: init,
-      service: val('service'),
+      service: [].map.call(f.querySelectorAll('input[name=service]:checked'), function (x) { return x.value; }).join(',') || null,
+      role_title: val('role_title'),
       duration: val('duration'),
       before_text: val('before_text'),
       after_text: val('after_text'),
