@@ -93,6 +93,7 @@ section{position:relative;padding:clamp(80px,11vw,150px) var(--pad)}
 .kicker{display:block;font-family:var(--head);font-size:11.5px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
 .kicker i{font-style:normal;color:var(--mute-2);margin:0 6px}
 .kicker::before{content:"";display:inline-block;vertical-align:middle;width:34px;height:1px;background:var(--gold);margin:-3px 14px 0 0}
+.hero .kicker .k1,.hero .kicker .k2{white-space:nowrap}
 h1,h2,h3{font-family:var(--head);font-weight:700;letter-spacing:-.03em;line-height:1.02;text-wrap:balance}
 h2{font-size:clamp(36px,5.6vw,78px);margin:22px 0 0}
 h2 em,h1 em,.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--gold)}
@@ -320,6 +321,11 @@ footer{padding:60px var(--pad) 40px;border-top:1px solid var(--line)}
 }
 @media (max-width:640px){
   .nav .btn{display:none}
+  .hero .kicker{font-size:10.5px;letter-spacing:.2em;line-height:1.9}
+  .hero .kicker::before{display:none}
+  .hero .kicker .k1,.hero .kicker .k2{display:block}
+  .hero .kicker .ks{display:none}
+  .hero .kicker i{margin:0 4px}
   .facts b{font-size:28px}
   .mantra-grid{grid-template-columns:1fr;border-left:0}.mantra-grid div{border-right:0;border-left:1px solid var(--line);padding:0 0 0 20px}
   .feat,.vgrid{grid-template-columns:1fr}
@@ -337,6 +343,10 @@ footer{padding:60px var(--pad) 40px;border-top:1px solid var(--line)}
   .certs{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr}
   .cards img{width:72%}
+}
+@media (max-width:380px){
+  .hero .kicker{font-size:10px;letter-spacing:.14em}
+  .hero .kicker i{margin:0 3px}
 }
 
 /* app très visible */
@@ -398,7 +408,7 @@ footer{padding:60px var(--pad) 40px;border-top:1px solid var(--line)}
 <section class="hero">
   <div class="hero-mark" aria-hidden="true">DM</div>
   <div class="hero-text">
-    <div class="kicker t reveal" data-fr="Coach CrossFit L3 <i>·</i> Personal trainer <i>·</i> Bruxelles <i>·</i> Vilvoorde" data-en="CrossFit L3 coach <i>·</i> Personal trainer <i>·</i> Brussels <i>·</i> Vilvoorde" data-nl="CrossFit L3-coach <i>·</i> Personal trainer <i>·</i> Brussel <i>·</i> Vilvoorde">Coach CrossFit L3 <i>·</i> Personal trainer <i>·</i> Bruxelles <i>·</i> Vilvoorde</div>
+    <div class="kicker t reveal" data-fr="<span class='k1'>Coach CrossFit L3 <i>·</i> Personal trainer</span><i class='ks'>·</i><span class='k2'>Bruxelles <i>·</i> Vilvoorde</span>" data-en="<span class='k1'>CrossFit L3 coach <i>·</i> Personal trainer</span><i class='ks'>·</i><span class='k2'>Brussels <i>·</i> Vilvoorde</span>" data-nl="<span class='k1'>CrossFit L3-coach <i>·</i> Personal trainer</span><i class='ks'>·</i><span class='k2'>Brussel <i>·</i> Vilvoorde</span>"><span class="k1">Coach CrossFit L3 <i>·</i> Personal trainer</span><i class="ks">·</i><span class="k2">Bruxelles <i>·</i> Vilvoorde</span></div>
     <h1 class="t reveal" data-fr="Le sport n'est pas mon métier. <span class='l2'>C'est <em>ma langue.</em></span>" data-en="Sport isn't my job. <span class='l2'>It's <em>my language.</em></span>" data-nl="Sport is niet mijn beroep. <span class='l2'>Het is <em>mijn taal.</em></span>">Le sport n'est pas mon métier. <span class="l2">C'est <em>ma langue.</em></span></h1>
     <p class="lead t reveal" data-fr="Douze ans de terrain : personal training, CrossFit, Hyrox, préparation physique. Je coache en vrai chez Reasfit et chez Mix Brussels, du débutant à l'athlète, et ma méthode tient maintenant dans une app : mes programmes, ma voix, mes corrections." data-en="Twelve years on the floor: personal training, CrossFit, Hyrox, strength &amp; conditioning. I coach in person at Reasfit and Mix Brussels, from beginners to athletes, and my method now fits in an app: my programs, my voice, my corrections." data-nl="Twaalf jaar op de vloer: personal training, CrossFit, Hyrox, fysieke voorbereiding. Ik coach live bij Reasfit en Mix Brussels, van beginner tot atleet, en mijn methode past nu in een app: mijn programma's, mijn stem, mijn correcties.">Douze ans de terrain : personal training, CrossFit, Hyrox, préparation physique. Je coache en vrai chez Reasfit et chez Mix Brussels, du débutant à l'athlète, et ma méthode tient maintenant dans une app : mes programmes, ma voix, mes corrections.</p>
     <div class="hero-cta reveal">
