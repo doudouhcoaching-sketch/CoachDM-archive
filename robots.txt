@@ -1,7 +1,6 @@
 # Coach DM — tout le site public est ouvert aux moteurs et aux IA (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended compris).
 User-agent: *
 Allow: /
-Disallow: /app.html
 Disallow: /admin.html
 Disallow: /admin-seances.html
 Disallow: /admin-subs.html
