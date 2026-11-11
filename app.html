@@ -2373,6 +2373,30 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
 .nx-tmcard div{flex:1;display:flex;flex-direction:column;gap:3px}
 .nx-tmcard b{font-size:16px}.nx-tmcard span{font-size:13px;color:var(--muted);line-height:1.35}
 .nx-tmcard i{font-style:normal;color:var(--gold);font-size:24px}
+/* 2.4.3 — Force & Skill sur mesure, remonte en haut de S'entrainer */
+#nx-eng{margin-top:6px}
+.nx-engp{font-size:13.5px;color:var(--muted);line-height:1.45;margin:-4px 0 12px}
+/* 2.4.3 — ecran d'attente (photo du repas, scan) */
+.cw{position:fixed;inset:0;z-index:99990;background:#0a0a0a;display:flex;flex-direction:column;color:var(--text,#fff)}
+.cw-im{flex:1;min-height:0;position:relative;background:#111 center/cover no-repeat}
+.cw-im::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.1) 45%,#0a0a0a 100%)}
+.cw-code{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.cw-code b{font-size:30px;font-weight:700;letter-spacing:.08em;color:var(--gold,#E9C767);font-variant-numeric:tabular-nums}
+.cw-code span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted,#9a9a9a)}
+.cw-b{padding:22px 22px calc(30px + env(safe-area-inset-bottom))}
+.cw-t{font-size:22px;font-weight:700;margin:0 0 6px}
+.cw-s{font-size:15px;line-height:1.4;color:var(--muted,#9a9a9a);min-height:22px;margin:0 0 18px}
+.cw-bar{height:3px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+.cw-bar i{display:block;height:100%;width:40%;border-radius:3px;background:var(--gold,#E9C767);animation:cwrun 1.25s ease-in-out infinite}
+@keyframes cwrun{0%{transform:translateX(-110%)}100%{transform:translateX(260%)}}
+.cw.fail .cw-bar{display:none}
+.cw-acts{display:none;gap:10px;margin-top:6px}.cw.fail .cw-acts{display:flex}
+.cw-acts button{flex:1;border:0;border-radius:16px;padding:15px;font-size:15px;font-weight:600;font-family:inherit}
+.cw-go{background:var(--gold,#E9C767);color:#111}.cw-no{background:var(--surface,#1a1a1a);color:var(--text,#fff)}
+.nf-lbl{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.nf-lbl .btn{width:100%;margin:0}
+.nf-lbl p{font-size:13px;line-height:1.45;color:var(--muted,#9a9a9a);margin:2px 0 0;text-align:left}
+.ph-chk{display:inline-block;margin-left:6px;font-size:11px;font-weight:600;color:var(--gold,#E9C767)}
 
 /* ---------- Test 1RM / 5RM dans le lecteur (26 oct.) ---------- */
 .nx-ts{position:fixed;inset:0;z-index:132;background:#0B0B0A;display:flex;flex-direction:column;padding:calc(10px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom));overflow-y:auto;animation:nxFade .25s ease}
@@ -2671,7 +2695,7 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
       <div class="ct-reco" id="ct-reco"></div>
     </div>
     <div class="block hidden" id="today-empty">
-      <p class="empty"><span data-i18n="empty_targets">Pas encore d'objectifs.</span><br><span data-i18n="empty_targets_sub">Calcule-les dans Profil pour suivre ta journée en temps réel.</span></p>
+      <p class="empty"><span data-i18n="empty_targets">Pas encore d'objectifs.</span><br><span data-i18n="empty_targets_sub">Calcule-les dans Moi pour suivre ta journée en temps réel.</span></p>
       <button class="btn" id="go-profile" data-i18n="define_goals">Définir mes objectifs</button>
     </div>
 
@@ -2787,7 +2811,7 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
           <button class="rc-chip" data-tr="30" data-i18n="tr_d30">30 j</button>
         </div>
       </div>
-      <div id="tr-body"><p class="empty" data-i18n="tr_empty">Logge tes repas 2 jours ou plus pour voir tes tendances.</p></div>
+      <div id="tr-body"><p class="empty" data-i18n="tr_empty">Note tes repas 2 jours ou plus pour voir tes tendances.</p></div>
     </div>
     <div class="block">
       <!-- Les recettes ne sont plus repliees : on en montre quatre, choisies
@@ -2797,7 +2821,7 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
         <span id="rc-now-badge" class="rc-now"></span>
       </div>
       <div id="rc-body">
-      <p class="empty" style="text-align:left;padding:8px 0 2px" id="rc-sub-line">Des repas prêts à logger, calés sur tes objectifs.</p>
+      <p class="empty" style="text-align:left;padding:8px 0 2px" id="rc-sub-line">Des repas prêts à noter, calés sur tes objectifs.</p>
       <div class="rc-filters" id="rc-filters">
         <button class="rc-chip on" data-rf="now" data-i18n="rc_now">Pour maintenant</button>
         <button class="rc-chip" data-rf="all" data-i18n="rc_all">Tout</button>
@@ -3042,8 +3066,8 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
 
     <div class="pf-sub" id="pf-records">
     <div class="block">
-      <h3 data-i18n="pr_title">Mes Records (1RM)</h3>
-      <p class="empty" style="text-align:left;padding:0 0 10px" data-i18n="pr_sub">Tes maxes alimentent toute l'app : les séances et le Coach IA convertissent les % en kilos exacts, arrondis à 2,5 kg.</p>
+      <h3 data-i18n="pr_title">Mes records (1RM)</h3>
+      <p class="empty" style="text-align:left;padding:0 0 10px" data-i18n="pr_sub">Tes records alimentent toute l'app : les séances et le Coach IA convertissent les % en kilos exacts, arrondis à 2,5 kg.</p>
       <div id="pr-list"><div class="empty" data-i18n="pr_none">Aucun record enregistré.</div></div>
       <button class="btn subtle" id="pr-add" style="margin-top:12px" data-i18n="pr_add">＋ Ajouter / modifier un record</button>
     </div>
@@ -3070,7 +3094,7 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
 
     <div class="block" id="p-coach-free" style="display:none">
       <h3 data-i18n="coach_free_title">Deviens coach — gratuit</h3>
-      <p class="empty" style="text-align:left;padding:0 0 12px" data-i18n="coach_free_sub">Accompagne un premier client avec ta propre console : programmes, messagerie, suivi. Gratuit, sans engagement.</p>
+      <p class="empty" style="text-align:left;padding:0 0 12px" data-i18n="coach_free_sub">Accompagne tes 3 premiers clients avec ta propre console : programmes, messagerie, suivi. Gratuit, sans engagement.</p>
       <button class="btn" id="p-coach-free-go" style="width:100%" data-i18n="coach_free_cta">Devenir coach (1 client offert)</button>
       <div class="msg" id="p-coach-free-msg"></div>
     </div>
@@ -3242,7 +3266,7 @@ i.r3{background:linear-gradient(180deg,#E0A877,#A86A3D)!important;color:#1B1005!
   <div class="sheet">
     <div class="grab"></div>
     <h3 data-i18n="cfree_ok_t">Te voilà coach 👊</h3>
-    <p class="fk" id="cok-p" style="margin:0 0 4px">Ta console est prête. Tu la retrouveras à tout moment dans <b>Profil › Compte › Console Coach</b>.</p>
+    <p class="fk" id="cok-p" style="margin:0 0 4px">Ta console est prête. Tu la retrouveras à tout moment dans <b>Moi › Compte › Console Coach</b>.</p>
     <a class="btn" href="coach.html" style="display:block;width:100%;margin-top:18px;text-align:center;text-decoration:none" data-i18n="cfree_ok_go">Ouvrir ma console coach</a>
     <button class="btn subtle" id="cok-later" style="width:100%;margin-top:9px" data-i18n="cfree_ok_later">Plus tard</button>
   </div>
@@ -4453,7 +4477,7 @@ const T = {
  hub_sub:{fr:'Sans chercher',en:'No hunting around',nl:'Zonder zoeken'},
  hub_an:{fr:'Analyse filmée',en:'Filmed analysis',nl:'Gefilmde analyse'},
  hub_an_s:{fr:'Squat, saut, barre, course, Hyrox',en:'Squat, jump, bar, run, Hyrox',nl:'Squat, sprong, stang, lopen, Hyrox'},
- hub_jeu_s:{fr:'7 jeux, la caméra te suit',en:'7 games, the camera follows you',nl:'7 spellen, de camera volgt je'},
+ hub_jeu_s:{fr:'8 jeux, la caméra te suit',en:'8 games, the camera follows you',nl:'8 spellen, de camera volgt je'},
  hub_bib_s:{fr:'500 mouvements expliqués',en:'500 movements explained',nl:'500 bewegingen uitgelegd'},
  hub_se:{fr:'Mes séances',en:'My workouts',nl:'Mijn trainingen'},
  hub_se_s:{fr:'Programmes, cycles, séance du jour',en:'Programs, cycles, today\u2019s session',nl:'Programma\u2019s, cycli, sessie van vandaag'},
@@ -4478,7 +4502,7 @@ const T = {
  bib_nopoints:{fr:'Points de performance à venir pour ce mouvement.',en:'Points of performance coming for this movement.',nl:'Uitvoeringspunten volgen voor deze beweging.'},
  bib_back_seance:{fr:'Retour à la séance',en:'Back to the workout',nl:'Terug naar de training'},
  bib_nofiche:{fr:"Pas encore de fiche pour ce mouvement.",en:'No sheet yet for this movement.',nl:'Nog geen fiche voor deze beweging.'},
- rc_sub:{fr:'Des repas prêts à logger, calés sur tes objectifs.',en:'Ready-to-log meals, built around your goals.',nl:'Kant-en-klare maaltijden, afgestemd op je doelen.'},
+ rc_sub:{fr:'Des repas prêts à noter, calés sur tes objectifs.',en:'Ready-to-log meals, built around your goals.',nl:'Kant-en-klare maaltijden, afgestemd op je doelen.'},
  rc_all:{fr:'Tout',en:'All',nl:'Alles'},
  rc_hp:{fr:'Haute protéine',en:'High protein',nl:'Eiwitrijk'},
  rc_none:{fr:'Aucune recette pour l’instant. Cherche un aliment ci-dessus pour composer ton repas.',en:'No recipes yet. Search a food above to build your meal.',nl:'Nog geen recepten. Zoek hierboven een voedingsmiddel om je maaltijd samen te stellen.'},
@@ -4499,7 +4523,7 @@ const T = {
  tr_title:{fr:'Tendances',en:'Trends',nl:'Trends'},
  tr_d7:{fr:'7 j',en:'7 d',nl:'7 d'},
  tr_d30:{fr:'30 j',en:'30 d',nl:'30 d'},
- tr_empty:{fr:'Logge tes repas 2 jours ou plus pour voir tes tendances.',en:'Log your meals on 2+ days to see your trends.',nl:'Log je maaltijden op 2+ dagen om je trends te zien.'},
+ tr_empty:{fr:'Note tes repas 2 jours ou plus pour voir tes tendances.',en:'Log your meals on 2+ days to see your trends.',nl:'Log je maaltijden op 2+ dagen om je trends te zien.'},
  tr_avg_kcal:{fr:'kcal / jour',en:'kcal / day',nl:'kcal / dag'},
  tr_avg_prot:{fr:'prot / jour',en:'protein / day',nl:'eiwit / dag'},
  tr_adh:{fr:'adh\u00e9rence',en:'adherence',nl:'naleving'},
@@ -4543,7 +4567,7 @@ const T = {
  sc_lib:{fr:'Scanner indisponible hors connexion.',en:'Scanner unavailable offline.',nl:'Scanner niet beschikbaar offline.'},
  nf_cta:{fr:'Cr\u00e9er cet aliment',en:'Create this food',nl:'Dit voedingsmiddel aanmaken'},
  nf_title:{fr:'Nouvel aliment',en:'New food',nl:'Nieuw voedingsmiddel'},
- nf_sub:{fr:'Recopie les valeurs du paquet, pour 100 g. Cet aliment reste priv\u00e9 : toi seul le vois.',en:'Copy the values from the packet, per 100 g. This food stays private: only you can see it.',nl:'Neem de waarden van de verpakking over, per 100 g. Dit voedingsmiddel blijft priv\u00e9: alleen jij ziet het.'},
+ nf_sub:{fr:'Recopie les valeurs du paquet, pour 100 g. Si elles sont coh\u00e9rentes, le produit sera reconnu au prochain scan.',en:'Copy the values from the packet, per 100 g. If they add up, the product will be recognised at the next scan.',nl:'Neem de waarden van de verpakking over, per 100 g. Als ze kloppen, wordt het product bij de volgende scan herkend.'},
  nf_name:{fr:'Nom',en:'Name',nl:'Naam'},
  nf_brand:{fr:'Marque (facultatif)',en:'Brand (optional)',nl:'Merk (optioneel)'},
  nf_kcal:{fr:'Calories /100 g',en:'Calories /100 g',nl:'Calorie\u00ebn /100 g'},
@@ -4677,7 +4701,7 @@ const T = {
  go_ok:{fr:'Compris',en:'Got it',nl:'Begrepen'},
  go_done_t:{fr:'Cycle g\u00e9n\u00e9r\u00e9 !',en:'Cycle generated!',nl:'Cyclus gegenereerd!'},
  go_block_tgt:{fr:'Cible du bloc',en:'Block target',nl:'Blokdoel'},
- go_done_member:{fr:'Ton cycle est pr\u00eat dans S\u00e9ances.',en:'Your cycle is ready in Workouts.',nl:'Je cyclus staat klaar in Trainingen.'},
+ go_done_member:{fr:'Ton cycle est pr\u00eat dans S\u2019entra\u00eener.',en:'Your cycle is ready in Workouts.',nl:'Je cyclus staat klaar in Trainingen.'},
  go_done_coach:{fr:'Ton coach validera ton cycle avant publication.',en:'Your coach will review your cycle before it goes live.',nl:'Je coach controleert je cyclus voor publicatie.'},
  go_see:{fr:'Voir mon cycle',en:'See my cycle',nl:'Bekijk mijn cyclus'},
  go_cycle:{fr:'Mon cycle',en:'My cycle',nl:'Mijn cyclus'},
@@ -4734,7 +4758,7 @@ const T = {
  ct_low:{fr:'Presque boucl\u00e9 \u2014 encore {P}g de prot\u00e9ines. Termine avec :',en:'Almost there \u2014 {P}g of protein to go. Finish with:',nl:'Bijna klaar \u2014 nog {P}g eiwit. Sluit af met:'},
  ct_hit:{fr:'Prot\u00e9ines valid\u00e9es. Envie d\u2019un extra l\u00e9ger ? Essaie :',en:'Protein hit. Fancy a light extra? Try:',nl:'Eiwit gehaald. Zin in iets lichts? Probeer:'},
  empty_targets:{fr:"Pas encore d'objectifs.",en:'No targets yet.',nl:'Nog geen doelen.'},
- empty_targets_sub:{fr:'Calcule-les dans Profil pour suivre ta journée en temps réel.',en:'Set them in Profile to track your day in real time.',nl:'Stel ze in bij Profiel om je dag live te volgen.'},
+ empty_targets_sub:{fr:'Calcule-les dans Moi pour suivre ta journée en temps réel.',en:'Set them in Profile to track your day in real time.',nl:'Stel ze in bij Profiel om je dag live te volgen.'},
  define_goals:{fr:'Définir mes objectifs',en:'Set my targets',nl:'Mijn doelen instellen'},
  wod_today:{fr:'Séance du jour',en:'Workout of the day',nl:'Training van de dag'},
  btn_start:{fr:'Démarrer',en:'Start',nl:'Starten'},
@@ -4778,9 +4802,9 @@ const T = {
  ia_c1:{fr:'Analyse mes repas',en:'Review my meals',nl:'Analyseer mijn maaltijden'},
  ia_c2:{fr:'Calcule mes charges du jour',en:'Compute my loads for today',nl:'Bereken mijn gewichten vandaag'},
  ia_c3:{fr:'Crée-moi un cycle sur mesure',en:'Build me a custom cycle',nl:'Maak een cyclus op maat'},
- ia_c4:{fr:'Ma readiness aujourd\u2019hui',en:'My readiness today',nl:'Mijn readiness vandaag'},
- pr_title:{fr:'Mes Records (1RM)',en:'My Records (1RM)',nl:'Mijn Records (1RM)'},
- pr_sub:{fr:'Tes maxes alimentent toute l\u2019app : les séances et le Coach IA convertissent les % en kilos exacts, arrondis à 2,5 kg.',en:'Your maxes power the whole app: workouts and the AI Coach convert % into exact kilos, rounded to 2.5 kg.',nl:'Je maxen voeden de hele app: trainingen en de AI-coach zetten % om in exacte kilo\u2019s, afgerond op 2,5 kg.'},
+ ia_c4:{fr:'Ma forme aujourd\u2019hui',en:'My readiness today',nl:'Mijn readiness vandaag'},
+ pr_title:{fr:'Mes records (1RM)',en:'My Records (1RM)',nl:'Mijn Records (1RM)'},
+ pr_sub:{fr:'Tes records alimentent toute l\u2019app : les séances et le Coach IA convertissent les % en kilos exacts, arrondis à 2,5 kg.',en:'Your maxes power the whole app: workouts and the AI Coach convert % into exact kilos, rounded to 2.5 kg.',nl:'Je maxen voeden de hele app: trainingen en de AI-coach zetten % om in exacte kilo\u2019s, afgerond op 2,5 kg.'},
  /* E#28 — un etat vide doit dire quoi faire, et pourquoi ca vaut le coup.
     Celui-ci garde la porte du moteur de charge : « Aucun record enregistre »
     constatait sans jamais expliquer que c'est ce chiffre qui debloque le
@@ -4914,7 +4938,7 @@ const T = {
  coach_offer_sub:{fr:'Tu es coach ? G\u00e8re tes clients, la messagerie et les appels vid\u00e9o depuis ta propre console.',en:'Are you a coach? Manage your clients, messaging and video calls from your own console.',nl:'Ben je coach? Beheer je klanten, berichten en videogesprekken vanuit je eigen console.'},
  coach_offer_cta:{fr:'Devenir coach',en:'Become a coach',nl:'Coach worden'},
  coach_free_title:{fr:'Deviens coach — gratuit',en:'Become a coach — free',nl:'Word coach — gratis'},
- coach_free_sub:{fr:'Accompagne un premier client avec ta propre console : programmes, messagerie, suivi. Gratuit, sans engagement.',en:'Coach a first client with your own console: programs, messaging, tracking. Free, no commitment.',nl:'Begeleid een eerste klant met je eigen console: programma’s, berichten, opvolging. Gratis, vrijblijvend.'},
+ coach_free_sub:{fr:'Accompagne tes 3 premiers clients avec ta propre console : programmes, messagerie, suivi. Gratuit, sans engagement.',en:'Coach your first 3 clients with your own console: programs, messaging, tracking. Free, no commitment.',nl:'Begeleid je eerste 3 klanten met je eigen console: programma’s, berichten, opvolging. Gratis, vrijblijvend.'},
  coach_free_cta:{fr:'Devenir coach (1 client offert)',en:'Become a coach (1 free client)',nl:'Word coach (1 gratis klant)'},
  coach_free_home_t:{fr:'Devenir coach',en:'Become a coach',nl:'Coach worden'},
  coach_free_home_sub:{fr:'1 client offert pour découvrir la console',en:'1 free client to try the console',nl:'1 gratis klant om de console te ontdekken'},
@@ -4930,7 +4954,7 @@ const T = {
  cfree_cancel:{fr:'Non, pas maintenant',en:'No, not now',nl:'Nee, niet nu'},
  /* Écran de réussite : sans lui, le nouveau coach cherche sa console. */
  cfree_ok_t:{fr:'Te voilà coach \u{1F44A}',en:'You’re a coach now \u{1F44A}',nl:'Je bent nu coach \u{1F44A}'},
- cfree_ok_p:{fr:'Ta console est prête. Tu la retrouveras à tout moment dans <b>Profil › Compte › Console Coach</b>.',en:'Your console is ready. You’ll find it anytime under <b>Profile › Account › Coach Console</b>.',nl:'Je console is klaar. Je vindt hem altijd via <b>Profiel › Account › Coach Console</b>.'},
+ cfree_ok_p:{fr:'Ta console est prête. Tu la retrouveras à tout moment dans <b>Moi › Compte › Console Coach</b>.',en:'Your console is ready. You’ll find it anytime under <b>Profile › Account › Coach Console</b>.',nl:'Je console is klaar. Je vindt hem altijd via <b>Profiel › Account › Coach Console</b>.'},
  cfree_ok_go:{fr:'Ouvrir ma console coach',en:'Open my coach console',nl:'Open mijn coachconsole'},
  cfree_ok_later:{fr:'Plus tard',en:'Later',nl:'Later'},
  /* Montée en gamme, proposée aussi aux coachs gratuits (web uniquement). */
@@ -4965,7 +4989,7 @@ const T = {
  founder_left:{fr:'Plus que {n} places fondateur',en:'Only {n} founder spots left',nl:'Nog {n} oprichtersplaatsen'},
  sub_processing:{fr:'Ouverture du paiement…',en:'Opening payment…',nl:'Betaling openen…'},
  sub_success:{fr:'Paiement confirmé ! Activation en cours…',en:'Payment confirmed! Activating…',nl:'Betaling bevestigd! Activeren…'},
- sub_wait:{fr:"L'activation prend parfois une minute. Réouvre l'app si besoin.",en:'Activation can take a minute. Reopen the app if needed.',nl:'Activatie kan even duren. Heropen de app indien nodig.'},
+ sub_wait:{fr:"L'activation prend parfois une minute. Rouvre l'app si besoin.",en:'Activation can take a minute. Reopen the app if needed.',nl:'Activatie kan even duren. Heropen de app indien nodig.'},
  sub_fail:{fr:'Paiement indisponible. Réessaie dans un instant.',en:'Payment unavailable. Try again shortly.',nl:'Betaling niet beschikbaar. Probeer straks opnieuw.'},
  sub_portal_fail:{fr:'Portail indisponible pour le moment.',en:'Portal unavailable right now.',nl:'Portaal momenteel niet beschikbaar.'},
  sub_status_active:{fr:'Accès actif',en:'Active access',nl:'Actieve toegang'},
@@ -5355,7 +5379,7 @@ const T = {
  /* ---- D#21 : checklist « Par où je commence ? » ---- */
  act_title:{fr:'Par où je commence ?',en:'Where do I start?',nl:'Waar begin ik?'},
  act_hide:{fr:'Masquer ces conseils',en:'Hide these tips',nl:'Deze tips verbergen'},
- act_hidden:{fr:'C’est masqué. Tout reste accessible depuis les onglets.',en:'Hidden. Everything stays reachable from the tabs.',nl:'Verborgen. Alles blijft bereikbaar via de tabs.'},
+ act_hidden:{fr:'C’est masqué. Tout reste accessible depuis les cinq espaces.',en:'Hidden. Everything stays reachable from the tabs.',nl:'Verborgen. Alles blijft bereikbaar via de tabs.'},
  tour_close:{fr:'Fermer',en:'Close',nl:'Sluiten'},
  act_sub:{fr:'Quatre étapes pour que l’app travaille vraiment pour toi. Compte dix minutes en tout.',en:'Four steps to make the app actually work for you. Ten minutes in total.',nl:'Vier stappen zodat de app echt voor jou werkt. Tien minuten in totaal.'},
  act_1t:{fr:'Calcule tes objectifs',en:'Work out your targets',nl:'Bereken je doelen'},
@@ -6518,7 +6542,8 @@ async function nfSave(){
     setBtn('#nf-save',false,t('nf_save'));
     nfClose();
     toast(t('nf_ok'));
-    if(data) renderFoods([{ ...data, off:false }], 1, 0);
+    if(data){ renderFoods([{ ...data, off:false }], 1, 0);
+      if(document.body.classList.contains('nx')){ try{ if(typeof NX_SRCH_CLOSE==='function'){ const c=NX_SRCH_CLOSE; NX_SRCH_CLOSE=null; c(); } openSheet({ ...data, off:false }); }catch(_){} } }
   }catch(e){
     setBtn('#nf-save',false,t('nf_save'));
     setMsg('nf-msg',t('nf_fail'),'err');
@@ -6531,10 +6556,43 @@ async function nfSave(){
 
 /* Bouton propose quand une recherche ou un scan ne donne rien. */
 function nfSuggest(barcode, presetName){
+  /* avec un code-barres : d'abord l'etiquette en photo, la saisie a la main en second */
+  if(barcode) return '<div class="nf-lbl"><button class="btn" id="nf-label">'+esc(cwt('lb_cta'))+'</button><button class="btn subtle" id="nf-go">'+esc(cwt('lb_man'))+'</button><p>'+esc(cwt('lb_help'))+'</p></div>';
   return '<button class="btn subtle" id="nf-go" style="width:100%;margin-top:12px">'+t('nf_cta')+'</button>';
 }
-function nfBind(barcode, presetName){
-  const b=$('#nf-go'); if(b) b.onclick=()=>nfOpen(barcode,presetName);
+function nfBind(barcode, presetName, presetBrand){
+  const b=$('#nf-go'); if(b) b.onclick=()=>{ nfOpen(barcode,presetName); if(presetBrand){ const e=$('#nf-brand'); if(e) e.value=presetBrand; } };
+  const l=$('#nf-label'); if(l) l.onclick=()=>lblPick(barcode,presetName,presetBrand);
+}
+/* ---------------- ETIQUETTE EN PHOTO (2.4.3) ------------------------------
+   Un code-barres inconnu ne doit plus etre une impasse. Le membre photographie le tableau
+   nutritionnel, la fonction serveur food-label le lit et ramene tout a 100 g, puis la fiche
+   s'ouvre pre-remplie : il verifie et enregistre. Ouvert a tous (le scan est gratuit), avec
+   une limite par jour verifiee cote serveur ; la saisie a la main reste toujours possible. */
+function lblPick(barcode, presetName, presetBrand){
+  const inp=document.createElement('input'); inp.type='file'; inp.accept='image/*'; inp.setAttribute('capture','environment'); inp.style.display='none';
+  inp.onchange=()=>{ const f=inp.files&&inp.files[0]; inp.remove(); if(f) lblRead(f,barcode,presetName,presetBrand); };
+  document.body.appendChild(inp); inp.click();
+}
+async function lblRead(f, barcode, presetName, presetBrand){
+  let url=''; try{ url=URL.createObjectURL(f); }catch(_){}
+  cwOpen({ img:url, title:cwt('lb_t'), steps:cwt('lb_s') });
+  const again=()=>{ cwClose(); lblPick(barcode,presetName,presetBrand); };
+  const manual=()=>{ cwClose(); nfOpen(barcode,presetName); if(presetBrand){ const e=$('#nf-brand'); if(e) e.value=presetBrand; } };
+  try{
+    const b64 = await phCompress(f, 1600, 0.85);
+    const { data, error } = await sb.functions.invoke('food-label',{ body:{ image:b64, mime:'image/jpeg', barcode:barcode, locale:LANG } });
+    if(error || !data || data.error){ cwFail(t('ph_fail'), again); return; }
+    if(data.limit_reached){ cwFail(data['note_'+LANG]||data.note_fr||'', manual, cwt('lb_man')); return; }
+    if(!data.ok || !data.food){ cwFail(cwt('lb_no'), again); return; }
+    cwClose();
+    const o=data.food;
+    nfOpen(barcode, o.name||presetName||'');
+    const set=(id,v)=>{ const e=$('#'+id); if(e&&v!=null&&v!=='') e.value=v; };
+    set('nf-brand',o.brand||presetBrand||''); set('nf-kcal',o.kcal_per_100g); set('nf-prot',o.protein_per_100g); set('nf-carb',o.carbs_per_100g);
+    set('nf-fat',o.fat_per_100g); set('nf-fib',o.fiber_per_100g); set('nf-serv',o.default_serving_g);
+    setMsg('nf-msg', cwt(data.check?'lb_chk':'lb_ok'), data.check?'err':'ok');
+  }catch(_){ cwFail(t('ph_fail'), again); }
 }
 
 /* ---------------- SCAN CODE-BARRES ----------------------------------------
@@ -6700,25 +6758,41 @@ async function scanHit(code){
 }
 
 async function scanLookup(code){
+  /* 2.4.3 : des que le code est lu, un ecran dit ce qui se passe. Avant, la camera se fermait
+     et l'app sautait sur Manger sans un mot : on croyait a un bug. */
+  const t0=Date.now();
+  cwOpen({ code:code, title:cwt('sc_t'), steps:[cwt('sc_s')[0]] });
   switchTab('journal');
   $('#jo-results').innerHTML='<div class="spin"></div>';
-  let f=null;
+  let f=null, part=null;
   try{
     const { data } = await sb.rpc('search_foods',{ p_query:null, p_barcode:code, p_limit:1 });
     if(data&&data.length) f={ ...data[0], off:false };
   }catch(_){}
   if(!f){
+    cwStep(cwt('sc_s')[1]);
     try{
       const { data, error } = await sb.functions.invoke('off-search',{ body:{ barcode:code } });
       if(!error && data && data.foods && data.foods.length) f=data.foods[0];
+      if(!error && data && data.partial) part=data.partial;
     }catch(_){}
   }
+  { const w=800-(Date.now()-t0); if(w>0) await new Promise(r=>setTimeout(r,w)); }
+  cwClose();
   if(!f){
-    $('#jo-results').innerHTML='<p class="empty">'+t('sc_none').replace('{c}',esc(code))+'</p>'+nfSuggest();
-    nfBind(code,'');
+    /* 2.4.3 : code inconnu, ou connu sans valeurs -> photo de l'etiquette (lue par le serveur) ou saisie a la main */
+    $('#jo-results').innerHTML='<p class="empty">'+(part?esc(cwt('lb_part'))+(part.name?'<br><b>'+esc(part.name)+'</b>':''):t('sc_none').replace('{c}',esc(code)))+'</p>'+nfSuggest(code);
+    nfBind(code,part&&part.name||'',part&&part.brand||'');
+    /* 2.4.3 : dans l'interface 2.4 le bloc de recherche est range dans une feuille. Sans l'ouvrir,
+       le message « code inconnu » et ses boutons restaient invisibles : le scan semblait ne rien faire. */
+    if(document.body.classList.contains('nx')&&!document.getElementById('nx-srch')){ try{ nxSearch(true); }catch(_){} }
+    try{ $('#jo-results').scrollIntoView({block:'center'}); }catch(_){}
     return;
   }
   renderFoods([f], f.off?0:1, 0);
+  /* 2.4.3 : produit trouve -> sa fiche s'ouvre tout de suite (quantite, repas, ajouter) */
+  if(document.body.classList.contains('nx')){ try{ openSheet(f); }catch(_){} }
+  else { try{ $('#jo-results').scrollIntoView({block:'center'}); }catch(_){} }
 }
 
 /* ---------------- CALCULATEUR DE DISQUES ----------------------------------
@@ -9140,6 +9214,51 @@ async function rcAdd(){
   await loadLogs(); await loadToday();
 }
 
+/* ---------------- ECRAN D'ATTENTE (photo du repas, scan) — 2.4.3 ----------------- */
+const CW_TX={
+  ph_t:['Analyse de ton assiette','Analysing your plate','Je bord wordt geanalyseerd'],
+  ph_s:[['Je regarde ta photo…','Je repère les aliments…','J’estime les portions…','Je calcule calories et macros…'],
+        ['Looking at your photo…','Spotting the foods…','Estimating portions…','Working out calories and macros…'],
+        ['Ik bekijk je foto…','Ik herken de voedingsmiddelen…','Ik schat de porties…','Ik bereken calorieën en macro’s…']],
+  long:['C’est un peu plus long que d’habitude. Je continue.','Taking a little longer than usual. Still on it.','Het duurt wat langer dan normaal. Ik ga door.'],
+  sc_t:['Code lu','Code read','Code gelezen'], sc_l:['Code-barres','Barcode','Barcode'],
+  sc_s:[['Recherche du produit…','Je cherche aussi dans la base mondiale…'],
+        ['Looking up the product…','Checking the worldwide database too…'],
+        ['Product wordt opgezocht…','Ik zoek ook in de wereldwijde databank…']],
+  fail_t:['Ça n’a pas marché','That didn’t work','Dat lukte niet'],
+  lb_cta:['Photographier l’étiquette','Photograph the label','Fotografeer het etiket'],
+  lb_man:['Saisir les valeurs à la main','Enter the values by hand','Waarden zelf invullen'],
+  lb_help:['Prends en photo le tableau des valeurs nutritionnelles : je le lis et je remplis la fiche. Tu vérifies, tu enregistres, et le produit sera reconnu au prochain scan.','Take a photo of the nutrition table: I read it and fill in the product. You check, you save, and the product is recognised at the next scan.','Neem een foto van de voedingswaardetabel: ik lees ze en vul de fiche in. Jij controleert, slaat op, en het product wordt bij de volgende scan herkend.'],
+  lb_t:['Lecture de l’étiquette','Reading the label','Het etiket wordt gelezen'],
+  lb_s:[['Je regarde ta photo…','Je lis le tableau nutritionnel…','Je ramène les valeurs à 100 g…'],['Looking at your photo…','Reading the nutrition table…','Converting the values to 100 g…'],['Ik bekijk je foto…','Ik lees de voedingswaardetabel…','Ik reken de waarden om naar 100 g…']],
+  lb_no:['Je n’arrive pas à lire le tableau. Reprends la photo bien en face, avec de la lumière.','I can’t read the table. Retake the photo straight on, with good light.','Ik kan de tabel niet lezen. Neem de foto opnieuw, recht van voren en met genoeg licht.'],
+  lb_ok:['Valeurs lues sur l’étiquette. Vérifie-les, donne un nom au produit, puis enregistre.','Values read from the label. Check them, name the product, then save.','Waarden gelezen van het etiket. Controleer ze, geef het product een naam en sla op.'],
+  lb_chk:['Les calories ne collent pas avec les macros lues. Compare avec l’étiquette avant d’enregistrer.','The calories don’t match the macros I read. Compare with the label before saving.','De calorieën kloppen niet met de gelezen macro’s. Vergelijk met het etiket voor je opslaat.'],
+  lb_part:['Produit trouvé, mais sans valeurs nutritionnelles.','Product found, but without nutrition values.','Product gevonden, maar zonder voedingswaarden.'],
+  ph_chk:['portion à vérifier','check the portion','portie controleren'],
+  retry:['Réessayer','Try again','Opnieuw proberen'], close:['Fermer','Close','Sluiten']
+};
+const cwt=k=>CW_TX[k][{fr:0,en:1,nl:2}[LANG]||0];
+const CW={iv:0,to:0,url:''};
+function cwOpen(o){ cwClose();
+  const ov=document.createElement('div'); ov.className='cw'; ov.id='cw'; ov.setAttribute('role','status'); ov.setAttribute('aria-live','polite');
+  ov.innerHTML=(o.code!=null?'<div class="cw-code"><span>'+esc(cwt('sc_l'))+'</span><b>'+esc(o.code)+'</b></div>':'<div class="cw-im" id="cw-im"></div>')
+    +'<div class="cw-b"><p class="cw-t" id="cw-t">'+esc(o.title)+'</p><p class="cw-s" id="cw-s">'+esc(o.steps[0])+'</p><div class="cw-bar"><i></i></div>'
+    +'<div class="cw-acts"><button type="button" class="cw-no" id="cw-no">'+esc(cwt('close'))+'</button><button type="button" class="cw-go" id="cw-go">'+esc(cwt('retry'))+'</button></div></div>';
+  document.body.appendChild(ov);
+  if(o.img){ CW.url=o.img; const im=ov.querySelector('#cw-im'); if(im) im.style.backgroundImage='url("'+o.img+'")'; }
+  let i=0; CW.iv=setInterval(()=>{ if(i<o.steps.length-1){ i++; cwStep(o.steps[i]); } },1700);
+  CW.to=setTimeout(()=>cwStep(cwt('long')),14000);
+}
+function cwStep(txt){ const el=document.getElementById('cw-s'); if(el) el.textContent=txt; }
+function cwFail(msg,retry,label){ const ov=document.getElementById('cw'); if(!ov){ toast(msg); return; }
+  clearInterval(CW.iv); clearTimeout(CW.to); ov.classList.add('fail');
+  document.getElementById('cw-t').textContent=cwt('fail_t'); cwStep(msg);
+  document.getElementById('cw-no').onclick=()=>cwClose();
+  const g=document.getElementById('cw-go'); if(retry){ if(label) g.textContent=label; g.onclick=()=>retry(); } else g.style.display='none'; }
+function cwClose(){ clearInterval(CW.iv); clearTimeout(CW.to); const ov=document.getElementById('cw'); if(ov) ov.remove();
+  if(CW.url){ try{ URL.revokeObjectURL(CW.url); }catch(_){} CW.url=''; } }
+
 let PH_ITEMS=[];
 function phBusy(on){
   $('#jo-photo').disabled=on;
@@ -9149,25 +9268,35 @@ $('#jo-photo').onclick = ()=>{
   if(!PREMIUM){ showUpsell('ia'); return; }
   $('#jo-photo-file').click();
 };
-$('#jo-photo-file').onchange = async (e)=>{
+$('#jo-photo-file').onchange = (e)=>{
   const f = e.target.files && e.target.files[0];
   e.target.value='';
   if(!f) return;
+  phAnalyze(f);
+};
+/* 2.4.3 : la photo reste a l'ecran pendant l'analyse, avec les etapes. Avant, l'appareil photo
+   se fermait et plus rien ne bougeait pendant plusieurs secondes. En cas d'echec : un message
+   et « Reessayer » avec la meme photo, au lieu d'un retour silencieux. */
+async function phAnalyze(f){
   phBusy(true);
+  let url=''; try{ url=URL.createObjectURL(f); }catch(_){}
+  cwOpen({ img:url, title:cwt('ph_t'), steps:cwt('ph_s') });
+  const again=()=>phAnalyze(f);
   try{
     const b64 = await phCompress(f, 1024, 0.82);
     const { data, error } = await sb.functions.invoke('food-photo',{ body:{ image:b64, mime:'image/jpeg', locale:LANG } });
     if(error || !data || data.error){
       const code = (data && data.error) || (error && error.message) || '';
-      toast(t('ph_fail') + (code ? ' ('+String(code).slice(0,60)+')' : ''));
+      cwFail(t('ph_fail') + (code ? ' ('+String(code).slice(0,60)+')' : ''), again);
       return;
     }
-    if(!data.items || !data.items.length){ toast(data['note_'+LANG]||data.note_fr||t('ph_none')); return; }
+    if(!data.items || !data.items.length){ cwFail(data['note_'+LANG]||data.note_fr||t('ph_none'), null); return; }
     PH_ITEMS = data.items;
+    cwClose();
     phOpen(data);
-  }catch(_){ toast(t('ph_fail')); }
+  }catch(_){ cwFail(t('ph_fail'), again); }
   finally{ phBusy(false); }
-};
+}
 function phCompress(file,maxDim,q){
   return new Promise((res,rej)=>{
     const url=URL.createObjectURL(file);
@@ -9205,7 +9334,7 @@ function phRender(){
       : '';
     return `
     <div class="logitem" style="flex-wrap:wrap">
-      <div style="flex:1;min-width:0"><div class="ln">${esc(pick(it,'name')||it.name_fr)}${it.matched?'<span class="pverif">✓ Ciqual</span>':''}</div>
+      <div style="flex:1;min-width:0"><div class="ln">${esc(pick(it,'name')||it.name_fr)}${it.matched?'<span class="pverif">✓ Ciqual</span>':''}${it.check?'<span class="ph-chk">'+esc(cwt('ph_chk'))+'</span>':''}</div>
         <div class="lq">${r0(it.kcal_per_100g)} kcal/100g · P ${r1(it.protein_per_100g)} · G ${r1(it.carbs_per_100g)} · L ${r1(it.fat_per_100g)}</div></div>
       <div style="display:flex;align-items:center;gap:4px">
         ${qty}
@@ -11968,10 +12097,10 @@ function msUtter(text,v,fb){ const u=new SpeechSynthesisUtterance(text);
    baisse, puis remonte 0,7 s apres la derniere syllabe. Comme un coach qui baisse la sono
    pour parler. Plugin natif AudioDuck (iOS : AVAudioSession .duckOthers ; Android : focus
    audio « transient may duck »). Sur le web, rien ne change. */
-const AD={on:false,t:0};
+const AD={on:false,t:0,skip:false};
 function adOn(){ try{ return localStorage.getItem('cdm_ms_duck')!=='0'; }catch(_){ return true; } }
 function adPlugin(){ try{ const P=window.Capacitor&&window.Capacitor.Plugins; return P&&P.AudioDuck||null; }catch(_){ return null; } }
-function adDuck(){ const p=adPlugin(); if(!p||!adOn()) return;
+function adDuck(){ if(AD.skip) return; const p=adPlugin(); if(!p||!adOn()) return;
   if(!AD.on){ AD.on=true; try{ p.duck().catch(()=>{}); }catch(_){} } adWatch(); }
 function adWatch(){ clearTimeout(AD.t); AD.t=setTimeout(()=>{
   if(vcSpeaking()){ adWatch(); return; }
@@ -12295,12 +12424,16 @@ function vcPlan(spec){
 }
 let VC_BUSY=0;
 async function vcRun(items,fallback){
-  vcStop(); const my=VC_RUN; VC_BUSY=my; adDuck();
+  vcStop(); const my=VC_RUN; VC_BUSY=my;
+  /* 2.4.3 : on retient si la musique doit baisser (decide par l'appelant), et on ne la baisse qu'une
+     fois la phrase chargee, juste avant de parler : la baisse dure moins longtemps. */
+  const duckIt=!AD.skip;
   try{
     /* on charge toute la phrase AVANT de parler : jamais « Série … sur trois » avec un trou */
     try{ await Promise.all(items.filter(it=>it.k).map(it=>vcLoad(it.l,it.k))); }
     catch(_){ if(my===VC_RUN&&fallback!=null&&vcMode()!=='coach') msSay(fallback); return; }
     if(my!==VC_RUN) return;
+    if(duckIt) adDuck();
     await vcRunIn(items,my);
   } finally { if(VC_BUSY===my) VC_BUSY=0; }
 }
@@ -15003,7 +15136,7 @@ const LEX = {
     n:{fr:'SS',en:'SS',nl:'SS'},
     s:{fr:'superset',en:'superset',nl:'superset'},
     d:{fr:'Deux exercices portant la même lettre s’enchaînent sans repos entre eux. Tu ne récupères qu’une fois les deux terminés.',en:'Two exercises sharing a letter run back to back with no rest between them. You only rest once both are done.',nl:'Twee oefeningen met dezelfde letter volgen elkaar zonder rust op. Je rust pas als beide klaar zijn.'},
-    e:{fr:'SS A sur le développé et le rowing : 8 développés, 8 rowings, puis repos.',en:'SS A on press and row: 8 presses, 8 rows, then rest.',nl:'SS A op press en row: 8 presses, 8 rows, dan rust.'} },
+    e:{fr:'SS A sur le bench et le rowing : 8 bench, 8 rowing, puis repos.',en:'SS A on press and row: 8 presses, 8 rows, then rest.',nl:'SS A op press en row: 8 presses, 8 rows, dan rust.'} },
   unbroken:{
     n:{fr:'Unbroken',en:'Unbroken',nl:'Unbroken'},
     s:{fr:'sans lâcher',en:'without letting go',nl:'zonder loslaten'},
@@ -16026,7 +16159,7 @@ async function nxEat(){
 
 /* la recherche d'aliment : le bloc d'ajout existant passe dans une feuille (ses ecouteurs suivent) */
 function nxAddBlk(){ const q=document.getElementById('jo-q'); const b=q&&q.closest('.block'); if(b) b.classList.add('nx-addblk'); return b; }
-function nxSearch(){
+function nxSearch(nofocus){
   const blk=nxAddBlk(); if(!blk) return;
   const home=blk.parentNode, next=blk.nextSibling;
   const ov=document.createElement('div'); ov.className='overlay show'; ov.id='nx-srch';
@@ -16035,7 +16168,7 @@ function nxSearch(){
   const close=()=>{ home.insertBefore(blk,next); ov.remove(); };
   ov.onclick=e=>{ if(e.target===ov) close(); };
   NX_SRCH_CLOSE=close;
-  setTimeout(()=>{ try{ document.getElementById('jo-q').focus(); }catch(_){} },250);
+  if(!nofocus) setTimeout(()=>{ try{ document.getElementById('jo-q').focus(); }catch(_){} },250);
 }
 let NX_SRCH_CLOSE=null;
 /* une fiche d'aliment ou un scan s'ouvre par-dessus : la feuille de recherche se referme proprement */
@@ -16441,6 +16574,7 @@ const NXK_TX={
   left:['encore','still','nog'], d:['j','d','d'], ppl:['participants','participants','deelnemers'], p1:['participant','participant','deelnemer'],
   you:['Toi','You','Jij'], by:['Défi Coach DM','Coach DM challenge','Coach DM-uitdaging'], byc:['Défi de ton coach','Your coach’s challenge','Uitdaging van je coach'],
   starts:['Commence le','Starts on','Start op'],
+  done:['Défi réussi','Challenge completed','Uitdaging geslaagd'], goal:['objectif','goal','doel'],
   m_wc:['Séances','Workouts','Trainingen'], m_ad:['Jours actifs','Active days','Actieve dagen'], m_vol:['Kilos soulevés','Kilos lifted','Kilo’s gelift'],
   week:['Semaine','Week','Week'], month:['Mois','Month','Maand'],
   empty:['Personne pour l’instant. Termine une séance et prends la première place.','Nobody yet. Finish a workout and take first place.','Nog niemand. Werk een training af en pak de eerste plaats.'],
@@ -16453,7 +16587,9 @@ const NXK_TX={
 const nxk=k=>NXK_TX[k][{fr:0,en:1,nl:2}[LANG]||0];
 const NXK_UNIT={workout_count:['séances','workouts','trainingen'],water_total_ml:['L','L','L'],active_days:['jours','days','dagen'],total_volume_kg:['kg','kg','kg'],cardio_distance_m:['km','km','km'],habit_completions:['','',''],cardio_duration_s:['min','min','min'],sleep_avg_min:['min','min','min'],custom:['','','']};
 const nxkFmt=(m,v)=>{ v=+v||0; if(m==='water_total_ml') return nxNf(Math.round(v/100)/10); if(m==='cardio_distance_m') return nxNf(Math.round(v/100)/10); if(m==='cardio_duration_s') return nxNf(Math.round(v/60)); return nxNf(Math.round(v)); };
-const nxkU=m=>(NXK_UNIT[m]||['','',''])[{fr:0,en:1,nl:2}[LANG]||0];
+/* 2.4.3 : « 1 séance », pas « 1 séances » */
+const NXK_UNIT1={workout_count:['séance','workout','training'],active_days:['jour','day','dag']};
+const nxkU=(m,v)=>{ const n=Math.round(+v||0), one=v!=null&&NXK_UNIT1[m]&&(n===1||(LANG==='fr'&&n===0)); return ((one?NXK_UNIT1[m]:NXK_UNIT[m])||['','',''])[{fr:0,en:1,nl:2}[LANG]||0]; };
 let NXK_M='workout_count', NXK_P='week';
 
 function nxkChalCard(c){
@@ -16464,9 +16600,9 @@ function nxkChalCard(c){
   return `<div class="nx-chc${c.joined?' in':''}">
     <div class="nx-row2"><span class="nx-eb">${esc(c.by_coach_dm?nxk('by'):nxk('byc'))}</span><span class="nx-sm">${up?esc(nxk('starts'))+' '+esc(new Date(c.start_date+'T12:00').toLocaleDateString(nxLoc(),{day:'numeric',month:'short'})):esc(nxk('left'))+' '+days+' '+nxk('d')}</span></div>
     <h3>${esc(tt)}</h3>${ds?`<p>${esc(ds)}</p>`:''}
-    ${c.joined?`<div class="nx-row2 nx-kv"><b>${nxkFmt(c.metric,v)} <em>/ ${nxkFmt(c.metric,tg)} ${esc(nxkU(c.metric))}</em></b><span>${pc} %</span></div><div class="nx-bar"><i style="width:${pc}%"></i></div>`:''}
+    ${c.joined?`<div class="nx-row2 nx-kv"><b>${nxkFmt(c.metric,v)} <em>${v>=tg?esc(nxkU(c.metric,v))+' · '+esc(nxk('goal'))+' '+nxkFmt(c.metric,tg):'/ '+nxkFmt(c.metric,tg)+' '+esc(nxkU(c.metric,tg))}</em></b><span>${pc} %</span></div><div class="nx-bar"><i style="width:${pc}%"></i></div>`:''}
     <div class="nx-row2 nx-kf"><span class="nx-sm">${n} ${esc(n>1?nxk('ppl'):nxk('p1'))}</span>${top?`<span class="nx-ktops">${top}</span>`:''}</div>
-    ${c.joined?`<div class="nx-kin">${esc(nxk('in'))}</div>`:`<button class="nx-cta nx-kjoin" data-kj="${c.id}">${esc(nxk('join'))}</button>`}
+    ${c.joined?`<div class="nx-kin">${esc(nxk(v>=tg?'done':'in'))}</div>`:`<button class="nx-cta nx-kjoin" data-kj="${c.id}">${esc(nxk('join'))}</button>`}
   </div>`;
 }
 function nxkBoard(b){
@@ -16474,7 +16610,7 @@ function nxkBoard(b){
   const seg=(k,lab,cur,attr)=>`<button class="nx-chip${k===cur?' on':''}" ${attr}="${k}">${esc(lab)}</button>`;
   let h=`<div class="nx-chips nx-kchips">${seg('workout_count',nxk('m_wc'),NXK_M,'data-km')}${seg('active_days',nxk('m_ad'),NXK_M,'data-km')}${seg('total_volume_kg',nxk('m_vol'),NXK_M,'data-km')}</div>
     <div class="nx-kper">${seg('week',nxk('week'),NXK_P,'data-kp')}${seg('month',nxk('month'),NXK_P,'data-kp')}</div>`;
-  h+= rows.length?`<ol class="nx-kb">${rows.map(r=>`<li class="${r.me?'me':''}"><i class="r${r.rank<=3?r.rank:0}">${r.rank}</i><span>${esc(r.me?nxk('you'):r.name)}</span><b>${nxkFmt(b.metric,r.value)} <em>${esc(nxkU(b.metric))}</em></b></li>`).join('')}</ol>`
+  h+= rows.length?`<ol class="nx-kb">${rows.map(r=>`<li class="${r.me?'me':''}"><i class="r${r.rank<=3?r.rank:0}">${r.rank}</i><span>${esc(r.me?nxk('you'):r.name)}</span><b>${nxkFmt(b.metric,r.value)} <em>${esc(nxkU(b.metric,r.value))}</em></b></li>`).join('')}</ol>`
     :`<p class="nx-sm nx-kempty">${esc(nxk('empty'))}</p>`;
   if(me.opted){ h+=`<div class="nx-row2 nx-kme"><span>${esc(nxk('myrank'))}</span><b>${me.rank?me.rank+(LANG==='fr'?(me.rank===1?'re':'e'):LANG==='nl'?'e':'.'):esc(nxk('notin'))}</b></div><button class="nx-blink nx-kopt" data-ko="0">${esc(nxk('opt_off'))}</button>`; }
   else { h+=`<div class="nx-kjoinlb"><b>${esc(nxk('opt_h'))}</b><p>${esc(nxk('opt_p'))}</p><button class="nx-cta" data-ko="1">${esc(nxk('opt_on'))}</button></div>`; }
@@ -17603,11 +17739,19 @@ const nxtFmt=s=>{ s=Math.max(0,Math.round(s)); const h=Math.floor(s/3600), m=Mat
 /* toujours la voix de Coach DM : l'index du studio est charge avant de parler. La voix du telephone
    seulement si le membre l'a choisie lui-meme dans le Mode Seance. */
 let NXT_VC=false;
-function nxtVoice(){ return vcIndex().then(()=>{ NXT_VC=true; try{ vcPreload(['p_ready','p_go','p_rest','p_10s','p_half','p_time','n1','n2','n3'].map(k=>[LANG,k])); }catch(_){} }).catch(()=>{ NXT_VC=true; }); }
-function nxtSay(spec,fb){ if(!NXT_SND||!NXT_VC) return; try{ if(typeof MSV!=='undefined'&&!MSV.on) return;
+function nxtVoice(){ return vcIndex().then(()=>{ NXT_VC=true; try{ vcPreload(['p_ready','p_go','p_again','p_rest','p_10s','p_half','p_time','n1','n2','n3'].map(k=>[LANG,k])); }catch(_){} }).catch(()=>{ NXT_VC=true; }); }
+/* 2.4.3 : dans le Timer la musique ne baisse plus pour un mot court (« C'est parti », les chiffres,
+   « Time ») : la voix passe par-dessus. Elle ne baisse que pour une vraie phrase (duck=true). */
+function nxtSay(spec,fb,duck){ if(!NXT_SND||!NXT_VC) return; try{ if(typeof MSV!=='undefined'&&!MSV.on) return;
   let ph=false; try{ ph=localStorage.getItem('cdm_ms_vmode')==='phone'; }catch(_){}
-  if(!ph&&!vcAny()) return; msSayC(spec,fb); }catch(_){} }
-function nxtBeep(f,d){ if(!NXT_SND) return; try{ tones([[f,d]]); }catch(_){} }
+  if(!ph&&!vcAny()) return; AD.skip=!duck; try{ msSayC(spec,fb); } finally { AD.skip=false; } }catch(_){} }
+/* 2.4.3 : des bips qu'on entend par-dessus la musique (deux oscillateurs, attaque douce, aucun clic).
+   Avant : 14 % du volume pendant moins d'un dixieme de seconde, inaudible avec de la musique. */
+function nxtBeep(f,d,v){ if(!NXT_SND) return; try{ const c=vcCtx(), t0=c.currentTime+.01, g=c.createGain(), vol=v||.5;
+  d=Math.max(.16,d||.16);
+  g.gain.setValueAtTime(.0001,t0); g.gain.exponentialRampToValueAtTime(vol,t0+.012); g.gain.setValueAtTime(vol,t0+d*.6); g.gain.exponentialRampToValueAtTime(.0001,t0+d);
+  [[f,'sine',1],[f*2,'triangle',.3]].forEach(o=>{ const os=c.createOscillator(), og=c.createGain(); os.type=o[1]; os.frequency.value=o[0]; og.gain.value=o[2]; os.connect(og); og.connect(g); os.start(t0); os.stop(t0+d+.03); });
+  g.connect(c.destination); }catch(_){} }
 function nxtSavedCfg(k){ try{ const o=JSON.parse(localStorage.getItem('cdm_tmr_'+k)||'null'); if(o) return Object.assign({},NXT_FMT[k],o); }catch(_){} return Object.assign({},NXT_FMT[k]); }
 
 /* les phases d'un format : [{t:'work'|'rest', d:secondes, r:numero du tour}] ; d=null = chrono qui monte */
@@ -17693,7 +17837,7 @@ function nxtTick(){
   const ph=document.getElementById('nx-tmph'), bar=document.getElementById('nx-tmbar'), sub=document.getElementById('nx-tmsub'), run=document.querySelector('.nx-tmrun');
   if(el<X.pre){ const left=Math.ceil(X.pre-el);
     clk.textContent=nxtFmt(left); ph.textContent=nxtt('ready'); bar.style.width=((el/X.pre)*100)+'%'; run.dataset.ph='pre'; sub.textContent='';
-    if(left<=3&&!X.said['c'+left]){ X.said['c'+left]=1; nxtBeep(660,.09); try{ buzz(40); }catch(_){}
+    if(left<=3&&!X.said['c'+left]){ X.said['c'+left]=1; nxtBeep(880,.18,.5); try{ buzz(40); }catch(_){}
       nxtSay([{n:left}],left===3?(LANG==='fr'?'Trois.':LANG==='nl'?'Drie.':'Three.'):left===2?(LANG==='fr'?'Deux.':LANG==='nl'?'Twee.':'Two.'):(LANG==='fr'?'Un.':LANG==='nl'?'Eén.':'One.')); }
     return; }
   el-=X.pre;
@@ -17702,10 +17846,14 @@ function nxtTick(){
   if(i>=X.P.length){ nxtFinish(false); return; }
   const p=X.P[i], inP=el-acc;
   if(i!==X.i){ const first=X.i<0; X.i=i;
-    if(p.t==='work'){ nxtBeep(1180,.3); try{ buzz(120); }catch(_){}
-      if(first) nxtSay(['p_go'],LANG==='fr'?'C’est parti !':LANG==='nl'?'Daar gaan we!':'Let’s go!'); }
-    else { nxtBeep(880,.25); try{ buzz(90); }catch(_){}
-      if(p.d>=10) nxtSay(['p_rest'],LANG==='fr'?'Récupère.':LANG==='nl'?'Recupereer.':'Recover.'); } }
+    if(p.t==='work'){ nxtBeep(1320,.5,.6); try{ buzz(120); }catch(_){}
+      /* 2.4.3 : la voix relance CHAQUE round apres un repos (3-2-1, puis « C'est reparti »).
+         Tant que « C'est reparti » n'est pas enregistre dans le studio, c'est « C'est parti ». */
+      const prev=X.P[i-1];
+      if(first) nxtSay(['p_go'],LANG==='fr'?'C’est parti !':LANG==='nl'?'Daar gaan we!':'Let’s go!');
+      else if(prev&&prev.t==='rest') nxtSay([{full:'p_again',alt:['p_go']}],LANG==='fr'?'C’est reparti !':LANG==='nl'?'Daar gaan we weer!':'Here we go again!'); }
+    else { nxtBeep(660,.3,.45); try{ buzz(90); }catch(_){}
+      if(p.d>=10) nxtSay(['p_rest'],LANG==='fr'?'Récupère.':LANG==='nl'?'Recupereer.':'Recover.',p.d>=20); } }
   run.dataset.ph=p.t;
   const multi=X.P.filter(q=>q.t==='work').length>1;
   ph.textContent=(X.k==='emom'||X.k==='e2mom')?nxtt('rnd')+' '+p.r+' '+nxtt('of')+' '+X.c.rounds:(p.t==='rest'?nxtt('rest'):nxtt('work'))+(multi?' · '+nxtt('rnd')+' '+p.r+'/'+X.c.rounds:'');
@@ -17713,7 +17861,7 @@ function nxtTick(){
     clk.textContent=nxtFmt(Math.floor(inP));
     if(p.cap){ bar.style.width=Math.min(100,inP/p.cap*100)+'%'; sub.textContent=nxtt('cap')+' '+nxtFmt(p.cap);
       const l=Math.ceil(p.cap-inP); if(l===10&&!X.said['t10']){ X.said['t10']=1; nxtSay(['p_10s'],LANG==='fr'?'Dix secondes !':'Ten seconds!'); }
-      if(l<=3&&l>0&&!X.said['e'+l]){ X.said['e'+l]=1; nxtBeep(660,.09); }
+      if(l<=3&&l>0&&!X.said['e'+l]){ X.said['e'+l]=1; nxtBeep(880,.18,.5); }
       if(inP>=p.cap){ nxtFinish(false); return; } }
     else { bar.style.width='0%'; sub.textContent=''; }
     return; }
@@ -17722,8 +17870,8 @@ function nxtTick(){
   const nx=X.P[i+1]; sub.textContent=nx?(nx.t==='rest'?nxtt('rest')+' '+nxtFmt(nx.d):''):'';
   const key=i+':';
   if(p.d>=30&&L===10&&!X.said[key+'10']){ X.said[key+'10']=1; nxtSay(['p_10s'],LANG==='fr'?'Dix secondes !':'Ten seconds!'); }
-  if((X.k==='amrap'||X.k==='down')&&p.d>=120&&!X.said[key+'h']&&inP>=p.d/2){ X.said[key+'h']=1; nxtSay(['p_half'],LANG==='fr'?'La moitié. Tiens bon.':'Halfway.'); }
-  if(L<=3&&L>0&&!X.said[key+'b'+L]){ X.said[key+'b'+L]=1; nxtBeep(660,.09); }
+  if((X.k==='amrap'||X.k==='down')&&p.d>=120&&!X.said[key+'h']&&inP>=p.d/2){ X.said[key+'h']=1; nxtSay(['p_half'],LANG==='fr'?'La moitié. Tiens bon.':'Halfway.',true); }
+  if(L<=3&&L>0&&!X.said[key+'b'+L]){ X.said[key+'b'+L]=1; nxtBeep(880,.18,.5); }
 }
 function nxtFinish(stopped){
   const X=NXT; if(!X||X.done) return; X.done=true; clearInterval(X.iv); try{ X.lock&&X.lock.release(); }catch(_){}
@@ -17749,6 +17897,44 @@ function nxtFinish(stopped){
       c.innerHTML=`<img class="nx-ico" src="icons/ui_gauge.webp" alt=""><div><b>${esc(nxtt('card_h'))}</b><span>${esc(nxtt('card_p'))}</span></div><i>›</i>`;
       c.onclick=()=>{ nxBuzz(); nxtOpen(); }; const cr=document.getElementById('nx-tr-cours'); if(cr) cr.before(c); else more.prepend(c); }
     void box; }catch(_){}
+  return r; }; }
+/* ==========================================================================
+   COACH DM 2.4.3 — FORCE & SKILL SUR MESURE, EN HAUT DE S'ENTRAINER
+   Le moteur de charge et le moteur de skill etaient tout en bas, sous les 13
+   programmes, sous le titre « Mes cycles et objectifs ». Ils passent juste sous
+   le programme en cours, avec un nom clair et une puce dans la rangee du haut.
+   Meme bloc, memes boutons, memes regles (premium, records) : seulement deplace.
+   ========================================================================== */
+const NXE_TX={
+  h:['Force & Skill sur mesure','Custom Strength & Skill','Kracht & Skill op maat'],
+  p:['Ton cycle construit sur tes records : une charge qui monte, ou un skill gymnastique étape par étape.','Your cycle built from your records: a lift that goes up, or a gymnastics skill step by step.','Je cyclus op basis van je records: een lift die stijgt, of een gymnastiek-skill stap voor stap.'],
+  chip:['Force & Skill','Strength & Skill','Kracht & Skill']
+};
+const nxet=k=>NXE_TX[k][{fr:0,en:1,nl:2}[LANG]||0];
+/* 2.4.3 — la meme entree sur l'accueil : une carte sous l'objectif du jour, qui mene au bloc dans S'entrainer */
+{ const _td=nxToday; nxToday=async function(){ const r=await _td.apply(this,arguments);
+  try{ const at=document.getElementById('nx-t-coach');
+    if(at&&!document.getElementById('nx-t-eng')){ const c=document.createElement('button'); c.id='nx-t-eng'; c.className='nx-blk nx-tmcard';
+      c.innerHTML=`<img class="nx-ico" src="icons/ui_strength.webp" alt=""><div><b>${esc(nxet('h'))}</b><span>${esc(nxet('p'))}</span></div><i>›</i>`;
+      c.onclick=()=>{ nxBuzz(); switchTab('seances'); let n=0; const go=()=>{ const e=document.getElementById('nx-eng'); if(e){ try{ e.scrollIntoView({behavior:'smooth',block:'start'}); }catch(_){} } else if(++n<20) setTimeout(go,150); }; setTimeout(go,200); };
+      at.before(c); }
+  }catch(_){}
+  return r; }; }
+{ const _tr=nxTrain; nxTrain=async function(){
+  /* l'ecran est reconstruit a chaque passage : on remet d'abord les objectifs a l'abri */
+  try{ const go=document.getElementById('go-section'), safe=document.getElementById('nx-se-go'); if(go&&safe&&go.parentElement!==safe) safe.appendChild(go); }catch(_){}
+  const r=await _tr.apply(this,arguments);
+  try{ const go=document.getElementById('go-section'), at=document.getElementById('nx-tr-cours'), more=document.getElementById('nx-se-more');
+    if(go&&at){ const eng=document.createElement('div'); eng.id='nx-eng';
+      eng.innerHTML=`<div class="nx-h2">${esc(nxet('h'))}</div><p class="nx-engp">${esc(nxet('p'))}</p>`;
+      const prog=document.querySelector('#nx-train .nx-prog'); if(prog) prog.after(eng); else at.before(eng);
+      eng.appendChild(go);
+      const h=more&&more.querySelector('.nx-h2'); if(h) h.style.display='none';
+      const chips=document.querySelector('#nx-train .nx-chips');
+      if(chips&&!chips.querySelector('[data-eng]')){ const b=document.createElement('button'); b.className='nx-chip'; b.dataset.eng='1'; b.textContent=nxet('chip');
+        b.onclick=e=>{ e.stopPropagation(); nxBuzz(); try{ document.getElementById('nx-eng').scrollIntoView({behavior:'smooth',block:'start'}); }catch(_){} };
+        if(chips.children[0]) chips.children[0].after(b); else chips.appendChild(b); } }
+  }catch(_){}
   return r; }; }
 /* ==========================================================================
    COACH DM 2.4 — TOUT LE STUDIO VOIX
