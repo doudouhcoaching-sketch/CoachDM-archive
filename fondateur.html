@@ -293,7 +293,7 @@ $('#ck-ov').onclick=e=>{ if(e.target.id==='ck-ov') closeCk(); };
 
   KIND = info.kind;
   try{
-    const { data } = await sb.from('billing_prices').select('*').eq('active',true);
+    const { data } = await sb.from('billing_prices').select('*').eq('active',true).neq('audience','client_coach');
     PRICES = data||[];
   }catch(e){ PRICES=[]; }
 
