@@ -5654,9 +5654,25 @@ async function boot(){
     }
   } else {
     show('auth');
+    /* Si iOS a ferme l'app pendant que la personne cherchait son code dans
+       Mail, on la ramene directement sur l'ecran du code (valable 1 h). */
+    setTimeout(()=>{ try{
+      const p=JSON.parse(localStorage.getItem('cdm_otp_pending')||'null');
+      if(p && p.email && Date.now()-p.at < 3600000) otpShow(p.email);
+    }catch(_){} },0);
   }
 }
-sb.auth.onAuthStateChange((_e,session)=>{ if(!session) show('auth'); });
+/* 12/11/2026 : en revenant de l'app Mail, Supabase re-verifie la session et
+   emet un evenement « pas de session ». show('auth') remettait alors l'ecran de
+   connexion par-dessus l'ecran du code : impossible de saisir les chiffres, et
+   une nouvelle inscription repondait « adresse deja utilisee ». Si on est deja
+   sur l'ecran d'authentification, on ne touche a rien. */
+sb.auth.onAuthStateChange((_e,session)=>{
+  if(session) return;
+  const a=$('#auth');
+  if(a && !a.classList.contains('hidden')) return;
+  show('auth');
+});
 
 $('#au-login').onclick = async ()=>{
   const email=$('#au-email').value.trim(), pass=$('#au-pass').value;
@@ -5762,8 +5778,10 @@ $('#au-rec-go').onclick = async ()=>{
 
 /* ---------------- Verification de l'adresse email (code a usage unique) ---------------- */
 const OTP={ email:'', until:0 };
+const OTP_KEY='cdm_otp_pending';
 function otpShow(email){
   OTP.email=email;
+  try{ localStorage.setItem(OTP_KEY, JSON.stringify({ email, at:Date.now() })); }catch(_){}
   $('#au-card').classList.add('hidden');
   $('#au-otp').classList.remove('hidden');
   $('#au-otp-to').textContent=email;
@@ -5772,6 +5790,7 @@ function otpShow(email){
   setTimeout(()=>{ try{ $('#au-code').focus(); }catch(_){} },80);
 }
 function otpHide(){
+  try{ localStorage.removeItem(OTP_KEY); }catch(_){}
   $('#au-otp').classList.add('hidden');
   $('#au-card').classList.remove('hidden');
 }
