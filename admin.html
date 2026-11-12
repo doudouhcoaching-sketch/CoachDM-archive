@@ -296,6 +296,24 @@ h1,h2,h3{font-family:'Barlow Condensed',-apple-system,BlinkMacSystemFont,'Segoe 
   </div>
 </div>
 
+<div id="mfa" class="screen hidden">
+  <div class="card" style="text-align:center">
+    <div class="mark"><img src="/logo-dm.png" alt="Coach DM" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block"></div>
+    <h1 id="mfa-title">Double authentification</h1>
+    <p class="sub" id="mfa-sub"></p>
+    <div id="mfa-qr-wrap" class="hidden" style="margin:6px 0 14px">
+      <img id="mfa-qr" alt="Code QR" style="width:190px;height:190px;background:#fff;border-radius:14px;padding:8px;display:block;margin:0 auto" />
+      <div style="margin-top:10px;font-size:12px;color:var(--muted)">Ou saisis cette clé dans ton app :</div>
+      <div id="mfa-secret" style="margin-top:4px;font-size:13px;font-weight:700;letter-spacing:1px;word-break:break-all;user-select:all"></div>
+    </div>
+    <div class="field hidden" id="mfa-code-wrap" style="text-align:left"><label>Code à 6 chiffres</label><input id="mfa-code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456" /></div>
+    <button class="btn" id="mfa-ok">Valider</button>
+    <button class="btn subtle hidden" id="mfa-later" style="margin-top:10px">Plus tard</button>
+    <button class="btn subtle" id="mfa-out" style="margin-top:10px">Se déconnecter</button>
+    <div class="msg" id="mfa-msg"></div>
+  </div>
+</div>
+
 <div id="gate" class="screen hidden">
   <div class="card" style="text-align:center">
     <div class="mark" style="background:var(--warn);box-shadow:none">✕</div>
@@ -668,7 +686,7 @@ const $ = s=>document.querySelector(s);
 let EDIT=null;
 const esc = s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const r0 = n=>Math.round(n||0);
-function show(id){['boot','auth','gate'].forEach(s=>$('#'+s).classList.toggle('hidden',s!==id));$('#app').classList.toggle('hidden',id!=='app');}
+function show(id){['boot','auth','gate','mfa'].forEach(s=>$('#'+s).classList.toggle('hidden',s!==id));$('#app').classList.toggle('hidden',id!=='app');}
 function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1800);}
 function setMsg(id,t,c){const e=$('#'+id);e.textContent=t;e.className='msg '+(c||'');}
 
@@ -685,7 +703,7 @@ $('#au-login').onclick = async ()=>{
   if(error) return setMsg('au-msg','Email ou mot de passe incorrect.','err');
   setMsg('au-msg','',''); await enter(data.user);
 };
-$('#gate-out').onclick = $('#logout').onclick = async ()=>{ await sb.auth.signOut(); show('auth'); };
+$('#gate-out').onclick = $('#mfa-out').onclick = $('#logout').onclick = async ()=>{ await sb.auth.signOut(); show('auth'); };
 
 let ROLE=null, ADMIN_UID=null;
 async function enter(user){
@@ -698,12 +716,96 @@ async function enter(user){
     return;
   }
   ROLE = 'admin';
+  let mfaOk = false;
+  try{ mfaOk = await mfaStep(); }
+  catch(e){ console.warn('mfa', e); mfaOk = !MFA_REQUIRED; if(!mfaOk){ setMsg('mfa-msg','Erreur. Recharge la page et réessaie.','err'); } }
+  if(!mfaOk) return;
   applyRoleUI();
   show('app');
   switchTab('members'); loadUsers(); loadNotifs();
   /* Compte des apports en attente dès l'ouverture : la pastille sur l'onglet
      doit être visible sans avoir à cliquer dessus. */
   loadApports();
+}
+/* ---- Double authentification (code a 6 chiffres d'une app d'authentification) ----
+   Compte avec un facteur valide : le code est exige a chaque connexion.
+   Compte sans facteur : on propose de l'activer, « Plus tard » laisse entrer. */
+function mfaUi(o){
+  $('#mfa-title').textContent = o.title;
+  $('#mfa-sub').textContent = o.sub;
+  $('#mfa-qr-wrap').classList.toggle('hidden', !o.qr);
+  $('#mfa-code-wrap').classList.toggle('hidden', !o.code);
+  $('#mfa-later').classList.toggle('hidden', !o.later);
+  $('#mfa-ok').textContent = o.ok;
+  $('#mfa-ok').disabled = false;
+  $('#mfa-code').value = '';
+  setMsg('mfa-msg','','');
+  show('mfa');
+  if(o.code) setTimeout(()=>$('#mfa-code').focus(), 50);
+}
+function mfaClick(){
+  return new Promise(res=>{
+    $('#mfa-ok').onclick = ()=>res('ok');
+    $('#mfa-later').onclick = ()=>res('later');
+    $('#mfa-code').onkeydown = e=>{ if(e.key==='Enter') res('ok'); };
+  });
+}
+async function mfaVerifyLoop(factorId){
+  for(;;){
+    await mfaClick();
+    const code = $('#mfa-code').value.replace(/\D/g,'');
+    if(code.length!==6){ setMsg('mfa-msg','Le code a 6 chiffres.','err'); continue; }
+    $('#mfa-ok').disabled = true; setMsg('mfa-msg','Vérification…','');
+    const { error } = await sb.auth.mfa.challengeAndVerify({ factorId, code });
+    $('#mfa-ok').disabled = false;
+    if(!error) return true;
+    setMsg('mfa-msg','Code incorrect ou expiré. Réessaie avec le code affiché maintenant.','err');
+    $('#mfa-code').value = '';
+  }
+}
+let MFA_REQUIRED = false;
+async function mfaStep(){
+  let factors = null, level = null;
+  try{
+    const f = await sb.auth.mfa.listFactors();
+    if(f.error) throw f.error;
+    factors = f.data;
+    const a = await sb.auth.mfa.getAuthenticatorAssuranceLevel();
+    if(a.error) throw a.error;
+    level = a.data.currentLevel;
+  }catch(e){
+    console.warn('mfa indisponible', e);
+    return true; /* service injoignable : on ne bloque pas un compte sans facteur connu */
+  }
+  const verified = (factors.totp||[]).filter(x=>x.status==='verified');
+  if(verified.length){
+    if(level==='aal2') return true;
+    MFA_REQUIRED = true;
+    mfaUi({ title:'Code de sécurité', sub:"Ouvre ton app d'authentification et saisis le code Coach DM.", code:true, ok:'Valider' });
+    return await mfaVerifyLoop(verified[0].id);
+  }
+  /* Aucun facteur : proposer l'activation */
+  mfaUi({ title:'Protège ta console', sub:"Active la double authentification : en plus du mot de passe, un code de ton téléphone sera demandé à chaque connexion.", later:true, ok:'Activer maintenant' });
+  if(await mfaClick()==='later') return true;
+  $('#mfa-ok').disabled = true; setMsg('mfa-msg','Préparation…','');
+  /* On retire les essais non termines, puis on cree le facteur */
+  for(const old of (factors.all||[]).filter(x=>x.status!=='verified')){
+    await sb.auth.mfa.unenroll({ factorId: old.id }).catch(()=>null);
+  }
+  const en = await sb.auth.mfa.enroll({ factorType:'totp', friendlyName:'Coach DM admin '+Date.now() });
+  if(en.error){
+    setMsg('mfa-msg',"Activation impossible pour le moment. Tu peux entrer et réessayer plus tard.",'err');
+    mfaUi({ title:'Protège ta console', sub:"L'activation n'a pas pu démarrer : "+(en.error.message||''), later:true, ok:'Réessayer plus tard' });
+    await mfaClick();
+    return true;
+  }
+  mfaUi({ title:'Scanne ce code', sub:"Avec Google Authenticator, Microsoft Authenticator, 1Password ou l'app Mots de passe de l'iPhone. Puis saisis le code affiché.", qr:true, code:true, later:true, ok:'Confirmer' });
+  $('#mfa-qr').src = en.data.totp.qr_code;
+  $('#mfa-secret').textContent = en.data.totp.secret;
+  const done = await Promise.race([ mfaVerifyLoop(en.data.id), new Promise(res=>{ $('#mfa-later').addEventListener('click', ()=>res(false), { once:true }); }) ]);
+  if(!done){ await sb.auth.mfa.unenroll({ factorId: en.data.id }).catch(()=>null); return true; }
+  toast('Double authentification activée');
+  return true;
 }
 function applyRoleUI(){
   const coach = ROLE==='coach';
